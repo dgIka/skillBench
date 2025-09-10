@@ -15,7 +15,7 @@ import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 import java.io.IOException;
 
 //шаблон для остальных сервлетов
-@WebServlet("/")
+@WebServlet("/home")
 public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         TemplateEngine templateEngine = (TemplateEngine) request.getServletContext().getAttribute("templateEngine");//в каждом сервлете
