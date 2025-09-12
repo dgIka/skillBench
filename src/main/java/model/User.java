@@ -26,10 +26,11 @@ public class User {
     private String email;
 
     @Column(name = "password_hash")
-    private String password_hash;
+    private String passwordHash;
 
-    @Column(name = "role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false, length = 10)
+    private Role role;
 
     @Column(name = "is_active")
     private Boolean isActive;

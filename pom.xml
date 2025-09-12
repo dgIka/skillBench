@@ -79,13 +79,19 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.hibernate.orm</groupId>
+      <artifactId>hibernate-hikaricp</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
+
 
 
   </dependencies>
   <build>
     <finalName>SkillBench</finalName>
     <plugins>
-      <!-- Java уровень -->
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -95,7 +101,6 @@
         </configuration>
       </plugin>
 
-      <!-- Строгая проверка зависимостей -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>

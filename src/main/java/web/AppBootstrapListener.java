@@ -12,6 +12,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.WebApplicationTemplateResolver;
 import org.thymeleaf.web.servlet.JakartaServletWebApplication;
+import repository.UserRepository;
 
 @WebListener
 public class AppBootstrapListener implements ServletContextListener {
@@ -43,6 +44,8 @@ public class AppBootstrapListener implements ServletContextListener {
 
             sessionFactory = cfg.buildSessionFactory();
             servletContext.setAttribute("sessionFactory", sessionFactory);
+            UserRepository userRepository = new UserRepository(sessionFactory);
+            servletContext.setAttribute("userRepository", userRepository);
 
             System.out.println("Hibernate SessionFactory initialized");
 

@@ -25,8 +25,9 @@ public class UserRepository {
     }
 
     public Optional<User> findByUserEmail(String email) {
-        Query query = sf.getCurrentSession().createQuery("from User where email = :email", User.class).setParameter("email", email);
-        return Optional.ofNullable((User) query.uniqueResult());
+       return sf.fromTransaction(session ->
+                session.createQuery("select u from User u where u.email = :email", User.class)
+                        .setParameter("email", email).uniqueResultOptional());
 
     }
 
