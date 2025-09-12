@@ -4,6 +4,7 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
+import model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -35,6 +36,7 @@ public class AppBootstrapListener implements ServletContextListener {
         servletContext.setAttribute("jakartaApp", application);
         try {
             Configuration cfg = new Configuration();
+            cfg.addAnnotatedClass(User.class);
 
             // cfg.addAnnotatedClass(User.class);
             //SessionFactory sf = (SessionFactory) getServletContext().getAttribute("sessionFactory"); это для сервлета
