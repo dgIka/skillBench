@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @Setter
 @Getter
+@ToString
 public class User {
 
     @Id

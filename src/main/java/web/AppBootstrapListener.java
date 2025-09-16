@@ -13,6 +13,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.WebApplicationTemplateResolver;
 import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 import repository.UserRepository;
+import service.AuthService;
 
 @WebListener
 public class AppBootstrapListener implements ServletContextListener {
@@ -45,7 +46,9 @@ public class AppBootstrapListener implements ServletContextListener {
             sessionFactory = cfg.buildSessionFactory();
             servletContext.setAttribute("sessionFactory", sessionFactory);
             UserRepository userRepository = new UserRepository(sessionFactory);
+            AuthService authService = new AuthService(userRepository);
             servletContext.setAttribute("userRepository", userRepository);
+            servletContext.setAttribute("authService", authService);
 
             System.out.println("Hibernate SessionFactory initialized");
 
