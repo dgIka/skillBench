@@ -4,6 +4,7 @@ import model.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
+import java.util.List;
 import java.util.Optional;
 
 public class UserRepository {
@@ -14,10 +15,11 @@ public class UserRepository {
         this.sf = sessionFactory;
     }
 
-    public void save(User user) {
+    public User save(User user) {
         sf.inTransaction(session -> {
             session.persist(user);
         });
+        return user;
     }
 
     public Optional<User> findById(int id) {
@@ -42,10 +44,25 @@ public class UserRepository {
         );
     }
 
+    public void update(User user) {
+        sf.inTransaction(session -> {
+            User user1 = session.get(User.class, user.getId());
+            user1.setName(user.getName());
+            user1.setEmail(user.getEmail());
+            user1.setRole(user.getRole());
+            user1.setPasswordHash(user.getPasswordHash());
+            user1.setIsActive(user.getIsActive());
+        });
+    }
+
     public void delete(User user) {
         sf.inTransaction(session -> {
             session.delete(user);
         });
+    }
+
+    public List<User> findAll() {
+        return sf.fromSession(session -> session.createQuery("from User", User.class).list());
     }
 
 }
