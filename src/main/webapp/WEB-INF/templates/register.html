@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Регистрация</title></head>
+<body>
+<h1>Регистрация</h1>
+<p th:if="${error}" th:text="${error}"></p>
+<form method="post" action="" th:action="@{/register}">
+    <label>Email <input name="email" type="email" required></label><br>
+    <label>Пароль <input name="password" type="password" required minlength="8" maxlength="64"></label><br>
+    <label>Повтор пароля <input name="password2" type="password" required></label><br>
+    <button type="submit">Создать аккаунт</button>
+</form>
+</body>
+</html>
