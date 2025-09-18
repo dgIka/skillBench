@@ -3,7 +3,7 @@ create table users(
                       name varchar(30) unique not null ,
                       email varchar unique not null ,
                       password_hash varchar not null ,
-                      role varchar(5) not null ,
+                      role varchar(20) not null ,
                       is_active boolean,
                       created_at timestamp
 )

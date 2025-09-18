@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 
+//фильтр авторизации
 @WebFilter(urlPatterns = {"/home", ""})
 public class AuthFilter implements Filter {
     @Override
@@ -22,4 +23,4 @@ public class AuthFilter implements Filter {
         }
         filterChain.doFilter(request, response);
     }
-}
+  }

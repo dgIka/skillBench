@@ -34,8 +34,8 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        WebContext context = new WebContext(app.buildExchange(req, resp), req.getLocale());
 //        req.getRequestDispatcher("/WEB-INF/templates/login.html").forward(req, resp);
+        WebContext context = new WebContext(app.buildExchange(req, resp), req.getLocale());
         resp.setContentType("text/html;charset=UTF-8");
         templateEngine.process("login", context, resp.getWriter());
     }
@@ -46,10 +46,10 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
 
         String clientKey = email.toLowerCase();
-        if (!LoginRateLimiter.isAllowed(clientKey)) {
-            WebContext context = new WebContext(app.buildExchange(req, resp), req.getLocale());
-            req.setAttribute("error", "To many attempts, please try later");
+        if (!LoginRateLimiter.isAllowed(clientKey)) { //проверка на брутфорс
 //            req.getRequestDispatcher("/WEB-INF/templates/login.html").forward(req, resp);
+            WebContext context = new WebContext(app.buildExchange(req, resp), req.getLocale());
+            context.setVariable("error", "To many attempts, please try later");
             resp.setContentType("text/html;charset=UTF-8");
             templateEngine.process("login", context, resp.getWriter());
             return;
@@ -57,8 +57,8 @@ public class LoginServlet extends HttpServlet {
 
         try {
             User user = authService.login(email, password);
-            req.getSession().setAttribute("USER_ID", user.getId());
-            resp.sendRedirect("home"); // временно !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            req.getSession().setAttribute("uid", user.getId());
+            resp.sendRedirect("/home"); // временно !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         } catch (IllegalArgumentException e) {
             WebContext context = new WebContext(app.buildExchange(req, resp), req.getLocale());
             context.setVariable("error", e.getMessage());

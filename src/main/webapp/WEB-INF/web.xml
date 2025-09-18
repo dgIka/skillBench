@@ -20,4 +20,8 @@
     <location>/error/500.html</location>
   </error-page>
 
+  <welcome-file-list>
+    <welcome-file>home</welcome-file>
+  </welcome-file-list>
+
 </web-app>

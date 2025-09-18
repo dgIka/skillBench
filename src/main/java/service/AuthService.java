@@ -2,20 +2,22 @@ package service;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import model.Role;
 import model.User;
 import repository.UserRepository;
 import security.PasswordUtil;
 
 import java.util.Objects;
 
-
+//ключевые методы с регой и логином
 @AllArgsConstructor
 public class AuthService {
     private final UserRepository userRepository;
 
-    public User register(String email, String password) {
+    public User register(String email, String password, String name) {
         Objects.requireNonNull(email);
         Objects.requireNonNull(password);
+        Objects.requireNonNull(name);
 
         userRepository.findByUserEmail(email).ifPresent(user -> {
             throw new IllegalArgumentException("User already exists");
@@ -24,7 +26,9 @@ public class AuthService {
         String hash = PasswordUtil.hash(password);
         User user = new User();
         user.setEmail(email);
+        user.setName(name);
         user.setPasswordHash(hash);
+        user.setRole(Role.USER);
         return userRepository.save(user);
     }
 

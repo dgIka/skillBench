@@ -2,6 +2,7 @@ package security;
 
 import java.util.*;
 
+//защита от брутфорса
 public class LoginRateLimiter {
     private static final int MAX_ATTEMPTS = 5;
     private static final long WINDOW_MS = 15 * 60_000;
