@@ -58,7 +58,12 @@ public class LoginServlet extends HttpServlet {
         try {
             User user = authService.login(email, password);
             req.getSession().setAttribute("uid", user.getId());
-            resp.sendRedirect("/home"); // временно !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            String next = req.getParameter("next");
+            if (next != null && !next.isBlank()) {
+                resp.sendRedirect(next);
+            } else {
+                resp.sendRedirect("/home");
+            }
         } catch (IllegalArgumentException e) {
             WebContext context = new WebContext(app.buildExchange(req, resp), req.getLocale());
             context.setVariable("error", e.getMessage());
