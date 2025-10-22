@@ -4,6 +4,9 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,7 +20,7 @@ import service.AuthService;
 
 @WebListener
 public class AppBootstrapListener implements ServletContextListener {
-
+    private ValidatorFactory validatorFactory;
     private SessionFactory sessionFactory;
 
     @Override
@@ -30,6 +33,11 @@ public class AppBootstrapListener implements ServletContextListener {
         resolver.setSuffix(".html");
         resolver.setTemplateMode("HTML");
         resolver.setCharacterEncoding("UTF-8");
+
+        validatorFactory = Validation.buildDefaultValidatorFactory();
+        Validator validator = validatorFactory.getValidator();
+        servletContext.setAttribute("validatorFactory", validatorFactory);
+        servletContext.setAttribute("validator", validator);
 
         TemplateEngine engine = new TemplateEngine();
         engine.setTemplateResolver(resolver);
@@ -66,6 +74,10 @@ public class AppBootstrapListener implements ServletContextListener {
         if (sessionFactory != null) {
             sessionFactory.close();
             System.out.println("Hibernate SessionFactory closed");
+        }
+
+        if (validatorFactory != null) {
+            validatorFactory.close();
         }
     }
 }

@@ -30,7 +30,6 @@ public class RegisterServlet extends HttpServlet {
         }
     }
     @Override protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-//        req.getRequestDispatcher("/WEB-INF/views/register.html").forward(req, resp);
         WebContext context = new WebContext(app.buildExchange(req, resp), req.getLocale());
         resp.setContentType("text/html;charset=UTF-8");
         templateEngine.process("register", context, resp.getWriter());
