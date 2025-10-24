@@ -3,14 +3,30 @@
 <head><meta charset="UTF-8"><title>Регистрация</title></head>
 <body>
 <h1>Регистрация</h1>
-<p th:if="${error}" th:text="${error}"></p>
-<form method="post" action="" th:action="@{/register}">
-    <label>Email <input name="email" type="email" required></label><br>
-    <label>Имя <input name="name" type="name" required></label><br>
-    <label>Пароль <input name="password" type="password" required minlength="8" maxlength="64"></label><br>
-    <label>Повтор пароля <input name="password2" type="password" required></label><br>
+<p th:if="${error}" th:text="${error}" style='color:red'></p>
+<form method="post" th:action="@{/register(next=${param.next})}" novalidate>
+    <label>Email
+        <input name="email" type="email" required th:value="${dto != null} ? ${dto.email} : ${''}">
+        <small th:if="${errors != null and errors['email']}" th:text="${errors['email']}" style='color:red'></small>
+    </label><br>
+
+    <label>Имя
+        <input name="name" type="text" required>
+        <small th:if="${errors != null and errors['name']}" th:text="${errors['name']}" style='color:red'></small>
+    </label><br>
+
+    <label>Пароль
+        <input name="password" type="password" required>
+        <small th:if="${errors != null and errors['password']}" th:text="${errors['password']}" style='color:red'></small>
+    </label><br>
+
+    <label>Повтор пароля
+        <input name="password2" type="password" required>
+        <small th:if="${errors != null and errors['password2']}" th:text="${errors['password2']}" style='color:red'></small>
+    </label><br>
     <button type="submit">Создать аккаунт</button>
 </form>
+
 <a href="../login">Уже есть акаунт</a>
 </body>
 </html>

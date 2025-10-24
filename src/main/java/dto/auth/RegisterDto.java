@@ -11,20 +11,23 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RegisterDto {
-    @NotBlank
-    @Email
-    @Size(max = 256)
+    @NotBlank(message = "{auth.email.required}")
+    @Email(message = "{email.invalid}")
+    @Size(max = 256, message = "{size.tooLong}")
     private String email;
 
-    @NotBlank
-    @Size(min = 2, max = 72)
+    @NotBlank(message = "{auth.email.required}/")
+    @Size(min = 2, message = "{size.tooShort}")
+    @Size(max = 72, message = "{size.tooLong}")
     private String password;
 
-    @NotBlank
-    @Size(min = 2, max = 72)
+    @NotBlank(message = "{auth.email.required}/")
+    @Size(min = 2, message = "{size.tooShort}")
+    @Size(max = 72, message = "{size.tooLong}")
     private String password2;
 
-    @NotBlank
-    @Size(min = 6, max = 256)
+    @NotBlank(message = "{notblank}")
+    @Size(min = 2, message = "{size.tooShort}")
+    @Size(max = 72, message = "{size.tooLong}")
     private String name;
 }
