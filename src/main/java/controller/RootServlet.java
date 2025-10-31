@@ -17,6 +17,8 @@ import java.net.URLEncoder;
 public class RootServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/home");
+        if ("/".equals(request.getRequestURI())) {
+            response.sendRedirect("/home");
+        }
     }
 }

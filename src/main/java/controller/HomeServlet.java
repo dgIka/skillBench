@@ -24,7 +24,7 @@ public class HomeServlet extends HttpServlet {
         IWebExchange exchange = app.buildExchange(request, response);//в каждом сервлете
 
         WebContext context = new WebContext(exchange, request.getLocale()); //если передаем данные, создается всегда, использовать не обязательно, в каждом сервлете
-        context.setVariable("message", "Привет из Thymeleaf под Tomcat 11!"); //сама передача данных
+        context.setVariable("message", "Привет, "); //сама передача данных
 
         response.setContentType("text/html;charset=utf-8"); //кодировка передаваемого шаблона, в каждом сервлете
         templateEngine.process("home", context, response.getWriter()); //финальный для передачи странички

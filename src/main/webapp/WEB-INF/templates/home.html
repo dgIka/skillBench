@@ -5,7 +5,10 @@
     <title>Home</title>
 </head>
 <body>
-<h1 th:text="${message}">Hello, World!</h1>
-<p>Страница загружается, UTF-8 работает.</p>
+<h1 th:text="${message} + ${session.user.name} + '!'">Hello, World!</h1><br>
+<a class="mac-link" href="/tests">Доступные тесты</a><br>
+<a class="mac-link" href="/">Моя история</a><br>
+<a class="mac-link" href="../register">Регистрация</a><br>
 </body>
 </html>
+

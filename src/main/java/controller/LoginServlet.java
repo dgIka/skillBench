@@ -44,7 +44,6 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.getRequestDispatcher("/WEB-INF/templates/login.html").forward(req, resp);
         WebContext context = new WebContext(app.buildExchange(req, resp), req.getLocale());
         resp.setContentType("text/html;charset=UTF-8");
         templateEngine.process("login", context, resp.getWriter());
@@ -83,6 +82,7 @@ public class LoginServlet extends HttpServlet {
         try {
             User user = authService.login(email, password);
             req.getSession().setAttribute("uid", user.getId());
+            req.getSession().setAttribute("user", user);
             String next = req.getParameter("next");
             if (next != null && !next.isBlank()) {
                 resp.sendRedirect(next);

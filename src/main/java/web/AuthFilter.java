@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 
-//фильтр аутентификации (проверка на то, залогинен ли)
 @WebFilter(urlPatterns = {"/home"})
 public class AuthFilter implements Filter {
     @Override
