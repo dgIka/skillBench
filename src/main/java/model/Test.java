@@ -27,5 +27,8 @@ public class Test {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "theme")
+    private String theme;
+
 
 }

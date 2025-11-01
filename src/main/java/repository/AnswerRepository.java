@@ -16,13 +16,6 @@ public class AnswerRepository {
         return answer.getId();
     }
 
-    public void update(Answer answer) {
-        sf.inTransaction(session -> {
-            Answer answerToUpdate = session.get(Answer.class, answer.getId());
-            answerToUpdate.setText(answer.getText());
-            answerToUpdate.setCorrect(answer.isCorrect());
-        });
-    }
 
     public void delete(Answer answer) {
         sf.inTransaction(session -> {

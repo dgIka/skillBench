@@ -2,7 +2,6 @@ package repository;
 
 import model.User;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 
 import java.util.List;
 import java.util.Optional;

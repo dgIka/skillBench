@@ -19,6 +19,9 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     unique: true
+              - column:
+                  name: theme
+                  type: VARCHAR(255)
         - createTable:
             tableName: question
             columns:
