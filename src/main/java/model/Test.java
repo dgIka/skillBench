@@ -16,7 +16,7 @@ import java.util.List;
 public class Test {
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "mainTest")
+    @OneToMany(mappedBy = "mainTest", cascade = CascadeType.PERSIST)
     private List<Question> questions;
 
     @Id
@@ -29,6 +29,11 @@ public class Test {
 
     @Column(name = "theme")
     private String theme;
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+        questions.forEach(question -> question.setMainTest(this));
+    }
 
 
 }

@@ -14,6 +14,9 @@ import liquibase.LabelExpression;
 import liquibase.Liquibase;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.resource.ClassLoaderResourceAccessor;
+import model.Answer;
+import model.Question;
+import model.Test;
 import model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -100,6 +103,9 @@ public class AppBootstrapListener implements ServletContextListener {
         try {
             Configuration cfg = new Configuration();
             cfg.addAnnotatedClass(User.class);
+            cfg.addAnnotatedClass(Test.class);
+            cfg.addAnnotatedClass(Question.class);
+            cfg.addAnnotatedClass(Answer.class);
 
             // cfg.addAnnotatedClass(User.class);
             //SessionFactory sf = (SessionFactory) getServletContext().getAttribute("sessionFactory"); это для сервлета

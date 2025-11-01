@@ -21,7 +21,7 @@ public class Question {
     private Test mainTest;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "mainQuestion")
+    @OneToMany(mappedBy = "mainQuestion", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Answer> answers;
 
     @Id
@@ -29,6 +29,12 @@ public class Question {
     @Column(name = "id")
     private int id;
 
+    @Column(name = "text")
     private String text;
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
+        answers.forEach(a -> a.setMainQuestion(this));
+    }
 
 }
