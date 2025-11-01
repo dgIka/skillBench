@@ -19,16 +19,6 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     unique: true
-              - column:
-                  name: questions
-                  type: int
-              - column:
-                  name: theme
-                  type: varchar
-                  constraints:
-                    nullable: false
-                    unique: true
-
         - createTable:
             tableName: question
             columns:
@@ -50,11 +40,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     unique: true
-              - column:
-                  name: answers
-                  type: INT
-                  constraints:
-                    nullable: false
+
         - createTable:
             tableName: answer
             columns:
@@ -78,6 +64,9 @@ databaseChangeLog:
               - column:
                   name: is_correct
                   type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
 
         - addForeignKeyConstraint:
             baseTableName: answer

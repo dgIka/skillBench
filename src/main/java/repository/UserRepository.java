@@ -15,11 +15,11 @@ public class UserRepository {
         this.sf = sessionFactory;
     }
 
-    public User save(User user) {
+    public Integer save(User user) {
         sf.inTransaction(session -> {
             session.persist(user);
         });
-        return user;
+        return user.getId();
     }
 
     public Optional<User> findById(int id) {

@@ -29,7 +29,8 @@ public class AuthService {
         user.setName(name);
         user.setPasswordHash(hash);
         user.setRole(Role.USER);
-        return userRepository.save(user);
+        userRepository.save(user);
+        return user;
     }
 
     public User login(String email, String password) {
