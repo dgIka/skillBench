@@ -2,6 +2,8 @@ package model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class Question {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "mainQuestion", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Answer> answers;
 
     @Id

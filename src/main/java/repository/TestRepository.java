@@ -33,8 +33,7 @@ public class TestRepository {
     }
 
     public List<Test> getAll() {
-        return sf.getCurrentSession().createQuery("select t from Test t " +
-                "left join fetch t.questions q " +
-                "left join fetch q.answers" , Test.class).getResultList();
+        return sf.fromTransaction(session -> session.createQuery("select t from Test t " +
+                "left join fetch t.questions", Test.class).list());
     }
 }

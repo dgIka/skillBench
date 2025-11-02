@@ -13,16 +13,19 @@ import org.hibernate.Transaction;
 import repository.AnswerRepository;
 import repository.QuestionRepository;
 import repository.TestRepository;
+import service.TestService;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/_dev", loadOnStartup = 1)
 public class DevRunnerServlet extends HttpServlet {
 
     private SessionFactory sf;
+    private TestService testService;
     private TestRepository testRepo;
-    private QuestionRepository questionRepo;
-    private AnswerRepository answerRepo;
+
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -30,25 +33,19 @@ public class DevRunnerServlet extends HttpServlet {
         sf = (SessionFactory) config.getServletContext().getAttribute("sessionFactory");
         if (sf == null) throw new ServletException("SessionFactory not found");
 
-        testRepo = new TestRepository(sf);
-        questionRepo = new QuestionRepository(sf);
-        answerRepo = new AnswerRepository(sf);
+        testService = (TestService) config.getServletContext().getAttribute("testService");
 
-        try (Session session = sf.openSession()) {
-            Transaction tx = session.beginTransaction();
-            Answer answer = new Answer();
-            answer.setText("Test answer");
-            Question question = new Question();
-            question.setText("Test question");
-            question.setAnswers(Collections.singletonList(answer));
-            Test test = new Test();
-            test.setName("Test name2");
-            test.setTheme("Test theme");
-            test.setQuestions(Collections.singletonList(question));
-            testRepo.save(test);
-            tx.commit();
-        } catch (Exception e) {
-            throw new ServletException("Dev runner failed", e);
+        testRepo = new TestRepository(sf);
+
+        List<Test> all = testService.getTests();
+        System.out.println(all);
+        System.out.println("CHECK");
+        for (Test test : all) {
+            test.getQuestions().forEach(System.out::println);
         }
+
+        testService.getAllThemes().forEach(System.out::println);
+
+
     }
 }
