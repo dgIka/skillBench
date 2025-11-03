@@ -1,0 +1,661 @@
+Test test1 = new Test();
+test1.setName("Тест 1");
+test1.setTheme("Java — основы");
+
+Question q1_1 = new Question();
+q1_1.setText("Что делает ключевое слово static?");
+Answer a1_1_1 = new Answer(); a1_1_1.setText("Создает объект");
+Answer a1_1_2 = new Answer(); a1_1_2.setText("Позволяет вызывать метод без создания объекта"); a1_1_2.setCorrect(true);
+Answer a1_1_3 = new Answer(); a1_1_3.setText("Удаляет объект");
+Answer a1_1_4 = new Answer(); a1_1_4.setText("Запрещает наследование");
+q1_1.setAnswers(Arrays.asList(a1_1_4, a1_1_3, a1_1_1, a1_1_2));
+
+Question q1_2 = new Question();
+q1_2.setText("Что делает оператор new?");
+Answer a1_2_1 = new Answer(); a1_2_1.setText("Создает новый объект"); a1_2_1.setCorrect(true);
+Answer a1_2_2 = new Answer(); a1_2_2.setText("Удаляет объект");
+Answer a1_2_3 = new Answer(); a1_2_3.setText("Объявляет переменную");
+Answer a1_2_4 = new Answer(); a1_2_4.setText("Вызывает метод");
+q1_2.setAnswers(Arrays.asList(a1_2_3, a1_2_4, a1_2_1, a1_2_2));
+
+Question q1_3 = new Question();
+q1_3.setText("Что делает ключевое слово final?");
+Answer a1_3_1 = new Answer(); a1_3_1.setText("Запрещает изменение значения или переопределение"); a1_3_1.setCorrect(true);
+Answer a1_3_2 = new Answer(); a1_3_2.setText("Позволяет множественное наследование");
+Answer a1_3_3 = new Answer(); a1_3_3.setText("Удаляет метод");
+Answer a1_3_4 = new Answer(); a1_3_4.setText("Ускоряет выполнение кода");
+q1_3.setAnswers(Arrays.asList(a1_3_4, a1_3_1, a1_3_2, a1_3_3));
+
+Question q1_4 = new Question();
+q1_4.setText("Что делает оператор instanceof?");
+Answer a1_4_1 = new Answer(); a1_4_1.setText("Проверяет принадлежность объекта к классу"); a1_4_1.setCorrect(true);
+Answer a1_4_2 = new Answer(); a1_4_2.setText("Создает экземпляр класса");
+Answer a1_4_3 = new Answer(); a1_4_3.setText("Удаляет объект");
+Answer a1_4_4 = new Answer(); a1_4_4.setText("Проверяет размер массива");
+q1_4.setAnswers(Arrays.asList(a1_4_3, a1_4_1, a1_4_4, a1_4_2));
+
+Question q1_5 = new Question();
+q1_5.setText("Какой результат выражения 10 % 3?");
+Answer a1_5_1 = new Answer(); a1_5_1.setText("3");
+Answer a1_5_2 = new Answer(); a1_5_2.setText("10");
+Answer a1_5_3 = new Answer(); a1_5_3.setText("0");
+Answer a1_5_4 = new Answer(); a1_5_4.setText("1"); a1_5_4.setCorrect(true);
+q1_5.setAnswers(Arrays.asList(a1_5_1, a1_5_4, a1_5_3, a1_5_2));
+
+Question q1_6 = new Question();
+q1_6.setText("Какой тип данных используется для хранения текста?");
+Answer a1_6_1 = new Answer(); a1_6_1.setText("String"); a1_6_1.setCorrect(true);
+Answer a1_6_2 = new Answer(); a1_6_2.setText("Text");
+Answer a1_6_3 = new Answer(); a1_6_3.setText("Char");
+Answer a1_6_4 = new Answer(); a1_6_4.setText("Character");
+q1_6.setAnswers(Arrays.asList(a1_6_3, a1_6_4, a1_6_1, a1_6_2));
+
+Question q1_7 = new Question();
+q1_7.setText("Какой тип цикла существует в Java?");
+Answer a1_7_1 = new Answer(); a1_7_1.setText("while"); a1_7_1.setCorrect(true);
+Answer a1_7_2 = new Answer(); a1_7_2.setText("foreach");
+Answer a1_7_3 = new Answer(); a1_7_3.setText("loopuntil");
+Answer a1_7_4 = new Answer(); a1_7_4.setText("repeat");
+q1_7.setAnswers(Arrays.asList(a1_7_2, a1_7_3, a1_7_1, a1_7_4));
+
+test1.setQuestions(Arrays.asList(q1_1, q1_2, q1_3, q1_4, q1_5, q1_6, q1_7));
+testRepo.save(test1);
+
+Test test2 = new Test();
+test2.setName("Тест 2");
+test2.setTheme("История");
+
+Question q2_1 = new Question();
+q2_1.setText("Когда началась Вторая мировая война?");
+Answer a2_1_1 = new Answer(); a2_1_1.setText("1939"); a2_1_1.setCorrect(true);
+Answer a2_1_2 = new Answer(); a2_1_2.setText("1914");
+Answer a2_1_3 = new Answer(); a2_1_3.setText("1945");
+Answer a2_1_4 = new Answer(); a2_1_4.setText("1950");
+q2_1.setAnswers(Arrays.asList(a2_1_1, a2_1_3, a2_1_4, a2_1_2));
+
+Question q2_2 = new Question();
+q2_2.setText("Когда закончилась Вторая мировая война?");
+Answer a2_2_1 = new Answer(); a2_2_1.setText("1945"); a2_2_1.setCorrect(true);
+Answer a2_2_2 = new Answer(); a2_2_2.setText("1941");
+Answer a2_2_3 = new Answer(); a2_2_3.setText("1939");
+Answer a2_2_4 = new Answer(); a2_2_4.setText("1955");
+q2_2.setAnswers(Arrays.asList(a2_2_1, a2_2_3, a2_2_4, a2_2_2));
+
+Question q2_3 = new Question();
+q2_3.setText("Кто был первым президентом США?");
+Answer a2_3_1 = new Answer(); a2_3_1.setText("Авраам Линкольн");
+Answer a2_3_2 = new Answer(); a2_3_2.setText("Джордж Вашингтон"); a2_3_2.setCorrect(true);
+Answer a2_3_3 = new Answer(); a2_3_3.setText("Франклин Рузвельт");
+Answer a2_3_4 = new Answer(); a2_3_4.setText("Томас Джефферсон");
+q2_3.setAnswers(Arrays.asList(a2_3_4, a2_3_2, a2_3_1, a2_3_3));
+
+Question q2_4 = new Question();
+q2_4.setText("В каком веке произошла Французская революция?");
+Answer a2_4_1 = new Answer(); a2_4_1.setText("XVII");
+Answer a2_4_2 = new Answer(); a2_4_2.setText("XVIII"); a2_4_2.setCorrect(true);
+Answer a2_4_3 = new Answer(); a2_4_3.setText("XIX");
+Answer a2_4_4 = new Answer(); a2_4_4.setText("XVI");
+q2_4.setAnswers(Arrays.asList(a2_4_1, a2_4_3, a2_4_2, a2_4_4));
+
+Question q2_5 = new Question();
+q2_5.setText("Кто написал 'Войну и мир'?");
+Answer a2_5_1 = new Answer(); a2_5_1.setText("Фёдор Достоевский");
+Answer a2_5_2 = new Answer(); a2_5_2.setText("Иван Тургенев");
+Answer a2_5_3 = new Answer(); a2_5_3.setText("Лев Толстой"); a2_5_3.setCorrect(true);
+Answer a2_5_4 = new Answer(); a2_5_4.setText("Александр Пушкин");
+q2_5.setAnswers(Arrays.asList(a2_5_2, a2_5_1, a2_5_3, a2_5_4));
+
+Question q2_6 = new Question();
+q2_6.setText("Когда произошла Октябрьская революция?");
+Answer a2_6_1 = new Answer(); a2_6_1.setText("1905");
+Answer a2_6_2 = new Answer(); a2_6_2.setText("1917"); a2_6_2.setCorrect(true);
+Answer a2_6_3 = new Answer(); a2_6_3.setText("1922");
+Answer a2_6_4 = new Answer(); a2_6_4.setText("1939");
+q2_6.setAnswers(Arrays.asList(a2_6_4, a2_6_3, a2_6_1, a2_6_2));
+
+Question q2_7 = new Question();
+q2_7.setText("Как называлась столица Римской империи?");
+Answer a2_7_1 = new Answer(); a2_7_1.setText("Афины");
+Answer a2_7_2 = new Answer(); a2_7_2.setText("Константинополь");
+Answer a2_7_3 = new Answer(); a2_7_3.setText("Рим"); a2_7_3.setCorrect(true);
+Answer a2_7_4 = new Answer(); a2_7_4.setText("Неаполь");
+q2_7.setAnswers(Arrays.asList(a2_7_2, a2_7_1, a2_7_3, a2_7_4));
+
+Question q2_8 = new Question();
+q2_8.setText("Кто был королём Франции во время революции?");
+Answer a2_8_1 = new Answer(); a2_8_1.setText("Людовик XIV");
+Answer a2_8_2 = new Answer(); a2_8_2.setText("Наполеон Бонапарт");
+Answer a2_8_3 = new Answer(); a2_8_3.setText("Людовик XVI"); a2_8_3.setCorrect(true);
+Answer a2_8_4 = new Answer(); a2_8_4.setText("Карл X");
+q2_8.setAnswers(Arrays.asList(a2_8_4, a2_8_3, a2_8_1, a2_8_2));
+
+test2.setQuestions(Arrays.asList(q2_1, q2_2, q2_3, q2_4, q2_5, q2_6, q2_7, q2_8));
+testRepo.save(test2);
+
+Test test3 = new Test();
+test3.setName("Тест 3");
+test3.setTheme("География");
+
+Question q3_1 = new Question();
+q3_1.setText("Самая длинная река в мире?");
+Answer a3_1_1 = new Answer(); a3_1_1.setText("Нил"); a3_1_1.setCorrect(true);
+Answer a3_1_2 = new Answer(); a3_1_2.setText("Амазонка");
+Answer a3_1_3 = new Answer(); a3_1_3.setText("Янцзы");
+Answer a3_1_4 = new Answer(); a3_1_4.setText("Миссисипи");
+q3_1.setAnswers(Arrays.asList(a3_1_1, a3_1_4, a3_1_3, a3_1_2));
+
+Question q3_2 = new Question();
+q3_2.setText("На каком материке находится Египет?");
+Answer a3_2_1 = new Answer(); a3_2_1.setText("Азия");
+Answer a3_2_2 = new Answer(); a3_2_2.setText("Африка"); a3_2_2.setCorrect(true);
+Answer a3_2_3 = new Answer(); a3_2_3.setText("Европа");
+Answer a3_2_4 = new Answer(); a3_2_4.setText("Южная Америка");
+q3_2.setAnswers(Arrays.asList(a3_2_1, a3_2_4, a3_2_2, a3_2_3));
+
+Question q3_3 = new Question();
+q3_3.setText("Как называется столица Канады?");
+Answer a3_3_1 = new Answer(); a3_3_1.setText("Торонто");
+Answer a3_3_2 = new Answer(); a3_3_2.setText("Монреаль");
+Answer a3_3_3 = new Answer(); a3_3_3.setText("Оттава"); a3_3_3.setCorrect(true);
+Answer a3_3_4 = new Answer(); a3_3_4.setText("Ванкувер");
+q3_3.setAnswers(Arrays.asList(a3_3_2, a3_3_4, a3_3_3, a3_3_1));
+
+Question q3_4 = new Question();
+q3_4.setText("Какое море самое солёное?");
+Answer a3_4_1 = new Answer(); a3_4_1.setText("Средиземное");
+Answer a3_4_2 = new Answer(); a3_4_2.setText("Красное море"); a3_4_2.setCorrect(true);
+Answer a3_4_3 = new Answer(); a3_4_3.setText("Балтийское");
+Answer a3_4_4 = new Answer(); a3_4_4.setText("Чёрное");
+q3_4.setAnswers(Arrays.asList(a3_4_3, a3_4_4, a3_4_1, a3_4_2));
+
+Question q3_5 = new Question();
+q3_5.setText("Какая гора является самой высокой на Земле?");
+Answer a3_5_1 = new Answer(); a3_5_1.setText("Эльбрус");
+Answer a3_5_2 = new Answer(); a3_5_2.setText("Килиманджаро");
+Answer a3_5_3 = new Answer(); a3_5_3.setText("Монблан");
+Answer a3_5_4 = new Answer(); a3_5_4.setText("Эверест"); a3_5_4.setCorrect(true);
+q3_5.setAnswers(Arrays.asList(a3_5_2, a3_5_3, a3_5_1, a3_5_4));
+
+Question q3_6 = new Question();
+q3_6.setText("Какое государство самое большое по площади?");
+Answer a3_6_1 = new Answer(); a3_6_1.setText("Канада");
+Answer a3_6_2 = new Answer(); a3_6_2.setText("Китай");
+Answer a3_6_3 = new Answer(); a3_6_3.setText("Россия"); a3_6_3.setCorrect(true);
+Answer a3_6_4 = new Answer(); a3_6_4.setText("США");
+q3_6.setAnswers(Arrays.asList(a3_6_1, a3_6_3, a3_6_2, a3_6_4));
+
+Question q3_7 = new Question();
+q3_7.setText("Какая пустыня самая большая в мире?");
+Answer a3_7_1 = new Answer(); a3_7_1.setText("Сахара"); a3_7_1.setCorrect(true);
+Answer a3_7_2 = new Answer(); a3_7_2.setText("Гоби");
+Answer a3_7_3 = new Answer(); a3_7_3.setText("Калахари");
+Answer a3_7_4 = new Answer(); a3_7_4.setText("Атакама");
+q3_7.setAnswers(Arrays.asList(a3_7_4, a3_7_1, a3_7_3, a3_7_2));
+
+test3.setQuestions(Arrays.asList(q3_1, q3_2, q3_3, q3_4, q3_5, q3_6, q3_7));
+testRepo.save(test3);
+
+Test test4 = new Test();
+test4.setName("Тест 4");
+test4.setTheme("Java — основы");
+
+Question q4_1 = new Question();
+q4_1.setText("Что делает оператор break?");
+Answer a4_1_1 = new Answer(); a4_1_1.setText("Завершает выполнение цикла"); a4_1_1.setCorrect(true);
+Answer a4_1_2 = new Answer(); a4_1_2.setText("Пропускает итерацию цикла");
+Answer a4_1_3 = new Answer(); a4_1_3.setText("Останавливает программу");
+Answer a4_1_4 = new Answer(); a4_1_4.setText("Переходит к следующему методу");
+q4_1.setAnswers(Arrays.asList(a4_1_2, a4_1_1, a4_1_3, a4_1_4));
+
+Question q4_2 = new Question();
+q4_2.setText("Как объявить константу в Java?");
+Answer a4_2_1 = new Answer(); a4_2_1.setText("С помощью ключевого слова final"); a4_2_1.setCorrect(true);
+Answer a4_2_2 = new Answer(); a4_2_2.setText("С помощью ключевого слова const");
+Answer a4_2_3 = new Answer(); a4_2_3.setText("Через static var");
+Answer a4_2_4 = new Answer(); a4_2_4.setText("С помощью define");
+q4_2.setAnswers(Arrays.asList(a4_2_4, a4_2_1, a4_2_3, a4_2_2));
+
+Question q4_3 = new Question();
+q4_3.setText("Как обозначается логическое ИЛИ в Java?");
+Answer a4_3_1 = new Answer(); a4_3_1.setText("||"); a4_3_1.setCorrect(true);
+Answer a4_3_2 = new Answer(); a4_3_2.setText("&&");
+Answer a4_3_3 = new Answer(); a4_3_3.setText("&");
+Answer a4_3_4 = new Answer(); a4_3_4.setText("|");
+q4_3.setAnswers(Arrays.asList(a4_3_3, a4_3_1, a4_3_4, a4_3_2));
+
+Question q4_4 = new Question();
+q4_4.setText("Какой тип данных предназначен для хранения символов?");
+Answer a4_4_1 = new Answer(); a4_4_1.setText("char"); a4_4_1.setCorrect(true);
+Answer a4_4_2 = new Answer(); a4_4_2.setText("string");
+Answer a4_4_3 = new Answer(); a4_4_3.setText("character");
+Answer a4_4_4 = new Answer(); a4_4_4.setText("text");
+q4_4.setAnswers(Arrays.asList(a4_4_3, a4_4_4, a4_4_2, a4_4_1));
+
+Question q4_5 = new Question();
+q4_5.setText("Что означает слово extends при наследовании?");
+Answer a4_5_1 = new Answer(); a4_5_1.setText("Класс наследует свойства другого класса"); a4_5_1.setCorrect(true);
+Answer a4_5_2 = new Answer(); a4_5_2.setText("Класс становится абстрактным");
+Answer a4_5_3 = new Answer(); a4_5_3.setText("Класс становится интерфейсом");
+Answer a4_5_4 = new Answer(); a4_5_4.setText("Класс не может быть создан");
+q4_5.setAnswers(Arrays.asList(a4_5_3, a4_5_1, a4_5_4, a4_5_2));
+
+Question q4_6 = new Question();
+q4_6.setText("Какое значение по умолчанию у boolean в Java?");
+Answer a4_6_1 = new Answer(); a4_6_1.setText("false"); a4_6_1.setCorrect(true);
+Answer a4_6_2 = new Answer(); a4_6_2.setText("true");
+Answer a4_6_3 = new Answer(); a4_6_3.setText("null");
+Answer a4_6_4 = new Answer(); a4_6_4.setText("0");
+q4_6.setAnswers(Arrays.asList(a4_6_4, a4_6_1, a4_6_2, a4_6_3));
+
+Question q4_7 = new Question();
+q4_7.setText("Что делает метод equals()?");
+Answer a4_7_1 = new Answer(); a4_7_1.setText("Сравнивает объекты по значению"); a4_7_1.setCorrect(true);
+Answer a4_7_2 = new Answer(); a4_7_2.setText("Создает копию объекта");
+Answer a4_7_3 = new Answer(); a4_7_3.setText("Удаляет объект");
+Answer a4_7_4 = new Answer(); a4_7_4.setText("Сравнивает ссылки");
+q4_7.setAnswers(Arrays.asList(a4_7_3, a4_7_4, a4_7_1, a4_7_2));
+
+test4.setQuestions(Arrays.asList(q4_1, q4_2, q4_3, q4_4, q4_5, q4_6, q4_7));
+testRepo.save(test4);
+
+Test test5 = new Test();
+test5.setName("Тест 5 — Древний мир");
+test5.setTheme("История");
+
+Question q5_1 = new Question();
+q5_1.setText("Где возникла древнейшая известная цивилизация?");
+Answer a5_1_1 = new Answer(); a5_1_1.setText("В Месопотамии");
+Answer a5_1_2 = new Answer(); a5_1_2.setText("В Египте"); a5_1_2.setCorrect(true);
+Answer a5_1_3 = new Answer(); a5_1_3.setText("В Китае");
+Answer a5_1_4 = new Answer(); a5_1_4.setText("В Греции");
+q5_1.setAnswers(Arrays.asList(a5_1_3, a5_1_1, a5_1_4, a5_1_2));
+
+Question q5_2 = new Question();
+q5_2.setText("Как называлась письменность древних египтян?");
+Answer a5_2_1 = new Answer(); a5_2_1.setText("Иероглифы"); a5_2_1.setCorrect(true);
+Answer a5_2_2 = new Answer(); a5_2_2.setText("Клинопись");
+Answer a5_2_3 = new Answer(); a5_2_3.setText("Руны");
+Answer a5_2_4 = new Answer(); a5_2_4.setText("Алфавит");
+q5_2.setAnswers(Arrays.asList(a5_2_1, a5_2_3, a5_2_4, a5_2_2));
+
+Question q5_3 = new Question();
+q5_3.setText("Кто был правителем Македонии во время походов на Персию?");
+Answer a5_3_1 = new Answer(); a5_3_1.setText("Филипп II");
+Answer a5_3_2 = new Answer(); a5_3_2.setText("Александр Македонский");
+Answer a5_3_3 = new Answer(); a5_3_3.setText("Дарий III");
+Answer a5_3_4 = new Answer(); a5_3_4.setText("Птолемей I"); a5_3_4.setCorrect(true);
+q5_3.setAnswers(Arrays.asList(a5_3_3, a5_3_4, a5_3_1, a5_3_2));
+
+Question q5_4 = new Question();
+q5_4.setText("Какой город был центром Древнего Рима?");
+Answer a5_4_1 = new Answer(); a5_4_1.setText("Рим");
+Answer a5_4_2 = new Answer(); a5_4_2.setText("Афины");
+Answer a5_4_3 = new Answer(); a5_4_3.setText("Спарта");
+Answer a5_4_4 = new Answer(); a5_4_4.setText("Александрия"); a5_4_4.setCorrect(true);
+q5_4.setAnswers(Arrays.asList(a5_4_2, a5_4_3, a5_4_4, a5_4_1));
+
+Question q5_5 = new Question();
+q5_5.setText("Кто построил висячие сады Семирамиды?");
+Answer a5_5_1 = new Answer(); a5_5_1.setText("Навуходоносор II");
+Answer a5_5_2 = new Answer(); a5_5_2.setText("Хаммурапи"); a5_5_2.setCorrect(true);
+Answer a5_5_3 = new Answer(); a5_5_3.setText("Рамзес II");
+Answer a5_5_4 = new Answer(); a5_5_4.setText("Цезарь");
+q5_5.setAnswers(Arrays.asList(a5_5_3, a5_5_2, a5_5_1, a5_5_4));
+
+Question q5_6 = new Question();
+q5_6.setText("Как называлась священная книга древних индийцев?");
+Answer a5_6_1 = new Answer(); a5_6_1.setText("Веды");
+Answer a5_6_2 = new Answer(); a5_6_2.setText("Библия");
+Answer a5_6_3 = new Answer(); a5_6_3.setText("Коран");
+Answer a5_6_4 = new Answer(); a5_6_4.setText("Авеста"); a5_6_4.setCorrect(true);
+q5_6.setAnswers(Arrays.asList(a5_6_2, a5_6_1, a5_6_3, a5_6_4));
+
+Question q5_7 = new Question();
+q5_7.setText("Какой народ первым изобрёл бумагу?");
+Answer a5_7_1 = new Answer(); a5_7_1.setText("Египтяне");
+Answer a5_7_2 = new Answer(); a5_7_2.setText("Китайцы");
+Answer a5_7_3 = new Answer(); a5_7_3.setText("Греки"); a5_7_3.setCorrect(true);
+Answer a5_7_4 = new Answer(); a5_7_4.setText("Римляне");
+q5_7.setAnswers(Arrays.asList(a5_7_1, a5_7_3, a5_7_2, a5_7_4));
+
+test5.setQuestions(Arrays.asList(q5_1, q5_2, q5_3, q5_4, q5_5, q5_6, q5_7));
+testRepo.save(test5);
+
+Test test6 = new Test();
+test6.setName("Тест 6 — География: Страны и столицы");
+test6.setTheme("География");
+
+Question q6_1 = new Question();
+q6_1.setText("Столица Франции?");
+Answer a6_1_1 = new Answer(); a6_1_1.setText("Париж"); a6_1_1.setCorrect(true);
+Answer a6_1_2 = new Answer(); a6_1_2.setText("Берлин");
+Answer a6_1_3 = new Answer(); a6_1_3.setText("Мадрид");
+Answer a6_1_4 = new Answer(); a6_1_4.setText("Рим");
+q6_1.setAnswers(Arrays.asList(a6_1_1, a6_1_4, a6_1_3, a6_1_2));
+
+Question q6_2 = new Question();
+q6_2.setText("Столица Канады?");
+Answer a6_2_1 = new Answer(); a6_2_1.setText("Торонто");
+Answer a6_2_2 = new Answer(); a6_2_2.setText("Оттава"); a6_2_2.setCorrect(true);
+Answer a6_2_3 = new Answer(); a6_2_3.setText("Монреаль");
+Answer a6_2_4 = new Answer(); a6_2_4.setText("Ванкувер");
+q6_2.setAnswers(Arrays.asList(a6_2_3, a6_2_1, a6_2_2, a6_2_4));
+
+Question q6_3 = new Question();
+q6_3.setText("Какая страна самая большая по площади?");
+Answer a6_3_1 = new Answer(); a6_3_1.setText("Канада");
+Answer a6_3_2 = new Answer(); a6_3_2.setText("США");
+Answer a6_3_3 = new Answer(); a6_3_3.setText("Россия"); a6_3_3.setCorrect(true);
+Answer a6_3_4 = new Answer(); a6_3_4.setText("Китай");
+q6_3.setAnswers(Arrays.asList(a6_3_2, a6_3_4, a6_3_3, a6_3_1));
+
+Question q6_4 = new Question();
+q6_4.setText("Столица Японии?");
+Answer a6_4_1 = new Answer(); a6_4_1.setText("Осака");
+Answer a6_4_2 = new Answer(); a6_4_2.setText("Токио");
+Answer a6_4_3 = new Answer(); a6_4_3.setText("Киото");
+Answer a6_4_4 = new Answer(); a6_4_4.setText("Токио"); a6_4_4.setCorrect(true);
+q6_4.setAnswers(Arrays.asList(a6_4_1, a6_4_3, a6_4_2, a6_4_4));
+
+Question q6_5 = new Question();
+q6_5.setText("Какая страна расположена на двух континентах?");
+Answer a6_5_1 = new Answer(); a6_5_1.setText("Турция"); a6_5_1.setCorrect(true);
+Answer a6_5_2 = new Answer(); a6_5_2.setText("Египет");
+Answer a6_5_3 = new Answer(); a6_5_3.setText("Россия");
+Answer a6_5_4 = new Answer(); a6_5_4.setText("Мексика");
+q6_5.setAnswers(Arrays.asList(a6_5_1, a6_5_4, a6_5_3, a6_5_2));
+
+Question q6_6 = new Question();
+q6_6.setText("Столица Австралии?");
+Answer a6_6_1 = new Answer(); a6_6_1.setText("Сидней");
+Answer a6_6_2 = new Answer(); a6_6_2.setText("Канберра"); a6_6_2.setCorrect(true);
+Answer a6_6_3 = new Answer(); a6_6_3.setText("Мельбурн");
+Answer a6_6_4 = new Answer(); a6_6_4.setText("Перт");
+q6_6.setAnswers(Arrays.asList(a6_6_4, a6_6_2, a6_6_1, a6_6_3));
+
+Question q6_7 = new Question();
+q6_7.setText("Какая страна имеет форму сапога на карте?");
+Answer a6_7_1 = new Answer(); a6_7_1.setText("Испания");
+Answer a6_7_2 = new Answer(); a6_7_2.setText("Италия"); a6_7_2.setCorrect(true);
+Answer a6_7_3 = new Answer(); a6_7_3.setText("Франция");
+Answer a6_7_4 = new Answer(); a6_7_4.setText("Греция");
+q6_7.setAnswers(Arrays.asList(a6_7_4, a6_7_1, a6_7_3, a6_7_2));
+
+test6.setQuestions(Arrays.asList(q6_1, q6_2, q6_3, q6_4, q6_5, q6_6, q6_7));
+testRepo.save(test6);
+
+Test test7 = new Test();
+test7.setName("Тест 7 — Java: Работа с ООП");
+test7.setTheme("Java — основы");
+
+Question q7_1 = new Question();
+q7_1.setText("Что означает принцип инкапсуляции?");
+Answer a7_1_1 = new Answer(); a7_1_1.setText("Сокрытие деталей реализации"); a7_1_1.setCorrect(true);
+Answer a7_1_2 = new Answer(); a7_1_2.setText("Возможность наследования");
+Answer a7_1_3 = new Answer(); a7_1_3.setText("Создание экземпляра класса");
+Answer a7_1_4 = new Answer(); a7_1_4.setText("Объединение интерфейсов");
+q7_1.setAnswers(Arrays.asList(a7_1_1, a7_1_4, a7_1_2, a7_1_3));
+
+Question q7_2 = new Question();
+q7_2.setText("Какой модификатор доступа самый строгий?");
+Answer a7_2_1 = new Answer(); a7_2_1.setText("protected");
+Answer a7_2_2 = new Answer(); a7_2_2.setText("private"); a7_2_2.setCorrect(true);
+Answer a7_2_3 = new Answer(); a7_2_3.setText("public");
+Answer a7_2_4 = new Answer(); a7_2_4.setText("default");
+q7_2.setAnswers(Arrays.asList(a7_2_3, a7_2_2, a7_2_4, a7_2_1));
+
+Question q7_3 = new Question();
+q7_3.setText("Какой метод вызывается при создании объекта?");
+Answer a7_3_1 = new Answer(); a7_3_1.setText("main()");
+Answer a7_3_2 = new Answer(); a7_3_2.setText("toString()");
+Answer a7_3_3 = new Answer(); a7_3_3.setText("конструктор"); a7_3_3.setCorrect(true);
+Answer a7_3_4 = new Answer(); a7_3_4.setText("finalize()");
+q7_3.setAnswers(Arrays.asList(a7_3_4, a7_3_1, a7_3_3, a7_3_2));
+
+Question q7_4 = new Question();
+q7_4.setText("Что такое наследование?");
+Answer a7_4_1 = new Answer(); a7_4_1.setText("Создание нового класса на основе существующего"); a7_4_1.setCorrect(true);
+Answer a7_4_2 = new Answer(); a7_4_2.setText("Повторное использование переменных");
+Answer a7_4_3 = new Answer(); a7_4_3.setText("Переопределение методов");
+Answer a7_4_4 = new Answer(); a7_4_4.setText("Создание интерфейсов");
+q7_4.setAnswers(Arrays.asList(a7_4_3, a7_4_1, a7_4_2, a7_4_4));
+
+Question q7_5 = new Question();
+q7_5.setText("Что делает ключевое слово super?");
+Answer a7_5_1 = new Answer(); a7_5_1.setText("Обращается к объекту родительского класса"); a7_5_1.setCorrect(true);
+Answer a7_5_2 = new Answer(); a7_5_2.setText("Создает новый объект");
+Answer a7_5_3 = new Answer(); a7_5_3.setText("Вызывает метод equals()");
+Answer a7_5_4 = new Answer(); a7_5_4.setText("Удаляет объект");
+q7_5.setAnswers(Arrays.asList(a7_5_4, a7_5_2, a7_5_3, a7_5_1));
+
+Question q7_6 = new Question();
+q7_6.setText("Какой метод используется для сравнения объектов по значению?");
+Answer a7_6_1 = new Answer(); a7_6_1.setText("==");
+Answer a7_6_2 = new Answer(); a7_6_2.setText("equals()"); a7_6_2.setCorrect(true);
+Answer a7_6_3 = new Answer(); a7_6_3.setText("compare()");
+Answer a7_6_4 = new Answer(); a7_6_4.setText("isSame()");
+q7_6.setAnswers(Arrays.asList(a7_6_3, a7_6_4, a7_6_1, a7_6_2));
+
+Question q7_7 = new Question();
+q7_7.setText("Что такое полиморфизм?");
+Answer a7_7_1 = new Answer(); a7_7_1.setText("Способность объекта принимать разные формы"); a7_7_1.setCorrect(true);
+Answer a7_7_2 = new Answer(); a7_7_2.setText("Переопределение equals()");
+Answer a7_7_3 = new Answer(); a7_7_3.setText("Множественное наследование");
+Answer a7_7_4 = new Answer(); a7_7_4.setText("Разделение по пакетам");
+q7_7.setAnswers(Arrays.asList(a7_7_2, a7_7_4, a7_7_1, a7_7_3));
+
+Question q7_8 = new Question();
+q7_8.setText("Что делает абстрактный класс?");
+Answer a7_8_1 = new Answer(); a7_8_1.setText("Не может быть создан экземпляр, но можно наследоваться от него"); a7_8_1.setCorrect(true);
+Answer a7_8_2 = new Answer(); a7_8_2.setText("Создает статические методы");
+Answer a7_8_3 = new Answer(); a7_8_3.setText("Хранит только константы");
+Answer a7_8_4 = new Answer(); a7_8_4.setText("Может наследоваться от интерфейсов");
+q7_8.setAnswers(Arrays.asList(a7_8_3, a7_8_4, a7_8_2, a7_8_1));
+
+test7.setQuestions(Arrays.asList(q7_1, q7_2, q7_3, q7_4, q7_5, q7_6, q7_7, q7_8));
+testRepo.save(test7);
+
+Test test8 = new Test();
+test8.setName("Тест 8 — География: Природные объекты");
+test8.setTheme("География");
+
+Question q8_1 = new Question();
+q8_1.setText("Какая река протекает через Лондон?");
+Answer a8_1_1 = new Answer(); a8_1_1.setText("Темза"); a8_1_1.setCorrect(true);
+Answer a8_1_2 = new Answer(); a8_1_2.setText("Сена");
+Answer a8_1_3 = new Answer(); a8_1_3.setText("Рейн");
+Answer a8_1_4 = new Answer(); a8_1_4.setText("Дунай");
+q8_1.setAnswers(Arrays.asList(a8_1_1, a8_1_3, a8_1_4, a8_1_2));
+
+Question q8_2 = new Question();
+q8_2.setText("Какой океан самый большой по площади?");
+Answer a8_2_1 = new Answer(); a8_2_1.setText("Атлантический");
+Answer a8_2_2 = new Answer(); a8_2_2.setText("Тихий океан"); a8_2_2.setCorrect(true);
+Answer a8_2_3 = new Answer(); a8_2_3.setText("Индийский");
+Answer a8_2_4 = new Answer(); a8_2_4.setText("Северный Ледовитый");
+q8_2.setAnswers(Arrays.asList(a8_2_3, a8_2_2, a8_2_1, a8_2_4));
+
+Question q8_3 = new Question();
+q8_3.setText("Самое глубокое место на Земле?");
+Answer a8_3_1 = new Answer(); a8_3_1.setText("Марианская впадина"); a8_3_1.setCorrect(true);
+Answer a8_3_2 = new Answer(); a8_3_2.setText("Байкал");
+Answer a8_3_3 = new Answer(); a8_3_3.setText("Гималаи");
+Answer a8_3_4 = new Answer(); a8_3_4.setText("Тихий хребет");
+q8_3.setAnswers(Arrays.asList(a8_3_4, a8_3_3, a8_3_2, a8_3_1));
+
+Question q8_4 = new Question();
+q8_4.setText("Какая гора считается самой высокой в Европе?");
+Answer a8_4_1 = new Answer(); a8_4_1.setText("Монблан"); a8_4_1.setCorrect(true);
+Answer a8_4_2 = new Answer(); a8_4_2.setText("Маттерхорн");
+Answer a8_4_3 = new Answer(); a8_4_3.setText("Эльбрус");
+Answer a8_4_4 = new Answer(); a8_4_4.setText("Гросглокнер");
+q8_4.setAnswers(Arrays.asList(a8_4_2, a8_4_1, a8_4_3, a8_4_4));
+
+Question q8_5 = new Question();
+q8_5.setText("Где находится Великий Барьерный риф?");
+Answer a8_5_1 = new Answer(); a8_5_1.setText("Австралия"); a8_5_1.setCorrect(true);
+Answer a8_5_2 = new Answer(); a8_5_2.setText("Индонезия");
+Answer a8_5_3 = new Answer(); a8_5_3.setText("Малайзия");
+Answer a8_5_4 = new Answer(); a8_5_4.setText("Филиппины");
+q8_5.setAnswers(Arrays.asList(a8_5_4, a8_5_2, a8_5_3, a8_5_1));
+
+Question q8_6 = new Question();
+q8_6.setText("Какое самое большое озеро в мире по площади?");
+Answer a8_6_1 = new Answer(); a8_6_1.setText("Байкал");
+Answer a8_6_2 = new Answer(); a8_6_2.setText("Виктория");
+Answer a8_6_3 = new Answer(); a8_6_3.setText("Каспийское море"); a8_6_3.setCorrect(true);
+Answer a8_6_4 = new Answer(); a8_6_4.setText("Онтарио");
+q8_6.setAnswers(Arrays.asList(a8_6_2, a8_6_1, a8_6_3, a8_6_4));
+
+Question q8_7 = new Question();
+q8_7.setText("Какая страна пересекается экватором?");
+Answer a8_7_1 = new Answer(); a8_7_1.setText("Кения"); a8_7_1.setCorrect(true);
+Answer a8_7_2 = new Answer(); a8_7_2.setText("Египет");
+Answer a8_7_3 = new Answer(); a8_7_3.setText("ЮАР");
+Answer a8_7_4 = new Answer(); a8_7_4.setText("Марокко");
+q8_7.setAnswers(Arrays.asList(a8_7_3, a8_7_4, a8_7_2, a8_7_1));
+
+test8.setQuestions(Arrays.asList(q8_1, q8_2, q8_3, q8_4, q8_5, q8_6, q8_7));
+testRepo.save(test8);
+
+Test test9 = new Test();
+test9.setName("Тест 9 — История: Средние века");
+test9.setTheme("История");
+
+Question q9_1 = new Question();
+q9_1.setText("Когда начались Средние века?");
+Answer a9_1_1 = new Answer(); a9_1_1.setText("476 год н.э."); a9_1_1.setCorrect(true);
+Answer a9_1_2 = new Answer(); a9_1_2.setText("1453 год");
+Answer a9_1_3 = new Answer(); a9_1_3.setText("800 год");
+Answer a9_1_4 = new Answer(); a9_1_4.setText("1000 год");
+q9_1.setAnswers(Arrays.asList(a9_1_1, a9_1_3, a9_1_4, a9_1_2));
+
+Question q9_2 = new Question();
+q9_2.setText("Кто был первым императором Священной Римской империи?");
+Answer a9_2_1 = new Answer(); a9_2_1.setText("Карл Великий"); a9_2_1.setCorrect(true);
+Answer a9_2_2 = new Answer(); a9_2_2.setText("Оттон I");
+Answer a9_2_3 = new Answer(); a9_2_3.setText("Фридрих Барбаросса");
+Answer a9_2_4 = new Answer(); a9_2_4.setText("Генрих IV");
+q9_2.setAnswers(Arrays.asList(a9_2_3, a9_2_4, a9_2_2, a9_2_1));
+
+Question q9_3 = new Question();
+q9_3.setText("Как называлась система землевладения в Средние века?");
+Answer a9_3_1 = new Answer(); a9_3_1.setText("Феодализм"); a9_3_1.setCorrect(true);
+Answer a9_3_2 = new Answer(); a9_3_2.setText("Монархизм");
+Answer a9_3_3 = new Answer(); a9_3_3.setText("Абсолютизм");
+Answer a9_3_4 = new Answer(); a9_3_4.setText("Коллективизм");
+q9_3.setAnswers(Arrays.asList(a9_3_2, a9_3_3, a9_3_1, a9_3_4));
+
+Question q9_4 = new Question();
+q9_4.setText("Кто возглавил норманнское завоевание Англии?");
+Answer a9_4_1 = new Answer(); a9_4_1.setText("Гарольд II");
+Answer a9_4_2 = new Answer(); a9_4_2.setText("Вильгельм Завоеватель"); a9_4_2.setCorrect(true);
+Answer a9_4_3 = new Answer(); a9_4_3.setText("Ричард Львиное Сердце");
+Answer a9_4_4 = new Answer(); a9_4_4.setText("Эдуард Исповедник");
+q9_4.setAnswers(Arrays.asList(a9_4_3, a9_4_1, a9_4_4, a9_4_2));
+
+Question q9_5 = new Question();
+q9_5.setText("Как называлась война между Англией и Францией XIV–XV вв.?");
+Answer a9_5_1 = new Answer(); a9_5_1.setText("Столетняя война"); a9_5_1.setCorrect(true);
+Answer a9_5_2 = new Answer(); a9_5_2.setText("Тридцатилетняя война");
+Answer a9_5_3 = new Answer(); a9_5_3.setText("Крестовый поход");
+Answer a9_5_4 = new Answer(); a9_5_4.setText("Англо-бурская война");
+q9_5.setAnswers(Arrays.asList(a9_5_4, a9_5_3, a9_5_1, a9_5_2));
+
+Question q9_6 = new Question();
+q9_6.setText("Как назывались религиозные походы в Святую землю?");
+Answer a9_6_1 = new Answer(); a9_6_1.setText("Крестовые походы"); a9_6_1.setCorrect(true);
+Answer a9_6_2 = new Answer(); a9_6_2.setText("Восточные походы");
+Answer a9_6_3 = new Answer(); a9_6_3.setText("Святые миссии");
+Answer a9_6_4 = new Answer(); a9_6_4.setText("Реформации");
+q9_6.setAnswers(Arrays.asList(a9_6_4, a9_6_1, a9_6_3, a9_6_2));
+
+Question q9_7 = new Question();
+q9_7.setText("Кто был известен как 'девушка из Орлеана'?");
+Answer a9_7_1 = new Answer(); a9_7_1.setText("Жанна д’Арк"); a9_7_1.setCorrect(true);
+Answer a9_7_2 = new Answer(); a9_7_2.setText("Екатерина Медичи");
+Answer a9_7_3 = new Answer(); a9_7_3.setText("Изабелла Кастильская");
+Answer a9_7_4 = new Answer(); a9_7_4.setText("Анна Болейн");
+q9_7.setAnswers(Arrays.asList(a9_7_3, a9_7_2, a9_7_4, a9_7_1));
+
+Question q9_8 = new Question();
+q9_8.setText("Когда произошло падение Константинополя?");
+Answer a9_8_1 = new Answer(); a9_8_1.setText("1453 год"); a9_8_1.setCorrect(true);
+Answer a9_8_2 = new Answer(); a9_8_2.setText("1204 год");
+Answer a9_8_3 = new Answer(); a9_8_3.setText("1492 год");
+Answer a9_8_4 = new Answer(); a9_8_4.setText("1520 год");
+q9_8.setAnswers(Arrays.asList(a9_8_4, a9_8_2, a9_8_1, a9_8_3));
+
+test9.setQuestions(Arrays.asList(q9_1, q9_2, q9_3, q9_4, q9_5, q9_6, q9_7, q9_8));
+testRepo.save(test9);
+
+Test test10 = new Test();
+test10.setName("Тест 10 — Java: Исключения и коллекции");
+test10.setTheme("Java — основы");
+
+Question q10_1 = new Question();
+q10_1.setText("Какой класс является родительским для всех исключений в Java?");
+Answer a10_1_1 = new Answer(); a10_1_1.setText("Throwable"); a10_1_1.setCorrect(true);
+Answer a10_1_2 = new Answer(); a10_1_2.setText("Exception");
+Answer a10_1_3 = new Answer(); a10_1_3.setText("Error");
+Answer a10_1_4 = new Answer(); a10_1_4.setText("RuntimeException");
+q10_1.setAnswers(Arrays.asList(a10_1_1, a10_1_4, a10_1_2, a10_1_3));
+
+Question q10_2 = new Question();
+q10_2.setText("Какой тип исключений необходимо обязательно обрабатывать?");
+Answer a10_2_1 = new Answer(); a10_2_1.setText("Unchecked");
+Answer a10_2_2 = new Answer(); a10_2_2.setText("Checked"); a10_2_2.setCorrect(true);
+Answer a10_2_3 = new Answer(); a10_2_3.setText("Runtime");
+Answer a10_2_4 = new Answer(); a10_2_4.setText("System");
+q10_2.setAnswers(Arrays.asList(a10_2_3, a10_2_2, a10_2_4, a10_2_1));
+
+Question q10_3 = new Question();
+q10_3.setText("Какой блок выполняется всегда, независимо от наличия исключений?");
+Answer a10_3_1 = new Answer(); a10_3_1.setText("catch");
+Answer a10_3_2 = new Answer(); a10_3_2.setText("finally"); a10_3_2.setCorrect(true);
+Answer a10_3_3 = new Answer(); a10_3_3.setText("throw");
+Answer a10_3_4 = new Answer(); a10_3_4.setText("try");
+q10_3.setAnswers(Arrays.asList(a10_3_1, a10_3_3, a10_3_4, a10_3_2));
+
+Question q10_4 = new Question();
+q10_4.setText("Как выбросить исключение вручную?");
+Answer a10_4_1 = new Answer(); a10_4_1.setText("throw new Exception();"); a10_4_1.setCorrect(true);
+Answer a10_4_2 = new Answer(); a10_4_2.setText("try Exception()");
+Answer a10_4_3 = new Answer(); a10_4_3.setText("raise Exception()");
+Answer a10_4_4 = new Answer(); a10_4_4.setText("throws Exception()");
+q10_4.setAnswers(Arrays.asList(a10_4_3, a10_4_1, a10_4_2, a10_4_4));
+
+Question q10_5 = new Question();
+q10_5.setText("Какая коллекция хранит уникальные элементы?");
+Answer a10_5_1 = new Answer(); a10_5_1.setText("List");
+Answer a10_5_2 = new Answer(); a10_5_2.setText("Map");
+Answer a10_5_3 = new Answer(); a10_5_3.setText("Set"); a10_5_3.setCorrect(true);
+Answer a10_5_4 = new Answer(); a10_5_4.setText("Queue");
+q10_5.setAnswers(Arrays.asList(a10_5_4, a10_5_2, a10_5_1, a10_5_3));
+
+Question q10_6 = new Question();
+q10_6.setText("Какой интерфейс реализует ArrayList?");
+Answer a10_6_1 = new Answer(); a10_6_1.setText("List"); a10_6_1.setCorrect(true);
+Answer a10_6_2 = new Answer(); a10_6_2.setText("Collection");
+Answer a10_6_3 = new Answer(); a10_6_3.setText("Map");
+Answer a10_6_4 = new Answer(); a10_6_4.setText("Iterable");
+q10_6.setAnswers(Arrays.asList(a10_6_2, a10_6_1, a10_6_3, a10_6_4));
+
+Question q10_7 = new Question();
+q10_7.setText("Какой метод используется для добавления элемента в список?");
+Answer a10_7_1 = new Answer(); a10_7_1.setText("append()");
+Answer a10_7_2 = new Answer(); a10_7_2.setText("add()"); a10_7_2.setCorrect(true);
+Answer a10_7_3 = new Answer(); a10_7_3.setText("insert()");
+Answer a10_7_4 = new Answer(); a10_7_4.setText("push()");
+q10_7.setAnswers(Arrays.asList(a10_7_3, a10_7_4, a10_7_2, a10_7_1));
+
+Question q10_8 = new Question();
+q10_8.setText("Какой метод используется для сортировки списка?");
+Answer a10_8_1 = new Answer(); a10_8_1.setText("Collections.sort()"); a10_8_1.setCorrect(true);
+Answer a10_8_2 = new Answer(); a10_8_2.setText("List.sortAll()");
+Answer a10_8_3 = new Answer(); a10_8_3.setText("Arrays.sortList()");
+Answer a10_8_4 = new Answer(); a10_8_4.setText("Sort.sort()");
+q10_8.setAnswers(Arrays.asList(a10_8_2, a10_8_4, a10_8_3, a10_8_1));
+
+test10.setQuestions(Arrays.asList(q10_1, q10_2, q10_3, q10_4, q10_5, q10_6, q10_7, q10_8));
+testRepo.save(test10);
