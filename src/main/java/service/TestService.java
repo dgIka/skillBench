@@ -33,5 +33,9 @@ public class TestService {
         ));
     }
 
+    public List<Test> getTestsByTheme(String theme) {
+        return testRepository.getByTheme(theme);
+    }
+
 
 }

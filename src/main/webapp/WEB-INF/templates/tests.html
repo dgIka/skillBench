@@ -2,10 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Home</title>
+  <title>Список тестов</title>
 </head>
 <body>
-<h1 th:text="'Тут будут тесты !'">Hello, World!</h1><br>
+
+<h1>Выбор теста</h1> <br>
+
+<form method="post" th:action="@{/tests}">
+  <select name="theme" onchange="this.form.submit()">
+    <option value="">-- Без темы --</option>
+    <option th:each="t : ${themes}"
+            th:value="${t}"
+            th:text="${t}"
+            th:selected="${t == selectedTheme}"></option>
+  </select>
+</form>
+
+<div th:if="${tests != null}">
+  <ul>
+    <li th:each="test : ${tests}">
+      <a th:href="@{/test/start(id=${test.id})}" th:text="${test.name}"></a>
+    </li>
+  </ul>
+</div>
+
+<p th:if="${tests == null or tests.isEmpty()}" style="color: gray;">
+  Выберите тему
+</p>
+
 <a class="mac-link" href="../register">Регистрация</a>
 </body>
 </html>

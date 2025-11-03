@@ -40,11 +40,9 @@ public class DevRunnerServlet extends HttpServlet {
         List<Test> all = testService.getTests();
         System.out.println(all);
         System.out.println("CHECK");
-        for (Test test : all) {
-            test.getQuestions().forEach(System.out::println);
-        }
 
-        testService.getAllThemes().forEach(System.out::println);
+
+        testRepo.getByTheme("Test theme3").forEach(System.out::println);
 
 
     }

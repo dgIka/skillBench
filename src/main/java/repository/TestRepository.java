@@ -36,4 +36,10 @@ public class TestRepository {
         return sf.fromTransaction(session -> session.createQuery("select t from Test t " +
                 "left join fetch t.questions", Test.class).list());
     }
+
+    public List<Test> getByTheme(String theme) {
+        return sf.fromTransaction(session -> session
+                .createQuery("from Test t where t.theme = :theme", Test.class)
+                .setParameter("theme", theme).list());
+    }
 }
