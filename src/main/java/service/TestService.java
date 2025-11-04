@@ -37,5 +37,13 @@ public class TestService {
         return testRepository.getByTheme(theme);
     }
 
+    public Test getTestById(int id) {
+        return testRepository.getById(id);
+    }
+
+    public Test getWithQuestions(int id) {
+        return testRepository.getWithQuestionsById(id);
+    }
+
 
 }

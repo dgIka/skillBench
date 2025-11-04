@@ -21,7 +21,7 @@
 <div th:if="${tests != null}">
   <ul>
     <li th:each="test : ${tests}">
-      <a th:href="@{/test/start(id=${test.id})}" th:text="${test.name}"></a>
+      <a th:href="@{/tests/start(id=${test.id})}" th:text="${test.name}"></a>
     </li>
   </ul>
 </div>

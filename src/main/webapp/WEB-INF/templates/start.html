@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${test.name}">Тест</title>
+  <link rel="stylesheet" href="/assets/css/app.css">
+</head>
+<body>
+
+<div class="container">
+  <h1 th:text="${test.name}">Название теста</h1>
+  <p th:text="'Тема: ' + ${test.theme}">Тема</p>
+  <hr>
+
+  <!-- Вопрос -->
+  <div class="question-block">
+    <h2 th:text="${question.text}">Текст вопроса</h2>
+
+    <form th:action="@{/tests/start}" method="post">
+      <input type="hidden" name="testId" th:value="${test.id}">
+      <input type="hidden" name="questionIndex" th:value="${questionIndex}">
+
+      <ul class="answers">
+        <li th:each="a : ${question.answers}"
+            th:classappend="${selectedAnswerId} == ${a.id} ?
+                        (${isCorrect} ? 'answer-correct' : (${a.isCorrect} ? 'answer-correct' : 'answer-wrong')) :
+                        (${a.isCorrect} and ${isCorrect} == false ? 'answer-correct' : '')">
+
+          <label>
+            <input type="radio" name="answerId" th:value="${a.id}"
+                   th:disabled="${isCorrect != null}">
+            <span th:text="${a.text}">Ответ</span>
+          </label>
+        </li>
+      </ul>
+
+      <div class="controls">
+        <!-- Если ответ ещё не проверен -->
+        <button type="submit" th:if="${isCorrect == null}">Ответить</button>
+
+        <!-- После проверки ответа -->
+        <div th:if="${isCorrect != null}">
+          <p th:text="${isCorrect} ? 'Верно!' : 'Неверно!'"
+             th:classappend="${isCorrect} ? 'text-success' : 'text-error'"></p>
+
+          <a th:if="${hasNext}"
+             th:href="@{/tests/start(id=${test.id}, q=${nextIndex})}"
+             class="next-btn">Следующий вопрос</a>
+
+          <p th:if="${!hasNext}">Это был последний вопрос.</p>
+        </div>
+      </div>
+    </form>
+
+    <p class="question-progress"
+       th:text="'Вопрос ' + (${questionIndex}+1) + ' из ' + ${totalQuestions}">
+      Прогресс
+    </p>
+  </div>
+</div>
+
+</body>
+</html>

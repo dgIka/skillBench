@@ -1,6 +1,7 @@
 package repository;
 
 import model.Test;
+import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 
 import java.util.List;
@@ -29,6 +30,19 @@ public class TestRepository {
             Test testToUpdate = session.get(Test.class, test.getId());
             testToUpdate.setName(test.getName());
             testToUpdate.setTheme(test.getTheme());
+        });
+    }
+
+    public Test getById(Integer id) {
+        return sf.fromTransaction(session -> session.get(Test.class, id));
+    }
+
+    public Test getWithQuestionsById(Integer id) {
+        return sf.fromTransaction(session -> {
+            Test test = session.get(Test.class, id);
+            Hibernate.initialize(test.getQuestions());
+            test.getQuestions().forEach(q -> Hibernate.initialize(q.getAnswers()));
+            return test;
         });
     }
 
