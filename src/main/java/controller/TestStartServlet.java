@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Answer;
+import model.Question;
 import model.Test;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -39,12 +41,63 @@ public class TestStartServlet extends HttpServlet {
 
         Test test = testService.getWithQuestions(Integer.parseInt(testId));
         context.setVariable("test", test);
-        System.out.println(test.getQuestions().get(0));
-        context.setVariable("question", test.getQuestions().get(0));
+        context.setVariable("totalQuestions", test.getQuestions().size());
+
+        String index = req.getParameter("questionIndex");
+        if (index != null) {
+            context.setVariable("question", test.getQuestions().get(Integer.parseInt(index)));
+        } else {
+            context.setVariable("question", test.getQuestions().get(0));
+            int questionIndex = 0;
+            context.setVariable("questionIndex", questionIndex);
+        }
 
         resp.setContentType("text/html;charset=UTF-8");
         templateEngine.process("start", context, resp.getWriter());
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        WebContext context = new WebContext(app.buildExchange(req, resp), req.getLocale());
+
+        String testId = req.getParameter("testId");
+        if (testId == null) {
+            resp.sendRedirect(req.getContextPath() + "/tests");
+            return;
+        }
+
+        Test test = testService.getWithQuestions(Integer.parseInt(testId));
+        context.setVariable("test", test);
+        String index = req.getParameter("questionIndex");
+        if (index == null) {
+            context.setVariable("question", test.getQuestions().get(0));
+            int questionIndex = 0;
+            context.setVariable("questionIndex", questionIndex);
+        } else {
+            context.setVariable("question", test.getQuestions().get(Integer.parseInt(index)));
+            context.setVariable("questionIndex", Integer.parseInt(index) + 1);
+        }
+
+        String answerId = req.getParameter("answerId");
+        System.out.println("answerId = " + answerId);
+        if (answerId != null && index != null) {
+            try {
+                boolean isCorrect = testService.isCorrectAnswer(test, Integer.parseInt(index), Integer.parseInt(answerId));
+                context.setVariable("isCorrect", isCorrect);
+            } catch (Exception e) {
+                resp.sendRedirect(req.getContextPath() + "/tests");
+                return;
+            }
+
+        } else {
+            context.setVariable("isCorrect", null);
+        }
+
+        context.setVariable("hasNext", test.getQuestions().size() > (Integer.parseInt(index) + 1));
+        context.setVariable("totalQuestions", test.getQuestions().size());
 
 
+        resp.setContentType("text/html;charset=UTF-8");
+        templateEngine.process("start", context, resp.getWriter());
     }
 }

@@ -1,6 +1,8 @@
 package service;
 
 import lombok.AllArgsConstructor;
+import model.Answer;
+import model.Question;
 import model.Test;
 import org.hibernate.SessionFactory;
 import repository.AnswerRepository;
@@ -43,6 +45,18 @@ public class TestService {
 
     public Test getWithQuestions(int id) {
         return testRepository.getWithQuestionsById(id);
+    }
+
+    public boolean isCorrectAnswer(Test test, int index, int answerId) {
+        List<Answer> answers = test.getQuestions().get(index).getAnswers();
+        return answers.stream().filter(answer -> answer.getId().equals(answerId))
+                .findFirst()
+                .orElseThrow()
+                .isCorrect();
+    }
+
+    public int getQuestionsCount(Test test) {
+        return test.getQuestions().size();
     }
 
 
