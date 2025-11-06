@@ -37,21 +37,25 @@ public class TestStartServlet extends HttpServlet {
         String testId = req.getParameter("id");
         if (testId == null) {
             resp.sendRedirect(req.getContextPath() + "/tests");
+            return;
         }
 
         Test test = testService.getWithQuestions(Integer.parseInt(testId));
         context.setVariable("test", test);
         context.setVariable("totalQuestions", test.getQuestions().size());
 
-        String index = req.getParameter("questionIndex");
+
+        String index = req.getParameter("q");
         if (index != null) {
             context.setVariable("question", test.getQuestions().get(Integer.parseInt(index)));
+            context.setVariable("questionIndex", Integer.parseInt(index));
         } else {
             context.setVariable("question", test.getQuestions().get(0));
             int questionIndex = 0;
             context.setVariable("questionIndex", questionIndex);
         }
 
+        context.setVariable("displayIndex", (index != null ? Integer.parseInt(index) + 1 : 1));
         resp.setContentType("text/html;charset=UTF-8");
         templateEngine.process("start", context, resp.getWriter());
     }
@@ -61,39 +65,51 @@ public class TestStartServlet extends HttpServlet {
         WebContext context = new WebContext(app.buildExchange(req, resp), req.getLocale());
 
         String testId = req.getParameter("testId");
-        if (testId == null) {
+        String index = req.getParameter("questionIndex");
+        int questionIndex = 0;
+
+        if (index != null) {
+            questionIndex = Integer.parseInt(index);
+        }
+
+        if (testId == null || index == null) {
+            System.out.println("this is work - testId == null");
             resp.sendRedirect(req.getContextPath() + "/tests");
+            return;
+        }
+
+        String answerId = req.getParameter("answerId");
+
+        if (answerId == null) {
+            System.out.println("this is work - answerId == null && index > 0");
+            resp.sendRedirect(req.getContextPath() + "/tests/start?id=" + testId + "&q=" + index);
             return;
         }
 
         Test test = testService.getWithQuestions(Integer.parseInt(testId));
         context.setVariable("test", test);
-        String index = req.getParameter("questionIndex");
-        if (index == null) {
-            context.setVariable("question", test.getQuestions().get(0));
-            int questionIndex = 0;
-            context.setVariable("questionIndex", questionIndex);
-        } else {
-            context.setVariable("question", test.getQuestions().get(Integer.parseInt(index)));
-            context.setVariable("questionIndex", Integer.parseInt(index) + 1);
+        context.setVariable("question", test.getQuestions().get(questionIndex));
+        context.setVariable("questionIndex", questionIndex + 1);
+
+        try {
+            boolean isCorrect = testService.isCorrectAnswer(test, questionIndex, Integer.parseInt(answerId));
+            context.setVariable("isCorrect", isCorrect);
+        } catch (Exception e) {
+            resp.sendRedirect(req.getContextPath() + "/tests");
+            return;
         }
 
-        String answerId = req.getParameter("answerId");
-        System.out.println("answerId = " + answerId);
-        if (answerId != null && index != null) {
-            try {
-                boolean isCorrect = testService.isCorrectAnswer(test, Integer.parseInt(index), Integer.parseInt(answerId));
-                context.setVariable("isCorrect", isCorrect);
-            } catch (Exception e) {
-                resp.sendRedirect(req.getContextPath() + "/tests");
-                return;
-            }
-
+        if (questionIndex < test.getQuestions().size()) {
+            context.setVariable("displayIndex", questionIndex + 1);
         } else {
-            context.setVariable("isCorrect", null);
+            context.setVariable("displayIndex", test.getQuestions().size());
         }
 
-        context.setVariable("hasNext", test.getQuestions().size() > (Integer.parseInt(index) + 1));
+        boolean hasNext = test.getQuestions().size() > (questionIndex + 1);
+        context.setVariable("hasNext", hasNext);
+        if (hasNext) {
+            context.setVariable("nextIndex", questionIndex + 1);
+        }
         context.setVariable("totalQuestions", test.getQuestions().size());
 
 

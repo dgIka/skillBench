@@ -43,9 +43,8 @@
           <p th:text="${isCorrect} ? 'Верно!' : 'Неверно!'"
              th:classappend="${isCorrect} ? 'text-success' : 'text-error'"></p>
 
-          <a th:if="${hasNext}"
-             th:href="@{/tests/start(id=${test.id}, q=${nextIndex})}"
-             class="next-btn">Следующий вопрос</a>
+          <button type="submit" name="q" th:value="${nextIndex}" th:if="${hasNext}" class="next-btn">Следующий вопрос</button>
+
 
           <p th:if="${!hasNext}">Это был последний вопрос.</p>
         </div>
@@ -53,10 +52,12 @@
     </form>
 
     <p class="question-progress"
-       th:text="'Вопрос ' + (${questionIndex}+1) + ' из ' + ${totalQuestions}">
+       th:text="'Вопрос ' + ${displayIndex} + ' из ' + ${totalQuestions}">
       Прогресс
     </p>
+
   </div>
+  <a class="mac-link" href="../tests">Все тесты</a>
 </div>
 
 </body>

@@ -659,3 +659,173 @@ q10_8.setAnswers(Arrays.asList(a10_8_2, a10_8_4, a10_8_3, a10_8_1));
 
 test10.setQuestions(Arrays.asList(q10_1, q10_2, q10_3, q10_4, q10_5, q10_6, q10_7, q10_8));
 testRepo.save(test10);
+
+Test testHp = new Test();
+testHp.setName("Гарри Поттер");
+testHp.setTheme("Поп культура");
+
+Question q1 = new Question();
+q1.setText("Как зовут крестного отца Гарри Поттера?");
+Answer a1_1 = new Answer(); a1_1.setText("Сириус Блэк"); a1_1.setCorrect(true);
+Answer a1_2 = new Answer(); a1_2.setText("Ремус Люпин");
+Answer a1_3 = new Answer(); a1_3.setText("Джеймс Поттер");
+Answer a1_4 = new Answer(); a1_4.setText("Северус Снегг");
+q1.setAnswers(Arrays.asList(a1_3, a1_1, a1_4, a1_2));
+
+Question q2 = new Question();
+q2.setText("Кто убил Сириуса Блэка?");
+Answer a2_1 = new Answer(); a2_1.setText("Люциус Малфой");
+Answer a2_2 = new Answer(); a2_2.setText("Беллатриса Лестрейндж"); a2_2.setCorrect(true);
+Answer a2_3 = new Answer(); a2_3.setText("Питер Петтигрю");
+Answer a2_4 = new Answer(); a2_4.setText("Фенрир Сивый");
+q2.setAnswers(Arrays.asList(a2_1, a2_3, a2_4, a2_2));
+
+Question q3 = new Question();
+q3.setText("Какой факультет в Хогвартсе символизирует храбрость?");
+Answer a3_1 = new Answer(); a3_1.setText("Гриффиндор"); a3_1.setCorrect(true);
+Answer a3_2 = new Answer(); a3_2.setText("Слизерин");
+Answer a3_3 = new Answer(); a3_3.setText("Когтевран");
+Answer a3_4 = new Answer(); a3_4.setText("Пуффендуй");
+q3.setAnswers(Arrays.asList(a3_4, a3_3, a3_2, a3_1));
+
+Question q4 = new Question();
+q4.setText("Кто был директором Хогвартса во времена Гарри Поттера?");
+Answer a4_1 = new Answer(); a4_1.setText("Альбус Дамблдор"); a4_1.setCorrect(true);
+Answer a4_2 = new Answer(); a4_2.setText("Минерва Макгонагалл");
+Answer a4_3 = new Answer(); a4_3.setText("Северус Снегг");
+Answer a4_4 = new Answer(); a4_4.setText("Корнелиус Фадж");
+q4.setAnswers(Arrays.asList(a4_2, a4_1, a4_3, a4_4));
+
+Question q5 = new Question();
+q5.setText("Как называется школа магии, где учился Гарри?");
+Answer a5_1 = new Answer(); a5_1.setText("Хогвартс"); a5_1.setCorrect(true);
+Answer a5_2 = new Answer(); a5_2.setText("Ильверморни");
+Answer a5_3 = new Answer(); a5_3.setText("Бобатон");
+Answer a5_4 = new Answer(); a5_4.setText("Дурмстранг");
+q5.setAnswers(Arrays.asList(a5_3, a5_1, a5_2, a5_4));
+
+Question q6 = new Question();
+q6.setText("Как звали сову Гарри Поттера?");
+Answer a6_1 = new Answer(); a6_1.setText("Хедвиг"); a6_1.setCorrect(true);
+Answer a6_2 = new Answer(); a6_2.setText("Крукшанс");
+Answer a6_3 = new Answer(); a6_3.setText("Живоглот");
+Answer a6_4 = new Answer(); a6_4.setText("Нагайна");
+q6.setAnswers(Arrays.asList(a6_2, a6_3, a6_4, a6_1));
+
+Question q7 = new Question();
+q7.setText("Какой заклинание используется для обезоруживания противника?");
+Answer a7_1 = new Answer(); a7_1.setText("Expelliarmus"); a7_1.setCorrect(true);
+Answer a7_2 = new Answer(); a7_2.setText("Stupefy");
+Answer a7_3 = new Answer(); a7_3.setText("Avada Kedavra");
+Answer a7_4 = new Answer(); a7_4.setText("Lumos");
+q7.setAnswers(Arrays.asList(a7_2, a7_1, a7_4, a7_3));
+
+Question q8 = new Question();
+q8.setText("Кто был лучшим другом Гарри и родился в семье магов?");
+Answer a8_1 = new Answer(); a8_1.setText("Рон Уизли"); a8_1.setCorrect(true);
+Answer a8_2 = new Answer(); a8_2.setText("Невилл Долгопупс");
+Answer a8_3 = new Answer(); a8_3.setText("Драко Малфой");
+Answer a8_4 = new Answer(); a8_4.setText("Седрик Диггори");
+q8.setAnswers(Arrays.asList(a8_3, a8_1, a8_2, a8_4));
+
+Question q9 = new Question();
+q9.setText("Кто преподавал Зельеварение в Хогвартсе?");
+Answer a9_1 = new Answer(); a9_1.setText("Северус Снегг"); a9_1.setCorrect(true);
+Answer a9_2 = new Answer(); a9_2.setText("Ремус Люпин");
+Answer a9_3 = new Answer(); a9_3.setText("Гораций Слизнорт");
+Answer a9_4 = new Answer(); a9_4.setText("Аластор Грюм");
+q9.setAnswers(Arrays.asList(a9_4, a9_3, a9_2, a9_1));
+
+Question q10 = new Question();
+q10.setText("Кто убил Альбуса Дамблдора?");
+Answer a10_1 = new Answer(); a10_1.setText("Северус Снегг"); a10_1.setCorrect(true);
+Answer a10_2 = new Answer(); a10_2.setText("Волан-де-Морт");
+Answer a10_3 = new Answer(); a10_3.setText("Драко Малфой");
+Answer a10_4 = new Answer(); a10_4.setText("Питер Петтигрю");
+q10.setAnswers(Arrays.asList(a10_4, a10_3, a10_1, a10_2));
+
+Question q11 = new Question();
+q11.setText("Какой факультет был известен хитростью?");
+Answer a11_1 = new Answer(); a11_1.setText("Слизерин"); a11_1.setCorrect(true);
+Answer a11_2 = new Answer(); a11_2.setText("Пуффендуй");
+Answer a11_3 = new Answer(); a11_3.setText("Когтевран");
+Answer a11_4 = new Answer(); a11_4.setText("Гриффиндор");
+q11.setAnswers(Arrays.asList(a11_3, a11_4, a11_1, a11_2));
+
+Question q12 = new Question();
+q12.setText("Кто был отцом Драко Малфоя?");
+Answer a12_1 = new Answer(); a12_1.setText("Люциус Малфой"); a12_1.setCorrect(true);
+Answer a12_2 = new Answer(); a12_2.setText("Северус Снегг");
+Answer a12_3 = new Answer(); a12_3.setText("Артур Уизли");
+Answer a12_4 = new Answer(); a12_4.setText("Фенрир Сивый");
+q12.setAnswers(Arrays.asList(a12_2, a12_4, a12_1, a12_3));
+
+Question q13 = new Question();
+q13.setText("Кто был создателем крестражей?");
+Answer a13_1 = new Answer(); a13_1.setText("Волан-де-Морт"); a13_1.setCorrect(true);
+Answer a13_2 = new Answer(); a13_2.setText("Салазар Слизерин");
+Answer a13_3 = new Answer(); a13_3.setText("Геллерт Грин-де-Вальд");
+Answer a13_4 = new Answer(); a13_4.setText("Том Риддл");
+q13.setAnswers(Arrays.asList(a13_4, a13_1, a13_2, a13_3));
+
+Question q14 = new Question();
+q14.setText("Кто был министром магии в большинстве фильмов?");
+Answer a14_1 = new Answer(); a14_1.setText("Корнелиус Фадж"); a14_1.setCorrect(true);
+Answer a14_2 = new Answer(); a14_2.setText("Амбридж");
+Answer a14_3 = new Answer(); a14_3.setText("Скрагмор");
+Answer a14_4 = new Answer(); a14_4.setText("Слагхорн");
+q14.setAnswers(Arrays.asList(a14_3, a14_1, a14_4, a14_2));
+
+Question q15 = new Question();
+q15.setText("Кто стал женой Гарри Поттера?");
+Answer a15_1 = new Answer(); a15_1.setText("Джинни Уизли"); a15_1.setCorrect(true);
+Answer a15_2 = new Answer(); a15_2.setText("Гермиона Грейнджер");
+Answer a15_3 = new Answer(); a15_3.setText("Луна Лавгуд");
+Answer a15_4 = new Answer(); a15_4.setText("Чжоу Чанг");
+q15.setAnswers(Arrays.asList(a15_4, a15_3, a15_1, a15_2));
+
+Question q16 = new Question();
+q16.setText("Какой персонаж был оборотнем?");
+Answer a16_1 = new Answer(); a16_1.setText("Ремус Люпин"); a16_1.setCorrect(true);
+Answer a16_2 = new Answer(); a16_2.setText("Сириус Блэк");
+Answer a16_3 = new Answer(); a16_3.setText("Драко Малфой");
+Answer a16_4 = new Answer(); a16_4.setText("Хагрид");
+q16.setAnswers(Arrays.asList(a16_2, a16_3, a16_1, a16_4));
+
+Question q17 = new Question();
+q17.setText("Какое существо охраняло философский камень?");
+Answer a17_1 = new Answer(); a17_1.setText("Трёхголовый пёс"); a17_1.setCorrect(true);
+Answer a17_2 = new Answer(); a17_2.setText("Дракон");
+Answer a17_3 = new Answer(); a17_3.setText("Феникс");
+Answer a17_4 = new Answer(); a17_4.setText("Тролль");
+q17.setAnswers(Arrays.asList(a17_4, a17_1, a17_3, a17_2));
+
+Question q18 = new Question();
+q18.setText("Как звали родителей Гарри Поттера?");
+Answer a18_1 = new Answer(); a18_1.setText("Джеймс и Лили"); a18_1.setCorrect(true);
+Answer a18_2 = new Answer(); a18_2.setText("Артур и Молли");
+Answer a18_3 = new Answer(); a18_3.setText("Сириус и Мэри");
+Answer a18_4 = new Answer(); a18_4.setText("Том и Меропа");
+q18.setAnswers(Arrays.asList(a18_2, a18_4, a18_3, a18_1));
+
+Question q19 = new Question();
+q19.setText("Кто убил Волан-де-Морта?");
+Answer a19_1 = new Answer(); a19_1.setText("Гарри Поттер"); a19_1.setCorrect(true);
+Answer a19_2 = new Answer(); a19_2.setText("Джинни Уизли");
+Answer a19_3 = new Answer(); a19_3.setText("Северус Снегг");
+Answer a19_4 = new Answer(); a19_4.setText("Невилл Долгопупс");
+q19.setAnswers(Arrays.asList(a19_3, a19_4, a19_2, a19_1));
+
+Question q20 = new Question();
+q20.setText("Какой патронус у Гарри Поттера?");
+Answer a20_1 = new Answer(); a20_1.setText("Олень"); a20_1.setCorrect(true);
+Answer a20_2 = new Answer(); a20_2.setText("Феникс");
+Answer a20_3 = new Answer(); a20_3.setText("Волк");
+Answer a20_4 = new Answer(); a20_4.setText("Выдра");
+q20.setAnswers(Arrays.asList(a20_2, a20_4, a20_3, a20_1));
+
+testHp.setQuestions(Arrays.asList(
+    q1, q2, q3, q4, q5, q6, q7, q8, q9, q10,
+    q11, q12, q13, q14, q15, q16, q17, q18, q19, q20
+));
+testRepo.save(testHp);
