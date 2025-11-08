@@ -1,0 +1,56 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-test-results
+      author: Ika
+      changes:
+        - createTable:
+            tableName: test_result
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: test_id
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: true_answers
+                  type: INT
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: false_answers
+                  type: INT
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: finished_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: test_result
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_result_user
+        - addForeignKeyConstraint:
+            baseTableName: test_result
+            baseColumnNames: test_id
+            referencedTableName: test
+            referencedColumnNames: id
+            constraintName: fk_result_test
+      rollback:
+        - dropTable:
+            tableName: test_result

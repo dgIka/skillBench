@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/migration/001-create-users-and-roles.yml
   - include:
       file: db/migration/002-create-tests-questions-answers.yml
+  - include:
+      file: db/migration/003-create-test-results.yml
