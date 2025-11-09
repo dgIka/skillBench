@@ -5,3 +5,5 @@ databaseChangeLog:
       file: db/migration/002-create-tests-questions-answers.yml
   - include:
       file: db/migration/003-create-test-results.yml
+  - include:
+      file: db/migration/004-add-indexes-test-result.yml

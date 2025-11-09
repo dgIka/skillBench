@@ -2,7 +2,6 @@ package service;
 
 import lombok.AllArgsConstructor;
 import model.Answer;
-import model.Question;
 import model.Test;
 import org.hibernate.SessionFactory;
 import repository.AnswerRepository;
@@ -23,7 +22,6 @@ public class TestService {
     private QuestionRepository questionRepository;
 
     private AnswerRepository answerRepository;
-
 
     public List<Test> getTests() {
         return testRepository.getAll();

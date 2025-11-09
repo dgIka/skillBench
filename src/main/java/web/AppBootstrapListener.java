@@ -14,10 +14,7 @@ import liquibase.LabelExpression;
 import liquibase.Liquibase;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.resource.ClassLoaderResourceAccessor;
-import model.Answer;
-import model.Question;
-import model.Test;
-import model.User;
+import model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -25,11 +22,9 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.WebApplicationTemplateResolver;
 import org.thymeleaf.web.servlet.JakartaServletWebApplication;
-import repository.AnswerRepository;
-import repository.QuestionRepository;
-import repository.TestRepository;
-import repository.UserRepository;
+import repository.*;
 import service.AuthService;
+import service.TestResultService;
 import service.TestService;
 
 import java.io.IOException;
@@ -110,6 +105,7 @@ public class AppBootstrapListener implements ServletContextListener {
             cfg.addAnnotatedClass(Test.class);
             cfg.addAnnotatedClass(Question.class);
             cfg.addAnnotatedClass(Answer.class);
+            cfg.addAnnotatedClass(TestResult.class);
 
             // cfg.addAnnotatedClass(User.class);
             //SessionFactory sf = (SessionFactory) getServletContext().getAttribute("sessionFactory"); это для сервлета
@@ -126,6 +122,10 @@ public class AppBootstrapListener implements ServletContextListener {
             AnswerRepository answerRepository = new AnswerRepository(sessionFactory);
             TestService testService = new TestService(sessionFactory, testRepository, questionRepository, answerRepository);
             servletContext.setAttribute("testService", testService);
+
+            TestResultRepository resultRepository = new TestResultRepository(sessionFactory);
+            TestResultService testResultService = new TestResultService(sessionFactory, resultRepository, userRepository, testRepository);
+            servletContext.setAttribute("testResultService", testResultService);
 
 
 

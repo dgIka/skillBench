@@ -19,6 +19,10 @@ public class Test {
     @OneToMany(mappedBy = "mainTest", cascade = CascadeType.PERSIST)
     private List<Question> questions;
 
+    @ToString.Exclude
+    @OneToMany(mappedBy = "test")
+    private List<TestResult> results;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

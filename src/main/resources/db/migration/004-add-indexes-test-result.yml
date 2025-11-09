@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-add-indexes-test-result
+      author: Ika
+      changes:
+        - createIndex:
+            tableName: test_result
+            indexName: idx_test_result_user_id
+            columns:
+              - column:
+                  name: user_id
+        - createIndex:
+            tableName: test_result
+            indexName: idx_test_result_test_id
+            columns:
+              - column:
+                  name: test_id
+        - createIndex:
+            tableName: test_result
+            indexName: idx_test_result_user_test
+            columns:
+              - column:
+                  name: user_id
+              - column:
+                  name: test_id
+      rollback:
+        - dropIndex:
+            tableName: test_result
+            indexName: idx_test_result_user_test
+        - dropIndex:
+            tableName: test_result
+            indexName: idx_test_result_test_id
+        - dropIndex:
+            tableName: test_result
+            indexName: idx_test_result_user_id

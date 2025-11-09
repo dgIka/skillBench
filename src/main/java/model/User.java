@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -14,6 +15,10 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 public class User {
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "user")
+    private List<TestResult> results;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

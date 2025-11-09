@@ -1,17 +1,22 @@
 package controller;
 
+import dto.auth.AttemptDTO;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Answer;
 import model.Question;
 import model.Test;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.web.servlet.JakartaServletWebApplication;
+import repository.TestRepository;
+import repository.TestResultRepository;
+import service.TestResultService;
 import service.TestService;
 
 import java.io.IOException;
@@ -22,12 +27,14 @@ public class TestStartServlet extends HttpServlet {
     private TemplateEngine templateEngine;
     private JakartaServletWebApplication app;
     private TestService testService;
+    private TestResultService testResultService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         templateEngine = (TemplateEngine) config.getServletContext().getAttribute("templateEngine");
         app = (JakartaServletWebApplication) config.getServletContext().getAttribute("jakartaApp");
         testService = (TestService) config.getServletContext().getAttribute("testService");
+        testResultService = (TestResultService) config.getServletContext().getAttribute("testResultService");
     }
 
     @Override
@@ -64,6 +71,7 @@ public class TestStartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext context = new WebContext(app.buildExchange(req, resp), req.getLocale());
 
+        HttpSession session = req.getSession();
         String testId = req.getParameter("testId");
         String index = req.getParameter("questionIndex");
         int questionIndex = 0;
@@ -81,8 +89,17 @@ public class TestStartServlet extends HttpServlet {
         String answerId = req.getParameter("answerId");
 
         if (answerId == null) {
-            System.out.println("this is work - answerId == null && index > 0");
             resp.sendRedirect(req.getContextPath() + "/tests/start?id=" + testId + "&q=" + index);
+            return;
+        }
+
+        AttemptDTO attemptDTO = (AttemptDTO) session.getAttribute(attemptKey(testId));
+        if (attemptDTO == null) {
+            attemptDTO = new AttemptDTO(Integer.parseInt(testId));
+            session.setAttribute(attemptKey(testId), attemptDTO);
+        }
+        if (attemptDTO.isCompleted()) {
+            resp.sendRedirect(req.getContextPath() + "/tests/result");
             return;
         }
 
@@ -94,6 +111,11 @@ public class TestStartServlet extends HttpServlet {
         try {
             boolean isCorrect = testService.isCorrectAnswer(test, questionIndex, Integer.parseInt(answerId));
             context.setVariable("isCorrect", isCorrect);
+            if (isCorrect) {
+                attemptDTO.setTrueCount(attemptDTO.getTrueCount() + 1);
+            } else {
+                attemptDTO.setFalseCount(attemptDTO.getFalseCount() + 1);
+            }
         } catch (Exception e) {
             resp.sendRedirect(req.getContextPath() + "/tests");
             return;
@@ -112,8 +134,18 @@ public class TestStartServlet extends HttpServlet {
         }
         context.setVariable("totalQuestions", test.getQuestions().size());
 
+        attemptDTO.getChoices().put(test.getQuestions().get(questionIndex).getId(), Integer.parseInt(answerId));
+
+        if (!hasNext) {
+            attemptDTO.setCompleted(true);
+            testResultService.saveTestResult()
+        }
 
         resp.setContentType("text/html;charset=UTF-8");
         templateEngine.process("start", context, resp.getWriter());
+    }
+
+    private String attemptKey(String testId) {
+        return "attempt:test:" + testId;
     }
 }

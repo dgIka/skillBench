@@ -35,10 +35,9 @@
       </ul>
 
       <div class="controls">
-        <!-- Если ответ ещё не проверен -->
+
         <button type="submit" th:if="${isCorrect == null}">Ответить</button>
 
-        <!-- После проверки ответа -->
         <div th:if="${isCorrect != null}">
           <p th:text="${isCorrect} ? 'Верно!' : 'Неверно!'"
              th:classappend="${isCorrect} ? 'text-success' : 'text-error'"></p>

@@ -22,7 +22,7 @@ public class TestRepository {
     }
 
     public void delete(Test test) {
-        sf.getCurrentSession().delete(test);
+        sf.inTransaction(session -> {session.remove(test);});
     }
 
     public void update(Test test) {
@@ -47,7 +47,7 @@ public class TestRepository {
     }
 
     public List<Test> getAll() {
-        return sf.fromTransaction(session -> session.createQuery("select t from Test t " +
+        return sf.fromTransaction(session -> session.createSelectionQuery("select t from Test t " +
                 "left join fetch t.questions", Test.class).list());
     }
 
