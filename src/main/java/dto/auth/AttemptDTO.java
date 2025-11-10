@@ -10,6 +10,7 @@ import java.util.Map;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class AttemptDTO {
     private final int testId;
 

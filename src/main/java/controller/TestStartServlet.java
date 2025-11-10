@@ -98,10 +98,6 @@ public class TestStartServlet extends HttpServlet {
             attemptDTO = new AttemptDTO(Integer.parseInt(testId));
             session.setAttribute(attemptKey(testId), attemptDTO);
         }
-        if (attemptDTO.isCompleted()) {
-            resp.sendRedirect(req.getContextPath() + "/tests/result");
-            return;
-        }
 
         Test test = testService.getWithQuestions(Integer.parseInt(testId));
         context.setVariable("test", test);
@@ -137,8 +133,11 @@ public class TestStartServlet extends HttpServlet {
         attemptDTO.getChoices().put(test.getQuestions().get(questionIndex).getId(), Integer.parseInt(answerId));
 
         if (!hasNext) {
+            var uid = session.getAttribute("uid");
             attemptDTO.setCompleted(true);
-            testResultService.saveTestResult()
+            testResultService.saveTestResult((int) uid, attemptDTO);
+            resp.sendRedirect(req.getContextPath() + "/tests/result?id=" + testId);
+            return;
         }
 
         resp.setContentType("text/html;charset=UTF-8");

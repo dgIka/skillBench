@@ -1,6 +1,7 @@
 package service;
 
 import dto.auth.AttemptDTO;
+import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import model.Test;
 import model.TestResult;
@@ -33,13 +34,13 @@ public class TestResultService {
         TestResult testResult = new TestResult();
 
         return sf.fromTransaction(session ->{
-            User u = sf.getCurrentSession().byId(User.class).getReference(userId);
-            Test t = sf.getCurrentSession().byId(Test.class).getReference(attemptDTO.getTestId());
+            User u = session.byId(User.class).getReference(userId);
+            Test t = session.byId(Test.class).getReference(attemptDTO.getTestId());
             testResult.setUser(u);
             testResult.setTest(t);
             testResult.setFalseAnswers(attemptDTO.getFalseCount());
             testResult.setTrueAnswers(attemptDTO.getTrueCount());
-            testResultRepository.save(testResult);
+            return testResultRepository.save(testResult);
         });
     }
 

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Результат — ' + ${test.name}">Результат теста</title>
+    <link rel="stylesheet" href="/assets/css/app.css">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="'Тест пройден: ' + ${test.name}">Тест пройден</h1>
+    <p th:text="'Тема: ' + ${test.theme}">Тема</p>
+    <hr>
+
+    <h2>Итоги</h2>
+    <ul>
+        <li>Правильных: <strong th:text="${trueAnswers}">0</strong></li>
+        <li>Неправильных: <strong th:text="${falseAnswers}">0</strong></li>
+        <li>Всего вопросов: <strong th:text="${totalQuestions}">0</strong></li>
+        <li>Результат: <strong th:text="(${totalQuestions} > 0) ? ((${trueAnswers} * 100) / ${totalQuestions}) + '%'
+                                                  : '0%'">0%</strong></li>
+    </ul>
+
+    <h3>Ваши ответы</h3>
+    <ol>
+        <li th:each="q : ${test.questions}">
+            <p><strong th:text="${q.text}">Вопрос</strong></p>
+            <ul>
+                <li th:each="a : ${q.answers}"
+                    th:classappend="
+               (${choices[q.id]} == ${a.id})
+                 ? (${a.correct} ? 'answer-correct' : 'answer-wrong')
+                 : (${a.correct} ? 'answer-correct' : '')">
+                    <span th:text="${a.text}">Ответ</span>
+                    <small th:if="${choices[q.id]} == ${a.id}"> — ваш выбор</small>
+                    <small th:if="${a.correct}"> — правильный</small>
+                </li>
+            </ul>
+            <hr>
+        </li>
+    </ol>
+
+    <div style="margin-top:16px;">
+        <a class="mac-link" th:href="@{/tests/start(id=${test.id})}">Пройти заново</a>
+        <a class="mac-link" href="/tests">К списку тестов</a> |
+        <a class="mac-link" href="/home">На главную</a> |
+
+    </div>
+</div>
+</body>
+</html>
