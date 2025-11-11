@@ -11,6 +11,7 @@ import repository.TestRepository;
 import repository.TestResultRepository;
 import repository.UserRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -42,6 +43,15 @@ public class TestResultService {
             testResult.setTrueAnswers(attemptDTO.getTrueCount());
             return testResultRepository.save(testResult);
         });
+    }
+
+    public List<TestResult> getAllByUser(int userId) {
+        return sf.fromTransaction(session ->
+                session.createSelectionQuery("select tr from TestResult tr " +
+                                "join fetch tr.test t " +
+                                "where tr.user.id = :userId " +
+                                "order by tr.finishedAt desc", TestResult.class)
+                        .setParameter("userId", userId).getResultList());
     }
 
 }

@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 
-@WebFilter(urlPatterns = {"/home" , "/tests", "/tests/result"})
+@WebFilter(urlPatterns = {"/home" , "/tests", "/tests/result", "/history"})
 public class AuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

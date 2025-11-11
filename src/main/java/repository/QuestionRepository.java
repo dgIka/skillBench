@@ -33,6 +33,7 @@ public class QuestionRepository {
             Question questionToUpdate = session.get(Question.class, question.getId());
             questionToUpdate.setText(question.getText());
         });
+
     }
 
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Моя история</title>
+  <link rel="stylesheet" href="/assets/css/app.css">
+</head>
+<body>
+<div class="container">
+  <h1>История прохождений</h1>
+  <p th:if="${results != null}" th:text="'Всего попыток: ' + ${results.size()}">Всего попыток: 0</p>
+  <hr>
+
+  <p th:if="${results == null or #lists.isEmpty(results)}" style="color: gray;">
+    История пуста. Пройдите любой тест.
+  </p>
+
+  <table th:if="${results != null and !#lists.isEmpty(results)}" class="table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Тест</th>
+      <th>Тема</th>
+      <th>Дата/время</th>
+      <th>Результат</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="r, iStat : ${results}">
+      <td th:text="${iStat.index + 1}">1</td>
+      <td>
+        <span th:text="${r.test.name}">Название теста</span>
+      </td>
+      <td th:text="${r.test.theme}">Тема</td>
+      <td th:text="${#temporals.format(r.finishedAt, 'dd.MM.yyyy HH:mm')}">01.01.2025 12:00</td>
+      <td>
+        <strong th:text="${r.trueAnswers}">0</strong>/<span th:text="${r.falseAnswers}">0</span>
+        (<span th:text="(${r.trueAnswers} + ${r.falseAnswers}) > 0
+                           ? ( (${r.trueAnswers} * 100) / (${r.trueAnswers} + ${r.falseAnswers}) ) + '%'
+                           : '0%'">0%</span>)
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:16px;">
+    <a class="mac-link" href="/tests">К списку тестов</a> |
+    <a class="mac-link" href="/home">На главную</a>
+  </div>
+</div>
+</body>
+</html>
