@@ -9,7 +9,7 @@ import security.PasswordUtil;
 
 import java.util.Objects;
 
-//ключевые методы с регой и логином
+
 @AllArgsConstructor
 public class AuthService {
     private final UserRepository userRepository;
@@ -33,6 +33,25 @@ public class AuthService {
         return user;
     }
 
+    public User registerAdmin(String email, String password, String name) {
+        Objects.requireNonNull(email);
+        Objects.requireNonNull(password);
+        Objects.requireNonNull(name);
+
+        userRepository.findByUserEmail(email).ifPresent(user -> {
+            throw new IllegalArgumentException("User already exists");
+        });
+
+        String hash = PasswordUtil.hash(password);
+        User user = new User();
+        user.setEmail(email);
+        user.setName(name);
+        user.setPasswordHash(hash);
+        user.setRole(Role.ADMIN);
+        userRepository.save(user);
+        return user;
+    }
+
     public User login(String email, String password) {
         User user = userRepository.findByUserEmail(email.trim().toLowerCase())
                 .orElseThrow(() -> new IllegalArgumentException("User or password are incorrect"));
@@ -46,6 +65,10 @@ public class AuthService {
             userRepository.update(user);
         }
         return user;
+    }
+
+    public User getUserById(int id) {
+        return userRepository.findById(id);
     }
 
 

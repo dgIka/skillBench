@@ -21,12 +21,12 @@ public class UserRepository {
         return user.getId();
     }
 
-    public Optional<User> findById(int id) {
-            return Optional.ofNullable(sf.getCurrentSession().get(User.class, id));
+    public User findById(int id) {
+        return Optional.ofNullable(sf.getCurrentSession().get(User.class, id)).orElseThrow();
     }
 
     public Optional<User> findByUserEmail(String email) {
-       return sf.fromTransaction(session ->
+        return sf.fromTransaction(session ->
                 session.createQuery("select u from User u where u.email = :email", User.class)
                         .setParameter("email", email).uniqueResultOptional());
 
@@ -34,12 +34,12 @@ public class UserRepository {
 
     public boolean existsByEmail(String email) {
         return sf.fromTransaction(session ->
-            session.createQuery(
-                            "select 1 from User u where u.email = :email", Integer.class
-                    ).setParameter("email", email)
-                    .setMaxResults(1)
-                    .uniqueResultOptional()
-                    .isPresent()
+                session.createQuery(
+                                "select 1 from User u where u.email = :email", Integer.class
+                        ).setParameter("email", email)
+                        .setMaxResults(1)
+                        .uniqueResultOptional()
+                        .isPresent()
         );
     }
 
@@ -63,5 +63,4 @@ public class UserRepository {
     public List<User> findAll() {
         return sf.fromSession(session -> session.createQuery("from User", User.class).list());
     }
-
 }

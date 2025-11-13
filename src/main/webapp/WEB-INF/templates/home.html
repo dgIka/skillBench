@@ -9,6 +9,11 @@
 <a class="mac-link" href="/tests">Доступные тесты</a><br>
 <a class="mac-link" href="/history">Моя история</a><br>
 <a class="mac-link" href="../register">Регистрация</a><br>
+<div th:if="${session.role != null and session.role.name() == 'ADMIN'}" style="margin-top:12px;">
+    <hr>
+    <h3>Админка</h3>
+    <a class="mac-link" href="/admin">Перейти в админ-панель</a><br>
+</div>
 </body>
 </html>
 

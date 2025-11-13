@@ -19,7 +19,7 @@ public class PasswordUtil {
         try {
             String[] parts = password.split("\\$");
             if (parts.length < 3) return true;
-            String costPart = parts[2];//хеш в формате $2a$12$<соль+хеш> так что 2 индекс это количество прогонов
+            String costPart = parts[2];
             int cost = Integer.parseInt(costPart);
             return cost < COST;
         } catch (Exception e) {

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ-панель</title>
+    <link rel="stylesheet" href="/assets/css/app.css">
+</head>
+<body>
+<div class="container">
+    <h1>Админ-панель</h1>
+    <p th:text="'Здравствуйте, ' + ${session.user.name} + ' (ADMIN)'" />
+
+    <hr>
+
+    <nav class="admin-menu">
+        <ul>
+            <li><a class="mac-link" href="/admin/users">Список пользователей</a></li>
+            <li><a class="mac-link" href="/admin/tests">Список тестов</a></li>
+            <li><a class="mac-link" href="/admin/tests/new">Добавление нового теста</a></li>
+        </ul>
+    </nav>
+
+    <hr>
+    <p>
+        <a class="mac-link" href="/home">На главную</a>
+    </p>
+</div>
+</body>
+</html>

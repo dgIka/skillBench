@@ -83,6 +83,7 @@ public class LoginServlet extends HttpServlet {
             User user = authService.login(email, password);
             req.getSession().setAttribute("uid", user.getId());
             req.getSession().setAttribute("user", user);
+            req.getSession().setAttribute("role", user.getRole());
             String next = req.getParameter("next");
             if (next != null && !next.isBlank()) {
                 resp.sendRedirect(next);

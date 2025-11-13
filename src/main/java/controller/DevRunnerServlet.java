@@ -4,19 +4,14 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
-import model.Answer;
-import model.Question;
 import model.Test;
-import org.hibernate.Session;
+import model.User;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import repository.AnswerRepository;
-import repository.QuestionRepository;
 import repository.TestRepository;
+import repository.UserRepository;
+import service.AuthService;
 import service.TestService;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/_dev", loadOnStartup = 1)
@@ -24,7 +19,6 @@ public class DevRunnerServlet extends HttpServlet {
 
     private SessionFactory sf;
     private TestService testService;
-    private TestRepository testRepo;
 
 
     @Override
@@ -35,11 +29,13 @@ public class DevRunnerServlet extends HttpServlet {
 
         testService = (TestService) config.getServletContext().getAttribute("testService");
 
-        testRepo = new TestRepository(sf);
-
         List<Test> all = testService.getTests();
         System.out.println(all);
         System.out.println("CHECK");
+
+        AuthService authService = new AuthService(new UserRepository(sf));
+        authService.registerAdmin("admin@admin.ru", "adminADMIN1", "admin");
+
 
 
 
