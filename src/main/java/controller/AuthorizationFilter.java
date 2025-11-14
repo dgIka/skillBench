@@ -7,13 +7,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Role;
 import model.User;
-// ↓ добавь при использовании репозитория/сервиса
 import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.web.servlet.JakartaServletWebApplication;
-import repository.UserRepository; // <-- если пользуешься репозиторием
 import service.AuthService;
-import service.TestResultService;
-import service.TestService;
 
 import java.io.IOException;
 

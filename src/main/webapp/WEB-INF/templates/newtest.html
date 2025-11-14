@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый тест</title>
+    <link rel="stylesheet" href="/assets/css/app.css">
+</head>
+<body>
+<div>HELLO</div>
+<div class="container">
+    <h1>Новый тест</h1>
+
+
+    <form method="post" th:action="@{/admin/newtest}">
+        <fieldset>
+            <legend>Метаданные</legend>
+            <label>Название
+                <input type="text" name="name" required>
+            </label>
+            <br>
+            <label>Выбрать тему
+                <select name="themeExisting">
+                    <option value="">— не выбрано —</option>
+                    <option th:each="t : ${themes}" th:value="${t}" th:text="${t}"></option>
+                </select>
+            </label>
+            <br>
+            <label>Или новая тема
+                <input type="text" name="themeNew" placeholder="Новая тема">
+            </label>
+        </fieldset>
+
+        <fieldset style="margin-top:16px;">
+            <legend>Вопрос 1</legend>
+            <label>Текст вопроса
+                <input type="text" name="question[0].text" required>
+            </label>
+            <div style="margin-top:8px;">
+                <p>Ответы (ровно 4, выбери один правильный):</p>
+
+                <label>
+                    <input type="radio" name="question[0].correctIndex" value="0" required>
+                    <input type="text" name="question[0].answers[0].text" required placeholder="Ответ 1">
+                </label><br>
+
+                <label>
+                    <input type="radio" name="question[0].correctIndex" value="1">
+                    <input type="text" name="question[0].answers[1].text" required placeholder="Ответ 2">
+                </label><br>
+
+                <label>
+                    <input type="radio" name="question[0].correctIndex" value="2">
+                    <input type="text" name="question[0].answers[2].text" required placeholder="Ответ 3">
+                </label><br>
+
+                <label>
+                    <input type="radio" name="question[0].correctIndex" value="3">
+                    <input type="text" name="question[0].answers[3].text" required placeholder="Ответ 4">
+                </label>
+            </div>
+        </fieldset>
+
+        <div style="margin-top:16px;">
+            <button type="submit">Сохранить</button>
+            <a class="mac-link" href="/admin/tests">Отмена</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+

@@ -16,17 +16,17 @@ public class RegisterDto {
     @Size(max = 256, message = "{size.tooLong}")
     private String email;
 
-    @NotBlank(message = "{auth.email.required}/")
+    @NotBlank(message = "{auth.password.required}")
     @Size(min = 2, message = "{size.tooShort}")
     @Size(max = 72, message = "{size.tooLong}")
     private String password;
 
-    @NotBlank(message = "{auth.email.required}/")
+    @NotBlank(message = "{auth.password.required}")
     @Size(min = 2, message = "{size.tooShort}")
     @Size(max = 72, message = "{size.tooLong}")
     private String password2;
 
-    @NotBlank(message = "{notblank}")
+    @NotBlank(message = "{notBlank}")
     @Size(min = 2, message = "{size.tooShort}")
     @Size(max = 72, message = "{size.tooLong}")
     private String name;
