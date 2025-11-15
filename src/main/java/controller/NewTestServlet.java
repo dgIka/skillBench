@@ -108,7 +108,7 @@ public class NewTestServlet extends HttpServlet {
             context.setVariable("questions", questions);
             templateEngine.process("newtest", context, resp.getWriter());
             return;
-        }/
+        }
 
         Map<String, String> errors = new LinkedHashMap<>();
 
