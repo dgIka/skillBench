@@ -39,13 +39,15 @@ public class NewTestServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext context = new WebContext(app.buildExchange(req, resp), req.getLocale());
 
+        context.setVariable("themes", testService.getAllThemes());
+
         resp.setContentType("text/html;charset=UTF-8");
         templateEngine.process("newtest", context, resp.getWriter());
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        WebContext ctx = new WebContext(app.buildExchange(req, resp), req.getLocale());
+        WebContext context = new WebContext(app.buildExchange(req, resp), req.getLocale());
         resp.setContentType("text/html;charset=UTF-8");
 
 
@@ -85,6 +87,29 @@ public class NewTestServlet extends HttpServlet {
             questions.add(qdto);
         }
 
+        String action = req.getParameter("action");
+        if ("addQuestion".equals(action)) {
+            QuestionDto blank = new QuestionDto();
+            blank.setText("");
+            List<AnswerDto> blankAnswers = new ArrayList<>(4);
+            for (int j = 0; j < 4; j++) {
+                AnswerDto a = new AnswerDto();
+                a.setText("");
+                blankAnswers.add(a);
+            }
+            blank.setAnswers(blankAnswers);
+            blank.setCorrectIndex(-1);
+            questions.add(blank);
+
+            context.setVariable("themes", testService.getAllThemes());
+            context.setVariable("name", name);
+            context.setVariable("themeExisting", themeExisting);
+            context.setVariable("themeNew", themeNew);
+            context.setVariable("questions", questions);
+            templateEngine.process("newtest", context, resp.getWriter());
+            return;
+        }/
+
         Map<String, String> errors = new LinkedHashMap<>();
 
         mapViolations(errors, validator.validate(testDto), "");
@@ -112,14 +137,14 @@ public class NewTestServlet extends HttpServlet {
         }
 
         if (!errors.isEmpty()) {
-            ctx.setVariable("themes", testService.getAllThemes());
-            ctx.setVariable("errors", errors);
-            ctx.setVariable("name", name);
-            ctx.setVariable("themeExisting", themeExisting);
-            ctx.setVariable("themeNew", themeNew);
-            ctx.setVariable("questions", questions);
+            context.setVariable("themes", testService.getAllThemes());
+            context.setVariable("errors", errors);
+            context.setVariable("name", name);
+            context.setVariable("themeExisting", themeExisting);
+            context.setVariable("themeNew", themeNew);
+            context.setVariable("questions", questions);
 
-            templateEngine.process("newtest", ctx, resp.getWriter());
+            templateEngine.process("newtest", context, resp.getWriter());
             return;
         }
 

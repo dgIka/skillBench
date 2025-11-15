@@ -6,66 +6,101 @@
     <link rel="stylesheet" href="/assets/css/app.css">
 </head>
 <body>
-<div>HELLO</div>
 <div class="container">
     <h1>Новый тест</h1>
 
-
     <form method="post" th:action="@{/admin/newtest}">
+        <input type="hidden" name="questionsCount" th:value="${questions != null ? questions.size() : 1}"/>
+
         <fieldset>
             <legend>Метаданные</legend>
             <label>Название
-                <input type="text" name="name" required>
+                <input type="text" name="name" th:value="${name}" required>
             </label>
             <br>
             <label>Выбрать тему
                 <select name="themeExisting">
                     <option value="">— не выбрано —</option>
-                    <option th:each="t : ${themes}" th:value="${t}" th:text="${t}"></option>
+                    <option th:each="t : ${themes}" th:value="${t}" th:text="${t}"
+                            th:selected="${themeExisting} == ${t}"></option>
                 </select>
             </label>
             <br>
             <label>Или новая тема
-                <input type="text" name="themeNew" placeholder="Новая тема">
+                <input type="text" name="themeNew" th:value="${themeNew}" placeholder="Новая тема">
             </label>
         </fieldset>
 
-        <fieldset style="margin-top:16px;">
-            <legend>Вопрос 1</legend>
-            <label>Текст вопроса
-                <input type="text" name="question[0].text" required>
-            </label>
-            <div style="margin-top:8px;">
-                <p>Ответы (ровно 4, выбери один правильный):</p>
+        <div th:if="${questions != null}" th:each="q, iStat : ${questions}">
+            <fieldset style="margin-top:16px;">
+                <legend th:text="'Вопрос ' + (${iStat.index}+1)"></legend>
 
-                <label>
-                    <input type="radio" name="question[0].correctIndex" value="0" required>
-                    <input type="text" name="question[0].answers[0].text" required placeholder="Ответ 1">
-                </label><br>
-
-                <label>
-                    <input type="radio" name="question[0].correctIndex" value="1">
-                    <input type="text" name="question[0].answers[1].text" required placeholder="Ответ 2">
-                </label><br>
-
-                <label>
-                    <input type="radio" name="question[0].correctIndex" value="2">
-                    <input type="text" name="question[0].answers[2].text" required placeholder="Ответ 3">
-                </label><br>
-
-                <label>
-                    <input type="radio" name="question[0].correctIndex" value="3">
-                    <input type="text" name="question[0].answers[3].text" required placeholder="Ответ 4">
+                <label>Текст вопроса
+                    <input type="text"
+                           th:attr="name=|question[${iStat.index}].text|"
+                           th:value="${q.text}" required>
                 </label>
-            </div>
-        </fieldset>
+
+                <div style="margin-top:8px;">
+                    <p>Ответы (ровно 4, выбери один правильный):</p>
+
+                    <div th:each="j : ${#numbers.sequence(0,3)}">
+                        <label>
+                            <input type="radio"
+                                   th:attr="name=|question[${iStat.index}].correctIndex|"
+                                   th:value="${j}"
+                                   th:checked="${q.correctIndex} == ${j}" required>
+                            <input type="text"
+                                   th:attr="name=|question[${iStat.index}].answers[${j}].text|"
+                                   th:value="${q.answers != null and q.answers.size() > j ? q.answers[j].text : ''}"
+                                   required placeholder="Ответ"
+                            >
+                        </label><br>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div th:if="${questions == null}">
+            <fieldset style="margin-top:16px;">
+                <legend>Вопрос 1</legend>
+
+                <label>Текст вопроса
+                    <input type="text" name="question[0].text" required>
+                </label>
+
+                <div style="margin-top:8px;">
+                    <p>Ответы (ровно 4, выбери один правильный):</p>
+
+                    <label>
+                        <input type="radio" name="question[0].correctIndex" value="0" required>
+                        <input type="text" name="question[0].answers[0].text" required placeholder="Ответ 1">
+                    </label><br>
+
+                    <label>
+                        <input type="radio" name="question[0].correctIndex" value="1">
+                        <input type="text" name="question[0].answers[1].text" required placeholder="Ответ 2">
+                    </label><br>
+
+                    <label>
+                        <input type="radio" name="question[0].correctIndex" value="2">
+                        <input type="text" name="question[0].answers[2].text" required placeholder="Ответ 3">
+                    </label><br>
+
+                    <label>
+                        <input type="radio" name="question[0].correctIndex" value="3">
+                        <input type="text" name="question[0].answers[3].text" required placeholder="Ответ 4">
+                    </label>
+                </div>
+            </fieldset>
+        </div>
 
         <div style="margin-top:16px;">
-            <button type="submit">Сохранить</button>
+            <button type="submit" name="action" value="addQuestion">+ Вопрос</button>
+            <button type="submit" name="action" value="save">Сохранить</button>
             <a class="mac-link" href="/admin/tests">Отмена</a>
         </div>
     </form>
 </div>
 </body>
 </html>
-
