@@ -56,4 +56,11 @@ public class TestRepository {
                 .createQuery("from Test t where t.theme = :theme", Test.class)
                 .setParameter("theme", theme).list());
     }
+
+    public List<Test> findAllOrderByThemeName() {
+        return sf.fromTransaction(s ->
+                s.createQuery("select t from Test t order by t.theme, t.name", Test.class)
+                        .getResultList()
+        );
+    }
 }

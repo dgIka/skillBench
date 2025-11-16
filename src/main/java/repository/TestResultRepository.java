@@ -44,4 +44,11 @@ public class TestResultRepository {
                 "where tr.test.id = :testId", TestResult.class).setParameter("testId", testId).getResultList());
     }
 
+    public List<Object[]> countByTestId() {
+        return sf.fromTransaction(s ->
+                s.createQuery("select tr.test.id, count(tr) from TestResult tr group by tr.test.id")
+                        .getResultList()
+        );
+    }
+
 }

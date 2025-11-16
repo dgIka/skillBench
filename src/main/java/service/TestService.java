@@ -11,9 +11,9 @@ import org.hibernate.SessionFactory;
 import repository.AnswerRepository;
 import repository.QuestionRepository;
 import repository.TestRepository;
+import repository.TestResultRepository;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 @AllArgsConstructor
@@ -23,9 +23,7 @@ public class TestService {
 
     private TestRepository testRepository;
 
-    private QuestionRepository questionRepository;
-
-    private AnswerRepository answerRepository;
+    private TestResultRepository testResultRepository;
 
     public int createTest(TestDto test, List<QuestionDto> questions) {
         Test testEntity = new Test();
@@ -90,6 +88,24 @@ public class TestService {
 
     public int getQuestionsCount(Test test) {
         return test.getQuestions().size();
+    }
+
+    public Map<String, List<Test>> getTestsGroupedByTheme() {
+        List<Test> all = testRepository.findAllOrderByThemeName();
+        Map<String, List<Test>> grouped = new LinkedHashMap<>();
+        for (Test t : all) {
+            grouped.computeIfAbsent(t.getTheme(), k -> new ArrayList<>()).add(t);
+        }
+        return grouped;
+    }
+
+    public Map<Integer, Long> getAttemptsCountMap() {
+        List<Object[]> rows = testResultRepository.countByTestId();
+        Map<Integer, Long> attempts = new HashMap<>();
+        for (Object[] r : rows) {
+            attempts.put((Integer) r[0], (Long) r[1]);
+        }
+        return attempts;
     }
 
 

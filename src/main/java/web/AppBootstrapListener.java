@@ -118,9 +118,8 @@ public class AppBootstrapListener implements ServletContextListener {
             servletContext.setAttribute("authService", authService);
 
             TestRepository testRepository = new TestRepository(sessionFactory);
-            QuestionRepository questionRepository = new QuestionRepository(sessionFactory);
-            AnswerRepository answerRepository = new AnswerRepository(sessionFactory);
-            TestService testService = new TestService(sessionFactory, testRepository, questionRepository, answerRepository);
+            TestResultRepository testResultRepository = new TestResultRepository(sessionFactory);
+            TestService testService = new TestService(sessionFactory, testRepository, testResultRepository);
             servletContext.setAttribute("testService", testService);
 
             TestResultRepository resultRepository = new TestResultRepository(sessionFactory);
