@@ -46,8 +46,7 @@
                 th:text="${u.isActive} ? 'Активен' : 'Заблокирован'">Активен</span>
                 </td>
                 <td class="actions">
-                    <!-- Кнопки доступны только админу и не для админ-пользователей -->
-                    <div th:if="${session.role == T(model.Role).ADMIN and u.role != T(model.Role).ADMIN}">
+                    <div th:if="${session.role != null and session.role.name() == 'ADMIN' and u.role.name() != 'ADMIN'}">
                         <form method="post" th:action="@{/admin/users}">
                             <input type="hidden" name="id" th:value="${u.id}">
                             <input type="hidden" name="action" value="block">

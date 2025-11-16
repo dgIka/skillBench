@@ -23,6 +23,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.WebApplicationTemplateResolver;
 import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 import repository.*;
+import service.AdminService;
 import service.AuthService;
 import service.TestResultService;
 import service.TestService;
@@ -125,6 +126,9 @@ public class AppBootstrapListener implements ServletContextListener {
             TestResultRepository resultRepository = new TestResultRepository(sessionFactory);
             TestResultService testResultService = new TestResultService(sessionFactory, resultRepository, userRepository, testRepository);
             servletContext.setAttribute("testResultService", testResultService);
+
+            AdminService adminService = new AdminService(userRepository, sessionFactory);
+            servletContext.setAttribute("adminService", adminService);
 
 
 

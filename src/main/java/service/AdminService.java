@@ -2,6 +2,7 @@ package service;
 
 
 import lombok.AllArgsConstructor;
+import model.User;
 import org.hibernate.SessionFactory;
 import repository.UserRepository;
 
@@ -15,7 +16,9 @@ public class AdminService {
 
     public void changeActive(int userId, boolean active) {
         sessionFactory.inTransaction(session -> {
-            userRepository.findById(userId).setIsActive(active);
+            User u = session.get(User.class, userId);
+            if (u == null) throw new IllegalArgumentException("User not found: " + userId);
+            u.setIsActive(active);
         });
     }
 

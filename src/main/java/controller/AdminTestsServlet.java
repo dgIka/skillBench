@@ -33,7 +33,7 @@ public class AdminTestsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        WebContext ctx = new WebContext(app.buildExchange(req, resp), req.getLocale());
+        WebContext context = new WebContext(app.buildExchange(req, resp), req.getLocale());
 
         Map<String, List<Test>> grouped = testService != null ? testService.getTestsGroupedByTheme() : null;
         Map<Integer, Long> attempts = testService != null ? testService.getAttemptsCountMap() : null;
@@ -42,10 +42,10 @@ public class AdminTestsServlet extends HttpServlet {
         if (grouped == null) grouped = Collections.emptyMap();
         if (attempts == null) attempts = Collections.emptyMap();
 
-        ctx.setVariable("grouped",  testService.getTestsGroupedByTheme());
-        ctx.setVariable("attempts", testService.getAttemptsCountMap());
+        context.setVariable("grouped",  testService.getTestsGroupedByTheme());
+        context.setVariable("attempts", testService.getAttemptsCountMap());
 
         resp.setContentType("text/html;charset=UTF-8");
-        templateEngine.process("admin_tests", ctx, resp.getWriter());
+        templateEngine.process("admin_tests", context, resp.getWriter());
     }
 }
