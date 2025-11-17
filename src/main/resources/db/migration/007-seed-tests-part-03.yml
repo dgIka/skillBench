@@ -1,0 +1,457 @@
+databaseChangeLog:
+  - changeSet:
+      id: seed-test-9
+      author: seed
+      context: seed
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+          - sqlCheck:
+              expectedResult: 0
+              sql: "select count(1) from test where name = 'Тест 9 — История: Средние века'"
+      changes:
+        - insert:
+            tableName: test
+            columns:
+              - column: { name: name,  value: "Тест 9 — История: Средние века" }
+              - column: { name: theme, value: "История" }
+
+        # q9_1
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 9 — История: Средние века')" },
+            { name: text,    value: "Когда начались Средние века?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Когда начались Средние века?')" },
+            { name: text, value: "476 год н.э." }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Когда начались Средние века?')" }, { name: text, value: "1453 год" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Когда начались Средние века?')" }, { name: text, value: "800 год" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Когда начались Средние века?')" }, { name: text, value: "1000 год" } ] }
+
+        # q9_2
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 9 — История: Средние века')" },
+            { name: text,    value: "Кто был первым императором Священной Римской империи?" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Кто был первым императором Священной Римской империи?')" }, { name: text, value: "Карл Великий" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Кто был первым императором Священной Римской империи?')" }, { name: text, value: "Оттон I" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Кто был первым императором Священной Римской империи?')" }, { name: text, value: "Фридрих Барбаросса" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Кто был первым императором Священной Римской империи?')" }, { name: text, value: "Генрих IV" } ] }
+
+        # q9_3
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 9 — История: Средние века')" },
+            { name: text,    value: "Как называлась система землевладения в Средние века?" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Как называлась система землевладения в Средние века?')" }, { name: text, value: "Феодализм" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Как называлась система землевладения в Средние века?')" }, { name: text, value: "Монархизм" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Как называлась система землевладения в Средние века?')" }, { name: text, value: "Абсолютизм" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Как называлась система землевладения в Средние века?')" }, { name: text, value: "Коллективизм" } ] }
+
+        # q9_4
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 9 — История: Средние века')" },
+            { name: text,    value: "Кто возглавил норманнское завоевание Англии?" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Кто возглавил норманнское завоевание Англии?')" }, { name: text, value: "Гарольд II" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Кто возглавил норманнское завоевание Англии?')" }, { name: text, value: "Вильгельм Завоеватель" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Кто возглавил норманнское завоевание Англии?')" }, { name: text, value: "Ричард Львиное Сердце" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Кто возглавил норманнское завоевание Англии?')" }, { name: text, value: "Эдуард Исповедник" } ] }
+
+        # q9_5
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 9 — История: Средние века')" },
+            { name: text,    value: "Как называлась война между Англией и Францией XIV–XV вв.?" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Как называлась война между Англией и Францией XIV–XV вв.?')" }, { name: text, value: "Столетняя война" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Как называлась война между Англией и Францией XIV–XV вв.?')" }, { name: text, value: "Тридцатилетняя война" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Как называлась война между Англией и Францией XIV–XV вв.?')" }, { name: text, value: "Крестовый поход" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Как называлась война между Англией и Францией XIV–XV вв.?')" }, { name: text, value: "Англо-бурская война" } ] }
+
+        # q9_6
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 9 — История: Средние века')" },
+            { name: text,    value: "Как назывались религиозные походы в Святую землю?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Как назывались религиозные походы в Святую землю?')" },
+            { name: text, value: "Крестовые походы" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Как назывались религиозные походы в Святую землю?')" },
+            { name: text, value: "Восточные походы" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Как назывались религиозные походы в Святую землю?')" },
+            { name: text, value: "Святые миссии" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Как назывались религиозные походы в Святую землю?')" },
+            { name: text, value: "Реформации" } ] }
+
+        # q9_7
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 9 — История: Средние века')" },
+            { name: text,    value: "Кто был известен как 'девушка из Орлеана'?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Кто был известен как ' || CHR(39) || 'девушка из Орлеана' || CHR(39) || '?')"},
+            { name: text, value: "Жанна д’Арк" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Кто был известен как ' || CHR(39) || 'девушка из Орлеана' || CHR(39) || '?')"},
+            { name: text, value: "Екатерина Медичи" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Кто был известен как ' || CHR(39) || 'девушка из Орлеана' || CHR(39) || '?')"},
+            { name: text, value: "Изабелла Кастильская" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Кто был известен как ' || CHR(39) || 'девушка из Орлеана' || CHR(39) || '?')"},
+            { name: text, value: "Анна Болейн" } ] }
+
+        # q9_8
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 9 — История: Средние века')" },
+            { name: text,    value: "Когда произошло падение Константинополя?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Когда произошло падение Константинополя?')" },
+            { name: text, value: "1453 год" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Когда произошло падение Константинополя?')" },
+            { name: text, value: "1204 год" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Когда произошло падение Константинополя?')" },
+            { name: text, value: "1492 год" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 9 — История: Средние века' and q.text='Когда произошло падение Константинополя?')" },
+            { name: text, value: "1520 год" } ] }
+
+  - changeSet:
+      id: seed-test-10
+      author: seed
+      context: seed
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+          - sqlCheck:
+              expectedResult: 0
+              sql: "select count(1) from test where name = 'Тест 10 — Java: Исключения и коллекции'"
+      changes:
+        - insert:
+            tableName: test
+            columns:
+              - column: { name: name,  value: "Тест 10 — Java: Исключения и коллекции" }
+              - column: { name: theme, value: "Java — основы" }
+
+        # q10_1
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 10 — Java: Исключения и коллекции')" },
+            { name: text,    value: "Какой класс является родительским для всех исключений в Java?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 10 — Java: Исключения и коллекции' and q.text='Какой класс является родительским для всех исключений в Java?')" },
+            { name: text, value: "Throwable" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... where t.name='Тест 10 — Java: Исключения и коллекции' and q.text='Какой класс является родительским для всех исключений в Java?')" }, { name: text, value: "Exception" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... where t.name='Тест 10 — Java: Исключения и коллекции' and q.text='Какой класс является родительским для всех исключений в Java?')" }, { name: text, value: "Error" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... where t.name='Тест 10 — Java: Исключения и коллекции' and q.text='Какой класс является родительским для всех исключений в Java?')" }, { name: text, value: "RuntimeException" } ] }
+
+        # q10_2
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 10 — Java: Исключения и коллекции')" },
+            { name: text,    value: "Какой тип исключений необходимо обязательно обрабатывать?" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой тип исключений необходимо обязательно обрабатывать?')" }, { name: text, value: "Unchecked" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой тип исключений необходимо обязательно обрабатывать?')" }, { name: text, value: "Checked" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой тип исключений необходимо обязательно обрабатывать?')" }, { name: text, value: "Runtime" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой тип исключений необходимо обязательно обрабатывать?')" }, { name: text, value: "System" } ] }
+
+        # q10_3
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 10 — Java: Исключения и коллекции')" },
+            { name: text,    value: "Какой блок выполняется всегда, независимо от наличия исключений?" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой блок выполняется всегда, независимо от наличия исключений?')" }, { name: text, value: "catch" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой блок выполняется всегда, независимо от наличия исключений?')" }, { name: text, value: "finally" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой блок выполняется всегда, независимо от наличия исключений?')" }, { name: text, value: "throw" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой блок выполняется всегда, независимо от наличия исключений?')" }, { name: text, value: "try" } ] }
+
+        # q10_4
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 10 — Java: Исключения и коллекции')" },
+            { name: text,    value: "Как выбросить исключение вручную?" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Как выбросить исключение вручную?')" }, { name: text, value: "throw new Exception();" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Как выбросить исключение вручную?')" }, { name: text, value: "try Exception()" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Как выбросить исключение вручную?')" }, { name: text, value: "raise Exception()" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Как выбросить исключение вручную?')" }, { name: text, value: "throws Exception()" } ] }
+
+        # q10_5
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 10 — Java: Исключения и коллекции')" },
+            { name: text,    value: "Какая коллекция хранит уникальные элементы?" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какая коллекция хранит уникальные элементы?')" }, { name: text, value: "List" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какая коллекция хранит уникальные элементы?')" }, { name: text, value: "Map" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какая коллекция хранит уникальные элементы?')" }, { name: text, value: "Set" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какая коллекция хранит уникальные элементы?')" }, { name: text, value: "Queue" } ] }
+
+        # q10_6
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 10 — Java: Исключения и коллекции')" },
+            { name: text,    value: "Какой интерфейс реализует ArrayList?" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой интерфейс реализует ArrayList?')" }, { name: text, value: "List" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой интерфейс реализует ArrayList?')" }, { name: text, value: "Collection" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой интерфейс реализует ArrayList?')" }, { name: text, value: "Map" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой интерфейс реализует ArrayList?')" }, { name: text, value: "Iterable" } ] }
+
+        # q10_7
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 10 — Java: Исключения и коллекции')" },
+            { name: text,    value: "Какой метод используется для добавления элемента в список?" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой метод используется для добавления элемента в список?')" }, { name: text, value: "append()" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой метод используется для добавления элемента в список?')" }, { name: text, value: "add()" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой метод используется для добавления элемента в список?')" }, { name: text, value: "insert()" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой метод используется для добавления элемента в список?')" }, { name: text, value: "push()" } ] }
+
+        # q10_8
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Тест 10 — Java: Исключения и коллекции')" },
+            { name: text,    value: "Какой метод используется для сортировки списка?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 10 — Java: Исключения и коллекции' and q.text='Какой метод используется для сортировки списка?')" },
+            { name: text, value: "Collections.sort()" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 10 — Java: Исключения и коллекции' and q.text='Какой метод используется для сортировки списка?')" },
+            { name: text, value: "List.sortAll()" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 10 — Java: Исключения и коллекции' and q.text='Какой метод используется для сортировки списка?')" },
+            { name: text, value: "Arrays.sortList()" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 10 — Java: Исключения и коллекции' and q.text='Какой метод используется для сортировки списка?')" },
+            { name: text, value: "Sort.sort()" } ] }
+
+  - changeSet:
+      id: seed-test-hp
+      author: seed
+      context: seed
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+          - sqlCheck:
+              expectedResult: 0
+              sql: "select count(1) from test where name = 'Гарри Поттер'"
+      changes:
+        - insert:
+            tableName: test
+            columns:
+              - column: { name: name,  value: "Гарри Поттер" }
+              - column: { name: theme, value: "Поп культура" }
+
+        # q1
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Как зовут крестного отца Гарри Поттера?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Гарри Поттер' and q.text='Как зовут крестного отца Гарри Поттера?')" },
+            { name: text, value: "Сириус Блэк" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Гарри Поттер' and q.text='Как зовут крестного отца Гарри Поттера?')" }, { name: text, value: "Ремус Люпин" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Гарри Поттер' and q.text='Как зовут крестного отца Гарри Поттера?')" }, { name: text, value: "Джеймс Поттер" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Гарри Поттер' and q.text='Как зовут крестного отца Гарри Поттера?')" }, { name: text, value: "Северус Снегг" } ] }
+
+        # q2
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Кто убил Сириуса Блэка?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Гарри Поттер' and q.text='Кто убил Сириуса Блэка?')" },
+            { name: text, value: "Люциус Малфой" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Гарри Поттер' and q.text='Кто убил Сириуса Блэка?')" },
+            { name: text, value: "Беллатриса Лестрейндж" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Гарри Поттер' and q.text='Кто убил Сириуса Блэка?')" },
+            { name: text, value: "Питер Петтигрю" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Гарри Поттер' and q.text='Кто убил Сириуса Блэка?')" },
+            { name: text, value: "Фенрир Сивый" } ] }
+
+        # q3
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Какой факультет в Хогвартсе символизирует храбрость?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой факультет в Хогвартсе символизирует храбрость?')" },
+            { name: text, value: "Гриффиндор" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой факультет в Хогвартсе символизирует храбрость?')" }, { name: text, value: "Слизерин" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой факультет в Хогвартсе символизирует храбрость?')" }, { name: text, value: "Когтевран" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой факультет в Хогвартсе символизирует храбрость?')" }, { name: text, value: "Пуффендуй" } ] }
+
+        # q4
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Кто был директором Хогвартса во времена Гарри Поттера?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был директором Хогвартса во времена Гарри Поттера?')" },
+            { name: text, value: "Альбус Дамблдор" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был директором Хогвартса во времена Гарри Поттера?')" }, { name: text, value: "Минерва Макгонагалл" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был директором Хогвартса во времена Гарри Поттера?')" }, { name: text, value: "Северус Снегг" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был директором Хогвартса во времена Гарри Поттера?')" }, { name: text, value: "Корнелиус Фадж" } ] }
+
+        # q5
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Как называется школа магии, где учился Гарри?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Как называется школа магии, где учился Гарри?')" },
+            { name: text, value: "Хогвартс" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Как называется школа магии, где учился Гарри?')" }, { name: text, value: "Ильверморни" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Как называется школа магии, где учился Гарри?')" }, { name: text, value: "Бобатон" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Как называется школа магии, где учился Гарри?')" }, { name: text, value: "Дурмстранг" } ] }
+
+        # q6
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Как звали сову Гарри Поттера?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Как звали сову Гарри Поттера?')" },
+            { name: text, value: "Хедвиг" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Как звали сову Гарри Поттера?')" }, { name: text, value: "Крукшанс" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Как звали сову Гарри Поттера?')" }, { name: text, value: "Живоглот" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Как звали сову Гарри Поттера?')" }, { name: text, value: "Нагайна" } ] }
+
+        # q7
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Какой заклинание используется для обезоруживания противника?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой заклинание используется для обезоруживания противника?')" },
+            { name: text, value: "Expelliarmus" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой заклинание используется для обезоруживания противника?')" }, { name: text, value: "Stupefy" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой заклинание используется для обезоруживания противника?')" }, { name: text, value: "Avada Kedavra" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой заклинание используется для обезоруживания противника?')" }, { name: text, value: "Lumos" } ] }
+
+        # q8
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Кто был лучшим другом Гарри и родился в семье магов?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был лучшим другом Гарри и родился в семье магов?')" },
+            { name: text, value: "Рон Уизли" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был лучшим другом Гарри и родился в семье магов?')" }, { name: text, value: "Невилл Долгопупс" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был лучшим другом Гарри и родился в семье магов?')" }, { name: text, value: "Драко Малфой" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был лучшим другом Гарри и родился в семье магов?')" }, { name: text, value: "Седрик Диггори" } ] }
+
+        # q9
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Кто преподавал Зельеварение в Хогвартсе?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто преподавал Зельеварение в Хогвартсе?')" },
+            { name: text, value: "Северус Снегг" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто преподавал Зельеварение в Хогвартсе?')" }, { name: text, value: "Ремус Люпин" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто преподавал Зельеварение в Хогвартсе?')" }, { name: text, value: "Гораций Слизнорт" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто преподавал Зельеварение в Хогвартсе?')" }, { name: text, value: "Аластор Грюм" } ] }
+
+        # q10
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Кто убил Альбуса Дамблдора?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто убил Альбуса Дамблдора?')" },
+            { name: text, value: "Северус Снегг" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто убил Альбуса Дамблдора?')" }, { name: text, value: "Волан-де-Морт" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто убил Альбуса Дамблдора?')" }, { name: text, value: "Драко Малфой" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто убил Альбуса Дамблдора?')" }, { name: text, value: "Питер Петтигрю" } ] }
+
+        # q11
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Какой факультет был известен хитростью?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой факультет был известен хитростью?')" },
+            { name: text, value: "Слизерин" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой факультет был известен хитростью?')" }, { name: text, value: "Пуффендуй" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой факультет был известен хитростью?')" }, { name: text, value: "Когтевран" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой факультет был известен хитростью?')" }, { name: text, value: "Гриффиндор" } ] }
+
+        # q12
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Кто был отцом Драко Малфоя?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был отцом Драко Малфоя?')" },
+            { name: text, value: "Люциус Малфой" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был отцом Драко Малфоя?')" }, { name: text, value: "Северус Снегг" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был отцом Драко Малфоя?')" }, { name: text, value: "Артур Уизли" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был отцом Драко Малфоя?')" }, { name: text, value: "Фенрир Сивый" } ] }
+
+        # q13
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Кто был создателем крестражей?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был создателем крестражей?')" },
+            { name: text, value: "Волан-де-Морт" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был создателем крестражей?')" }, { name: text, value: "Салазар Слизерин" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был создателем крестражей?')" }, { name: text, value: "Геллерт Грин-де-Вальд" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был создателем крестражей?')" }, { name: text, value: "Том Риддл" } ] }
+
+        # q14
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Кто был министром магии в большинстве фильмов?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был министром магии в большинстве фильмов?')" },
+            { name: text, value: "Корнелиус Фадж" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был министром магии в большинстве фильмов?')" }, { name: text, value: "Амбридж" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был министром магии в большинстве фильмов?')" }, { name: text, value: "Скрагмор" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто был министром магии в большинстве фильмов?')" }, { name: text, value: "Слагхорн" } ] }
+
+        # q15
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Кто стал женой Гарри Поттера?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто стал женой Гарри Поттера?')" },
+            { name: text, value: "Джинни Уизли" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто стал женой Гарри Поттера?')" }, { name: text, value: "Гермиона Грейнджер" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто стал женой Гарри Поттера?')" }, { name: text, value: "Луна Лавгуд" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто стал женой Гарри Поттера?')" }, { name: text, value: "Чжоу Чанг" } ] }
+
+        # q16
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Какой персонаж был оборотнем?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой персонаж был оборотнем?')" },
+            { name: text, value: "Ремус Люпин" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой персонаж был оборотнем?')" }, { name: text, value: "Сириус Блэк" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой персонаж был оборотнем?')" }, { name: text, value: "Драко Малфой" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой персонаж был оборотнем?')" }, { name: text, value: "Хагрид" } ] }
+
+        # q17
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Какое существо охраняло философский камень?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Какое существо охраняло философский камень?')" },
+            { name: text, value: "Трёхголовый пёс" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какое существо охраняло философский камень?')" }, { name: text, value: "Дракон" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какое существо охраняло философский камень?')" }, { name: text, value: "Феникс" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какое существо охраняло философский камень?')" }, { name: text, value: "Тролль" } ] }
+
+        # q18
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Как звали родителей Гарри Поттера?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Как звали родителей Гарри Поттера?')" },
+            { name: text, value: "Джеймс и Лили" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Как звали родителей Гарри Поттера?')" }, { name: text, value: "Артур и Молли" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Как звали родителей Гарри Поттера?')" }, { name: text, value: "Сириус и Мэри" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Как звали родителей Гарри Поттера?')" }, { name: text, value: "Том и Меропа" } ] }
+
+        # q19
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Кто убил Волан-де-Морта?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто убил Волан-де-Морта?')" },
+            { name: text, value: "Гарри Поттер" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто убил Волан-де-Морта?')" }, { name: text, value: "Джинни Уизли" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто убил Волан-де-Морта?')" }, { name: text, value: "Северус Снегг" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Кто убил Волан-де-Морта?')" }, { name: text, value: "Невилл Долгопупс" } ] }
+
+        # q20
+        - insert: { tableName: question, columns:
+          [ { name: test_id, valueComputed: "(select id from test where name='Гарри Поттер')" },
+            { name: text,    value: "Какой патронус у Гарри Поттера?" } ] }
+        - insert: { tableName: answer, columns:
+          [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой патронус у Гарри Поттера?')" },
+            { name: text, value: "Олень" }, { name: is_correct, valueBoolean: true } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой патронус у Гарри Поттера?')" }, { name: text, value: "Феникс" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой патронус у Гарри Поттера?')" }, { name: text, value: "Волк" } ] }
+        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question ... 'Какой патронус у Гарри Поттера?')" }, { name: text, value: "Выдра" } ] }

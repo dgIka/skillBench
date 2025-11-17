@@ -1,0 +1,829 @@
+databaseChangeLog:
+  - changeSet:
+      id: seed-test-1
+      author: seed
+      context: seed
+
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+            expectedResult: 0
+            sql: "select count(1) from test where name = 'Тест 1 — Java основы'"
+
+      changes:
+        - insert:
+            tableName: test
+            columns:
+              - column: { name: name,  value: "Тест 1 — Java основы" }
+              - column: { name: theme, value: "Java — основы" }
+
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: test_id
+                  valueComputed: "(select id from test where name='Тест 1 — Java основы')"
+              - column:
+                  name: text
+                  value: "Что делает ключевое слово static?"
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает ключевое слово static?')"
+              - column: { name: text, value: "Создает объект" }
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает ключевое слово static?')"
+              - column: { name: text, value: "Позволяет вызывать метод без создания объекта" }
+              - column: { name: is_correct, valueBoolean: true }
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает ключевое слово static?')"
+              - column: { name: text, value: "Удаляет объект" }
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает ключевое слово static?')"
+              - column: { name: text, value: "Запрещает наследование" }
+
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: test_id
+                  valueComputed: "(select id from test where name='Тест 1 — Java основы')"
+              - column:
+                  name: text
+                  value: "Что делает оператор new?"
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает оператор new?')"
+              - column: { name: text, value: "Создает новый объект" }
+              - column: { name: is_correct, valueBoolean: true }
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает оператор new?')"
+              - column: { name: text, value: "Удаляет объект" }
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает оператор new?')"
+              - column: { name: text, value: "Объявляет переменную" }
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает оператор new?')"
+              - column: { name: text, value: "Вызывает метод" }
+
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: test_id
+                  valueComputed: "(select id from test where name='Тест 1 — Java основы')"
+              - column:
+                  name: text
+                  value: "Что делает ключевое слово final?"
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает ключевое слово final?')"
+              - column: { name: text, value: "Запрещает изменение значения или переопределение" }
+              - column: { name: is_correct, valueBoolean: true }
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает ключевое слово final?')"
+              - column: { name: text, value: "Позволяет множественное наследование" }
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает ключевое слово final?')"
+              - column: { name: text, value: "Удаляет метод" }
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает ключевое слово final?')"
+              - column: { name: text, value: "Ускоряет выполнение кода" }
+
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: test_id
+                  valueComputed: "(select id from test where name='Тест 1 — Java основы')"
+              - column:
+                  name: text
+                  value: "Что делает оператор instanceof?"
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает оператор instanceof?')"
+              - column: { name: text, value: "Проверяет принадлежность объекта к классу" }
+              - column: { name: is_correct, valueBoolean: true }
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает оператор instanceof?')"
+              - column: { name: text, value: "Создает экземпляр класса" }
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает оператор instanceof?')"
+              - column: { name: text, value: "Удаляет объект" }
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Что делает оператор instanceof?')"
+              - column: { name: text, value: "Проверяет размер массива" }
+
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: test_id
+                  valueComputed: "(select id from test where name='Тест 1 — Java основы')"
+              - column:
+                  name: text
+                  value: "Какой результат выражения 10 % 3?"
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Какой результат выражения 10 % 3?')"
+              - column: { name: text, value: "3" }
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Какой результат выражения 10 % 3?')"
+              - column: { name: text, value: "10" }
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Какой результат выражения 10 % 3?')"
+              - column: { name: text, value: "0" }
+
+        - insert:
+            tableName: answer
+            columns:
+              - column:
+                  name: question_id
+                  valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 1 — Java основы' and q.text='Какой результат выражения 10 % 3?')"
+              - column: { name: text, value: "1" }
+              - column: { name: is_correct, valueBoolean: true }
+
+
+#  - changeSet:
+#      id: seed-test-2
+#      author: seed
+#      context: seed
+#      preConditions:
+#        - onFail: MARK_RAN
+#        - onError: HALT
+#        - sqlCheck:
+#            expectedResult: 0
+#            sql: "select count(1) from test where name = 'Тест 2 — История: базовый'"
+#      changes:
+#        - insert:
+#            tableName: test
+#            columns:
+#              - column: {name: name,  value: "Тест 2 — История: базовый"}
+#              - column: {name: theme, value: "История"}
+#
+#        # q2_1
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 2 — История: базовый')"},
+#            {name: text, value: "Когда началась Вторая мировая война?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Когда началась Вторая мировая война?')"},
+#            {name: text, value: "1939"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Когда началась Вторая мировая война?')"},
+#            {name: text, value: "1914"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Когда началась Вторая мировая война?')"},
+#            {name: text, value: "1945"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Когда началась Вторая мировая война?')"},
+#            {name: text, value: "1950"} ] }
+#
+#        # q2_2
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 2 — История: базовый')"},
+#            {name: text, value: "Когда закончилась Вторая мировая война?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Когда закончилась Вторая мировая война?')"},
+#            {name: text, value: "1945"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Когда закончилась Вторая мировая война?')"},
+#            {name: text, value: "1941"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Когда закончилась Вторая мировая война?')"},
+#            {name: text, value: "1939"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Когда закончилась Вторая мировая война?')"},
+#            {name: text, value: "1955"} ] }
+#
+#        # q2_3
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 2 — История: базовый')"},
+#            {name: text, value: "Кто был первым президентом США?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Кто был первым президентом США?')"},
+#            {name: text, value: "Авраам Линкольн"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Кто был первым президентом США?')"},
+#            {name: text, value: "Джордж Вашингтон"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Кто был первым президентом США?')"},
+#            {name: text, value: "Франклин Рузвельт"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Кто был первым президентом США?')"},
+#            {name: text, value: "Томас Джефферсон"} ] }
+#
+#        # q2_4
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 2 — История: базовый')"},
+#            {name: text, value: "В каком веке произошла Французская революция?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='В каком веке произошла Французская революция?')"},
+#            {name: text, value: "XVII"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='В каком веке произошла Французская революция?')"},
+#            {name: text, value: "XVIII"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='В каком веке произошла Французская революция?')"},
+#            {name: text, value: "XIX"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='В каком веке произошла Французская революция?')"},
+#            {name: text, value: "XVI"} ] }
+#
+#        # q2_5
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 2 — История: базовый')"},
+#            {name: text, value: "Кто написал 'Войну и мир'?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Кто написал ''Войну и мир''?')"},
+#            {name: text, value: "Фёдор Достоевский"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Кто написал ''Войну и мир''?')"},
+#            {name: text, value: "Иван Тургенев"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Кто написал ''Войну и мир''?')"},
+#            {name: text, value: "Лев Толстой"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Кто написал ''Войну и мир''?')"},
+#            {name: text, value: "Александр Пушкин"} ] }
+#
+#        # q2_6
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 2 — История: базовый')"},
+#            {name: text, value: "Когда произошла Октябрьская революция?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Когда произошла Октябрьская революция?')"},
+#            {name: text, value: "1905"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Когда произошла Октябрьская революция?')"},
+#            {name: text, value: "1917"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Когда произошла Октябрьская революция?')"},
+#            {name: text, value: "1922"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Когда произошла Октябрьская революция?')"},
+#            {name: text, value: "1939"} ] }
+#
+#        # q2_7
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 2 — История: базовый')"},
+#            {name: text, value: "Как называлась столица Римской империи?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Как называлась столица Римской империи?')"},
+#            {name: text, value: "Афины"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Как называлась столица Римской империи?')"},
+#            {name: text, value: "Константинополь"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Как называлась столица Римской империи?')"},
+#            {name: text, value: "Рим"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Как называлась столица Римской империи?')"},
+#            {name: text, value: "Неаполь"} ] }
+#
+#        # q2_8
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 2 — История: базовый')"},
+#            {name: text, value: "Кто был королём Франции во время революции?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Кто был королём Франции во время революции?')"},
+#            {name: text, value: "Людовик XIV"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Кто был королём Франции во время революции?')"},
+#            {name: text, value: "Наполеон Бонапарт"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Кто был королём Франции во время революции?')"},
+#            {name: text, value: "Людовик XVI"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 2 — История: базовый' and q.text='Кто был королём Франции во время революции?')"},
+#            {name: text, value: "Карл X"} ] }
+#
+#  - changeSet:
+#      id: seed-test-3
+#      author: seed
+#      context: seed
+#      preConditions:
+#        - onFail: MARK_RAN
+#        - onError: HALT
+#        - sqlCheck:
+#            expectedResult: 0
+#            sql: "select count(1) from test where name = 'Тест 3 — География: базовый'"
+#
+#      changes:
+#        - insert:
+#            tableName: test
+#            columns:
+#              - column: {name: name,  value: "Тест 3 — География: базовый"}
+#              - column: {name: theme, value: "География"}
+#
+#        # q3_1
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 3 — География: базовый')"},
+#            {name: text, value: "Самая длинная река в мире?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Самая длинная река в мире?')"},
+#            {name: text, value: "Нил"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Самая длинная река в мире?')"},
+#            {name: text, value: "Амазонка"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Самая длинная река в мире?')"},
+#            {name: text, value: "Янцзы"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Самая длинная река в мире?')"},
+#            {name: text, value: "Миссисипи"} ] }
+#
+#        # q3_2
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 3 — География: базовый')"},
+#            {name: text, value: "На каком материке находится Египет?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='На каком материке находится Египет?')"},
+#            {name: text, value: "Азия"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='На каком материке находится Египет?')"},
+#            {name: text, value: "Африка"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='На каком материке находится Египет?')"},
+#            {name: text, value: "Европа"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='На каком материке находится Египет?')"},
+#            {name: text, value: "Южная Америка"} ] }
+#
+#        # q3_3
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 3 — География: базовый')"},
+#            {name: text, value: "Как называется столица Канады?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Как называется столица Канады?')"},
+#            {name: text, value: "Торонто"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Как называется столица Канады?')"},
+#            {name: text, value: "Монреаль"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Как называется столица Канады?')"},
+#            {name: text, value: "Оттава"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Как называется столица Канады?')"},
+#            {name: text, value: "Ванкувер"} ] }
+#
+#        # q3_4
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 3 — География: базовый')"},
+#            {name: text, value: "Какое море самое солёное?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какое море самое солёное?')"},
+#            {name: text, value: "Средиземное"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какое море самое солёное?')"},
+#            {name: text, value: "Красное море"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какое море самое солёное?')"},
+#            {name: text, value: "Балтийское"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какое море самое солёное?')"},
+#            {name: text, value: "Чёрное"} ] }
+#
+#        # q3_5
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 3 — География: базовый')"},
+#            {name: text, value: "Какая гора является самой высокой на Земле?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какая гора является самой высокой на Земле?')"},
+#            {name: text, value: "Эльбрус"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какая гора является самой высокой на Земле?')"},
+#            {name: text, value: "Килиманджаро"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какая гора является самой высокой на Земле?')"},
+#            {name: text, value: "Монблан"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какая гора является самой высокой на Земле?')"},
+#            {name: text, value: "Эверест"},
+#            {name: is_correct, valueBoolean: true} ] }
+#
+#        # q3_6
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 3 — География: базовый')"},
+#            {name: text, value: "Какое государство самое большое по площади?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какое государство самое большое по площади?')"},
+#            {name: text, value: "Канада"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какое государство самое большое по площади?')"},
+#            {name: text, value: "Китай"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какое государство самое большое по площади?')"},
+#            {name: text, value: "Россия"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какое государство самое большое по площади?')"},
+#            {name: text, value: "США"} ] }
+#
+#        # q3_7
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 3 — География: базовый')"},
+#            {name: text, value: "Какая пустыня самая большая в мире?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какая пустыня самая большая в мире?')"},
+#            {name: text, value: "Сахара"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какая пустыня самая большая в мире?')"},
+#            {name: text, value: "Гоби"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какая пустыня самая большая в мире?')"},
+#            {name: text, value: "Калахари"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 3 — География: базовый' and q.text='Какая пустыня самая большая в мире?')"},
+#            {name: text, value: "Атакама"} ] }
+#
+#  - changeSet:
+#      id: seed-test-4
+#      author: seed
+#      context: seed
+#      preConditions:
+#        - onFail: MARK_RAN
+#        - onError: HALT
+#        - sqlCheck:
+#            expectedResult: 0
+#            sql: "select count(1) from test where name = 'Тест 4 — Java основы (часть 2)'"
+#
+#      changes:
+#        - insert:
+#            tableName: test
+#            columns:
+#              - column: {name: name,  value: "Тест 4 — Java основы (часть 2)"}
+#              - column: {name: theme, value: "Java — основы"}
+#
+#        # q4_1
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 4 — Java основы (часть 2)')"},
+#            {name: text, value: "Что делает оператор break?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Что делает оператор break?')"},
+#            {name: text, value: "Завершает выполнение цикла"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Что делает оператор break?')"},
+#            {name: text, value: "Пропускает итерацию цикла"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Что делает оператор break?')"},
+#            {name: text, value: "Останавливает программу"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Что делает оператор break?')"},
+#            {name: text, value: "Переходит к следующему методу"} ] }
+#
+#        # q4_2
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 4 — Java основы (часть 2)')"},
+#            {name: text, value: "Как объявить константу в Java?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Как объявить константу в Java?')"},
+#            {name: text, value: "С помощью ключевого слова final"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Как объявить константу в Java?')"},
+#            {name: text, value: "С помощью ключевого слова const"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Как объявить константу в Java?')"},
+#            {name: text, value: "Через static var"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Как объявить константу в Java?')"},
+#            {name: text, value: "С помощью define"} ] }
+#
+#        # q4_3
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 4 — Java основы (часть 2)')"},
+#            {name: text, value: "Как обозначается логическое ИЛИ в Java?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Как обозначается логическое ИЛИ в Java?')"},
+#            {name: text, value: "||"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Как обозначается логическое ИЛИ в Java?')"},
+#            {name: text, value: "&&"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Как обозначается логическое ИЛИ в Java?')"},
+#            {name: text, value: "&"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Как обозначается логическое ИЛИ в Java?')"},
+#            {name: text, value: "|"} ] }
+#
+#        # q4_4
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 4 — Java основы (часть 2)')"},
+#            {name: text, value: "Какой тип данных предназначен для хранения символов?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Какой тип данных предназначен для хранения символов?')"},
+#            {name: text, value: "char"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Какой тип данных предназначен для хранения символов?')"},
+#            {name: text, value: "string"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Какой тип данных предназначен для хранения символов?')"},
+#            {name: text, value: "character"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Какой тип данных предназначен для хранения символов?')"},
+#            {name: text, value: "text"} ] }
+#
+#        # q4_5
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 4 — Java основы (часть 2)')"},
+#            {name: text, value: "Что означает слово extends при наследовании?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Что означает слово extends при наследовании?')"},
+#            {name: text, value: "Класс наследует свойства другого класса"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Что означает слово extends при наследовании?')"},
+#            {name: text, value: "Класс становится абстрактным"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Что означает слово extends при наследовании?')"},
+#            {name: text, value: "Класс становится интерфейсом"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Что означает слово extends при наследовании?')"},
+#            {name: text, value: "Класс не может быть создан"} ] }
+#
+#        # q4_6
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 4 — Java основы (часть 2)')"},
+#            {name: text, value: "Какое значение по умолчанию у boolean в Java?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Какое значение по умолчанию у boolean в Java?')"},
+#            {name: text, value: "false"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Какое значение по умолчанию у boolean в Java?')"},
+#            {name: text, value: "true"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Какое значение по умолчанию у boolean в Java?')"},
+#            {name: text, value: "null"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Какое значение по умолчанию у boolean в Java?')"},
+#            {name: text, value: "0"} ] }
+#
+#        # q4_7
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 4 — Java основы (часть 2)')"},
+#            {name: text, value: "Что делает метод equals()?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Что делает метод equals()?')"},
+#            {name: text, value: "Сравнивает объекты по значению"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Что делает метод equals()?')"},
+#            {name: text, value: "Создает копию объекта"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Что делает метод equals()?')"},
+#            {name: text, value: "Удаляет объект"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 4 — Java основы (часть 2)' and q.text='Что делает метод equals()?')"},
+#            {name: text, value: "Сравнивает ссылки"} ] }
+#
+#  - changeSet:
+#      id: seed-test-5
+#      author: seed
+#      context: seed
+#      preConditions:
+#        - onFail: MARK_RAN
+#        - onError: HALT
+#        - sqlCheck:
+#            expectedResult: 0
+#            sql: "select count(1) from test where name = 'Тест 5 — Древний мир'"
+#
+#      changes:
+#        - insert:
+#            tableName: test
+#            columns:
+#              - column: {name: name,  value: "Тест 5 — Древний мир"}
+#              - column: {name: theme, value: "История"}
+#
+#        # q5_1
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 5 — Древний мир')"},
+#            {name: text, value: "Где возникла древнейшая известная цивилизация?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Где возникла древнейшая известная цивилизация?')"},
+#            {name: text, value: "В Месопотамии"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Где возникла древнейшая известная цивилизация?')"},
+#            {name: text, value: "В Египте"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Где возникла древнейшая известная цивилизация?')"},
+#            {name: text, value: "В Китае"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Где возникла древнейшая известная цивилизация?')"},
+#            {name: text, value: "В Греции"} ] }
+#
+#        # q5_2
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 5 — Древний мир')"},
+#            {name: text, value: "Как называлась письменность древних египтян?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Как называлась письменность древних египтян?')"},
+#            {name: text, value: "Иероглифы"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Как называлась письменность древних египтян?')"},
+#            {name: text, value: "Клинопись"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Как называлась письменность древних египтян?')"},
+#            {name: text, value: "Руны"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Как называлась письменность древних египтян?')"},
+#            {name: text, value: "Алфавит"} ] }
+#
+#        # q5_3
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 5 — Древний мир')"},
+#            {name: text, value: "Кто был правителем Македонии во время походов на Персию?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Кто был правителем Македонии во время походов на Персию?')"},
+#            {name: text, value: "Филипп II"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Кто был правителем Македонии во время походов на Персию?')"},
+#            {name: text, value: "Александр Македонский"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Кто был правителем Македонии во время походов на Персию?')"},
+#            {name: text, value: "Дарий III"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Кто был правителем Македонии во время походов на Персию?')"},
+#            {name: text, value: "Птолемей I"},
+#            {name: is_correct, valueBoolean: true} ] }
+#
+#        # q5_4
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 5 — Древний мир')"},
+#            {name: text, value: "Какой город был центром Древнего Рима?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Какой город был центром Древнего Рима?')"},
+#            {name: text, value: "Рим"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Какой город был центром Древнего Рима?')"},
+#            {name: text, value: "Афины"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Какой город был центром Древнего Рима?')"},
+#            {name: text, value: "Спарта"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Какой город был центром Древнего Рима?')"},
+#            {name: text, value: "Александрия"},
+#            {name: is_correct, valueBoolean: true} ] }
+#
+#        # q5_5
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 5 — Древний мир')"},
+#            {name: text, value: "Кто построил висячие сады Семирамиды?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Кто построил висячие сады Семирамиды?')"},
+#            {name: text, value: "Навуходоносор II"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Кто построил висячие сады Семирамиды?')"},
+#            {name: text, value: "Хаммурапи"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Кто построил висячие сады Семирамиды?')"},
+#            {name: text, value: "Рамзес II"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Кто построил висячие сады Семирамиды?')"},
+#            {name: text, value: "Цезарь"} ] }
+#
+#        # q5_6
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 5 — Древний мир')"},
+#            {name: text, value: "Как называлась священная книга древних индийцев?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Как называлась священная книга древних индийцев?')"},
+#            {name: text, value: "Веды"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Как называлась священная книга древних индийцев?')"},
+#            {name: text, value: "Библия"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Как называлась священная книга древних индийцев?')"},
+#            {name: text, value: "Коран"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Как называлась священная книга древних индийцев?')"},
+#            {name: text, value: "Авеста"},
+#            {name: is_correct, valueBoolean: true} ] }
+#
+#        # q5_7
+#        - insert: { tableName: question, columns:
+#          [ {name: test_id, valueComputed: "(select id from test where name='Тест 5 — Древний мир')"},
+#            {name: text, value: "Какой народ первым изобрёл бумагу?"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Какой народ первым изобрёл бумагу?')"},
+#            {name: text, value: "Египтяне"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Какой народ первым изобрёл бумагу?')"},
+#            {name: text, value: "Китайцы"} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Какой народ первым изобрёл бумагу?')"},
+#            {name: text, value: "Греки"},
+#            {name: is_correct, valueBoolean: true} ] }
+#        - insert: { tableName: answer, columns:
+#          [ {name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 5 — Древний мир' and q.text='Какой народ первым изобрёл бумагу?')"},
+#            {name: text, value: "Римляне"} ] }
+#
