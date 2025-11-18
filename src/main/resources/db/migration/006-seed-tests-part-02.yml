@@ -4,11 +4,12 @@ databaseChangeLog:
       author: seed
       context: seed
       preConditions:
-        onFail: MARK_RAN
-        onError: HALT
-                   - sqlCheck:
-                   expectedResult: 0
-                   sql: "select count(1) from test where name = 'Тест 6 — География: Страны и столицы'"
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+            expectedResult: 0
+            sql: "select count(1) from test where name = 'Тест 6 — География: Страны и столицы'"
+
       changes:
         - insert:
             tableName: test
@@ -17,134 +18,214 @@ databaseChangeLog:
               - column: { name: theme, value: "География" }
 
         # q6_1
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 6 — География: Страны и столицы')" },
-            { name: text,    value: "Столица Франции?" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Франции?')" },
-            { name: text, value: "Париж" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Франции?')" },
-            { name: text, value: "Берлин" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Франции?')" },
-            { name: text, value: "Мадрид" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Франции?')" },
-            { name: text, value: "Рим" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 6 — География: Страны и столицы')" }
+              - column: { name: text,    value: "Столица Франции?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Франции?')" }
+              - column: { name: text, value: "Париж" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Франции?')" }
+              - column: { name: text, value: "Берлин" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Франции?')" }
+              - column: { name: text, value: "Мадрид" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Франции?')" }
+              - column: { name: text, value: "Рим" }
 
         # q6_2
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 6 — География: Страны и столицы')" },
-            { name: text,    value: "Столица Канады?" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Канады?')" },
-            { name: text, value: "Торонто" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Канады?')" },
-            { name: text, value: "Оттава" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Канады?')" },
-            { name: text, value: "Монреаль" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Канады?')" },
-            { name: text, value: "Ванкувер" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 6 — География: Страны и столицы')" }
+              - column: { name: text,    value: "Столица Канады?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Канады?')" }
+              - column: { name: text, value: "Торонто" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Канады?')" }
+              - column: { name: text, value: "Оттава" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Канады?')" }
+              - column: { name: text, value: "Монреаль" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Канады?')" }
+              - column: { name: text, value: "Ванкувер" }
 
         # q6_3
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 6 — География: Страны и столицы')" },
-            { name: text,    value: "Какая страна самая большая по площади?" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна самая большая по площади?')" },
-            { name: text, value: "Канада" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна самая большая по площади?')" },
-            { name: text, value: "США" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна самая большая по площади?')" },
-            { name: text, value: "Россия" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна самая большая по площади?')" },
-            { name: text, value: "Китай" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 6 — География: Страны и столицы')" }
+              - column: { name: text,    value: "Какая страна самая большая по площади?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна самая большая по площади?')" }
+              - column: { name: text, value: "Канада" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна самая большая по площади?')" }
+              - column: { name: text, value: "США" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна самая большая по площади?')" }
+              - column: { name: text, value: "Россия" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна самая большая по площади?')" }
+              - column: { name: text, value: "Китай" }
 
         # q6_4
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 6 — География: Страны и столицы')" },
-            { name: text,    value: "Столица Японии?" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Японии?')" },
-            { name: text, value: "Осака" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Японии?')" },
-            { name: text, value: "Киото" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Японии?')" },
-            { name: text, value: "Токио" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Японии?')" },
-            { name: text, value: "Токио" }, { name: is_correct, valueBoolean: true } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 6 — География: Страны и столицы')" }
+              - column: { name: text,    value: "Столица Японии?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Японии?')" }
+              - column: { name: text, value: "Осака" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Японии?')" }
+              - column: { name: text, value: "Киото" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Японии?')" }
+              - column: { name: text, value: "Токио" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Японии?')" }
+              - column: { name: text, value: "Нагоя" }
 
         # q6_5
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 6 — География: Страны и столицы')" },
-            { name: text,    value: "Какая страна расположена на двух континентах?" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна расположена на двух континентах?')"},
-            { name: text, value: "Турция" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна расположена на двух континентах?')"},
-            { name: text, value: "Египет" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна расположена на двух континентах?')"},
-            { name: text, value: "Россия" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна расположена на двух континентах?')"},
-            { name: text, value: "Мексика" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 6 — География: Страны и столицы')" }
+              - column: { name: text,    value: "Какая страна расположена на двух континентах?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна расположена на двух континентах?')" }
+              - column: { name: text, value: "Турция" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна расположена на двух континентах?')" }
+              - column: { name: text, value: "Египет" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна расположена на двух континентах?')" }
+              - column: { name: text, value: "Россия" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна расположена на двух континентах?')" }
+              - column: { name: text, value: "Мексика" }
 
         # q6_6
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 6 — География: Страны и столицы')" },
-            { name: text,    value: "Столица Австралии?" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Австралии?')" },
-            { name: text, value: "Сидней" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Австралии?')" },
-            { name: text, value: "Канберра" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Австралии?')" },
-            { name: text, value: "Мельбурн" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Австралии?')" },
-            { name: text, value: "Перт" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 6 — География: Страны и столицы')" }
+              - column: { name: text,    value: "Столица Австралии?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Австралии?')" }
+              - column: { name: text, value: "Сидней" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Австралии?')" }
+              - column: { name: text, value: "Канберра" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Австралии?')" }
+              - column: { name: text, value: "Мельбурн" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Столица Австралии?')" }
+              - column: { name: text, value: "Перт" }
 
         # q6_7
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 6 — География: Страны и столицы')" },
-            { name: text,    value: "Какая страна имеет форму сапога на карте?" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна имеет форму сапога на карте?')" },
-            { name: text, value: "Испания" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна имеет форму сапога на карте?')" },
-            { name: text, value: "Италия" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна имеет форму сапога на карте?')" },
-            { name: text, value: "Франция" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна имеет форму сапога на карте?')" },
-            { name: text, value: "Греция" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 6 — География: Страны и столицы')" }
+              - column: { name: text,    value: "Какая страна имеет форму сапога на карте?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна имеет форму сапога на карте?')" }
+              - column: { name: text, value: "Испания" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна имеет форму сапога на карте?')" }
+              - column: { name: text, value: "Италия" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна имеет форму сапога на карте?')" }
+              - column: { name: text, value: "Франция" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 6 — География: Страны и столицы' and q.text='Какая страна имеет форму сапога на карте?')" }
+              - column: { name: text, value: "Греция" }
 
+
+#
   - changeSet:
       id: seed-test-7
       author: seed
       context: seed
       preConditions:
-        onFail: MARK_RAN
-        onError: HALT
-                   - sqlCheck:
-                   expectedResult: 0
-                   sql: "select count(1) from test where name = 'Тест 7 — Java: Работа с ООП'"
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+            expectedResult: 0
+            sql: "select count(1) from test where name = 'Тест 7 — Java: Работа с ООП'"
+
       changes:
         - insert:
             tableName: test
@@ -153,89 +234,240 @@ databaseChangeLog:
               - column: { name: theme, value: "Java — основы" }
 
         # q7_1
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" },
-            { name: text,    value: "Что означает принцип инкапсуляции?" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что означает принцип инкапсуляции?')" },
-            { name: text, value: "Сокрытие деталей реализации" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что означает принцип инкапсуляции?')" }, { name: text, value: "Возможность наследования" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что означает принцип инкапсуляции?')" }, { name: text, value: "Создание экземпляра класса" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что означает принцип инкапсуляции?')" }, { name: text, value: "Объединение интерфейсов" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" }
+              - column: { name: text,    value: "Что означает принцип инкапсуляции?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что означает принцип инкапсуляции?')" }
+              - column: { name: text, value: "Сокрытие деталей реализации" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что означает принцип инкапсуляции?')" }
+              - column: { name: text, value: "Возможность наследования" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что означает принцип инкапсуляции?')" }
+              - column: { name: text, value: "Создание экземпляра класса" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что означает принцип инкапсуляции?')" }
+              - column: { name: text, value: "Объединение интерфейсов" }
 
         # q7_2
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" },
-            { name: text,    value: "Какой модификатор доступа самый строгий?" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой модификатор доступа самый строгий?')" }, { name: text, value: "protected" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой модификатор доступа самый строгий?')" }, { name: text, value: "private" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой модификатор доступа самый строгий?')" }, { name: text, value: "public" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой модификатор доступа самый строгий?')" }, { name: text, value: "default" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" }
+              - column: { name: text,    value: "Какой модификатор доступа самый строгий?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой модификатор доступа самый строгий?')" }
+              - column: { name: text, value: "protected" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой модификатор доступа самый строгий?')" }
+              - column: { name: text, value: "private" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой модификатор доступа самый строгий?')" }
+              - column: { name: text, value: "public" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой модификатор доступа самый строгий?')" }
+              - column: { name: text, value: "default" }
 
         # q7_3
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" },
-            { name: text,    value: "Какой метод вызывается при создании объекта?" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод вызывается при создании объекта?')" }, { name: text, value: "main()" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод вызывается при создании объекта?')" }, { name: text, value: "toString()" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод вызывается при создании объекта?')" }, { name: text, value: "конструктор" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод вызывается при создании объекта?')" }, { name: text, value: "finalize()" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" }
+              - column: { name: text,    value: "Какой метод вызывается при создании объекта?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод вызывается при создании объекта?')" }
+              - column: { name: text, value: "main()" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод вызывается при создании объекта?')" }
+              - column: { name: text, value: "toString()" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод вызывается при создании объекта?')" }
+              - column: { name: text, value: "конструктор" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод вызывается при создании объекта?')" }
+              - column: { name: text, value: "finalize()" }
 
         # q7_4
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" },
-            { name: text,    value: "Что такое наследование?" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое наследование?')" }, { name: text, value: "Создание нового класса на основе существующего" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое наследование?')" }, { name: text, value: "Повторное использование переменных" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое наследование?')" }, { name: text, value: "Переопределение методов" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое наследование?')" }, { name: text, value: "Создание интерфейсов" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" }
+              - column: { name: text,    value: "Что такое наследование?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое наследование?')" }
+              - column: { name: text, value: "Создание нового класса на основе существующего" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое наследование?')" }
+              - column: { name: text, value: "Повторное использование переменных" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое наследование?')" }
+              - column: { name: text, value: "Переопределение методов" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое наследование?')" }
+              - column: { name: text, value: "Создание интерфейсов" }
 
         # q7_5
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" },
-            { name: text,    value: "Что делает ключевое слово super?" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает ключевое слово super?')" }, { name: text, value: "Обращается к объекту родительского класса" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает ключевое слово super?')" }, { name: text, value: "Создает новый объект" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает ключевое слово super?')" }, { name: text, value: "Вызывает метод equals()" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает ключевое слово super?')" }, { name: text, value: "Удаляет объект" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" }
+              - column: { name: text,    value: "Что делает ключевое слово super?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает ключевое слово super?')" }
+              - column: { name: text, value: "Обращается к объекту родительского класса" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает ключевое слово super?')" }
+              - column: { name: text, value: "Создает новый объект" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает ключевое слово super?')" }
+              - column: { name: text, value: "Вызывает метод equals()" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает ключевое слово super?')" }
+              - column: { name: text, value: "Удаляет объект" }
 
         # q7_6
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" },
-            { name: text,    value: "Какой метод используется для сравнения объектов по значению?" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод используется для сравнения объектов по значению?')" }, { name: text, value: "==" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод используется для сравнения объектов по значению?')" }, { name: text, value: "equals()" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод используется для сравнения объектов по значению?')" }, { name: text, value: "compare()" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод используется для сравнения объектов по значению?')" }, { name: text, value: "isSame()" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" }
+              - column: { name: text,    value: "Какой метод используется для сравнения объектов по значению?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод используется для сравнения объектов по значению?')" }
+              - column: { name: text, value: "==" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод используется для сравнения объектов по значению?')" }
+              - column: { name: text, value: "equals()" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод используется для сравнения объектов по значению?')" }
+              - column: { name: text, value: "compare()" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Какой метод используется для сравнения объектов по значению?')" }
+              - column: { name: text, value: "isSame()" }
 
         # q7_7
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" },
-            { name: text,    value: "Что такое полиморфизм?" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое полиморфизм?')" }, { name: text, value: "Способность объекта принимать разные формы" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое полиморфизм?')" }, { name: text, value: "Переопределение equals()" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое полиморфизм?')" }, { name: text, value: "Множественное наследование" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое полиморфизм?')" }, { name: text, value: "Разделение по пакетам" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" }
+              - column: { name: text,    value: "Что такое полиморфизм?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое полиморфизм?')" }
+              - column: { name: text, value: "Способность объекта принимать разные формы" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое полиморфизм?')" }
+              - column: { name: text, value: "Переопределение equals()" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое полиморфизм?')" }
+              - column: { name: text, value: "Множественное наследование" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что такое полиморфизм?')" }
+              - column: { name: text, value: "Разделение по пакетам" }
 
         # q7_8
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" },
-            { name: text,    value: "Что делает абстрактный класс?" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает абстрактный класс?')" }, { name: text, value: "Не может быть создан экземпляр, но можно наследоваться от него" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает абстрактный класс?')" }, { name: text, value: "Создает статические методы" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает абстрактный класс?')" }, { name: text, value: "Хранит только константы" } ] }
-        - insert: { tableName: answer, columns: [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает абстрактный класс?')" }, { name: text, value: "Может наследоваться от интерфейсов" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 7 — Java: Работа с ООП')" }
+              - column: { name: text,    value: "Что делает абстрактный класс?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает абстрактный класс?')" }
+              - column: { name: text, value: "Не может быть создан экземпляр, но можно наследоваться от него" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает абстрактный класс?')" }
+              - column: { name: text, value: "Создает статические методы" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает абстрактный класс?')" }
+              - column: { name: text, value: "Хранит только константы" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 7 — Java: Работа с ООП' and q.text='Что делает абстрактный класс?')" }
+              - column: { name: text, value: "Может наследоваться от интерфейсов" }
 
   - changeSet:
       id: seed-test-8
       author: seed
       context: seed
       preConditions:
-        onFail: MARK_RAN
-        onError: HALT
-                   - sqlCheck:
-                   expectedResult: 0
-                   sql: "select count(1) from test where name = 'Тест 8 — География: Природные объекты'"
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+            expectedResult: 0
+            sql: "select count(1) from test where name = 'Тест 8 — География: Природные объекты'"
+
       changes:
         - insert:
             tableName: test
@@ -244,120 +476,198 @@ databaseChangeLog:
               - column: { name: theme, value: "География" }
 
         # q8_1
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 8 — География: Природные объекты')" },
-            { name: text,    value: "Какая река протекает через Лондон?" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая река протекает через Лондон?')" },
-            { name: text, value: "Темза" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая река протекает через Лондон?')" },
-            { name: text, value: "Сена" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая река протекает через Лондон?')" },
-            { name: text, value: "Рейн" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая река протекает через Лондон?')" },
-            { name: text, value: "Дунай" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 8 — География: Природные объекты')" }
+              - column: { name: text,    value: "Какая река протекает через Лондон?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая река протекает через Лондон?')" }
+              - column: { name: text, value: "Темза" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая река протекает через Лондон?')" }
+              - column: { name: text, value: "Сена" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая река протекает через Лондон?')" }
+              - column: { name: text, value: "Рейн" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая река протекает через Лондон?')" }
+              - column: { name: text, value: "Дунай" }
 
         # q8_2
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 8 — География: Природные объекты')" },
-            { name: text,    value: "Какой океан самый большой по площади?" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какой океан самый большой по площади?')" },
-            { name: text, value: "Атлантический" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какой океан самый большой по площади?')" },
-            { name: text, value: "Тихий океан" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какой океан самый большой по площади?')" },
-            { name: text, value: "Индийский" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какой океан самый большой по площади?')" },
-            { name: text, value: "Северный Ледовитый" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 8 — География: Природные объекты')" }
+              - column: { name: text,    value: "Какой океан самый большой по площади?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какой океан самый большой по площади?')" }
+              - column: { name: text, value: "Атлантический" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какой океан самый большой по площади?')" }
+              - column: { name: text, value: "Тихий океан" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какой океан самый большой по площади?')" }
+              - column: { name: text, value: "Индийский" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какой океан самый большой по площади?')" }
+              - column: { name: text, value: "Северный Ледовитый" }
 
         # q8_3
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 8 — География: Природные объекты')" },
-            { name: text,    value: "Самое глубокое место на Земле?" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Самое глубокое место на Земле?')" },
-            { name: text, value: "Марианская впадина" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Самое глубокое место на Земле?')" },
-            { name: text, value: "Байкал" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Самое глубокое место на Земле?')" },
-            { name: text, value: "Гималаи" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Самое глубокое место на Земле?')" },
-            { name: text, value: "Тихий хребет" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 8 — География: Природные объекты')" }
+              - column: { name: text,    value: "Самое глубокое место на Земле?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Самое глубокое место на Земле?')" }
+              - column: { name: text, value: "Марианская впадина" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Самое глубокое место на Земле?')" }
+              - column: { name: text, value: "Байкал" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Самое глубокое место на Земле?')" }
+              - column: { name: text, value: "Гималаи" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Самое глубокое место на Земле?')" }
+              - column: { name: text, value: "Тихий хребет" }
 
         # q8_4
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 8 — География: Природные объекты')" },
-            { name: text,    value: "Какая гора считается самой высокой в Европе?" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая гора считается самой высокой в Европе?')" },
-            { name: text, value: "Монблан" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая гора считается самой высокой в Европе?')" },
-            { name: text, value: "Маттерхорн" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая гора считается самой высокой в Европе?')" },
-            { name: text, value: "Эльбрус" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая гора считается самой высокой в Европе?')" },
-            { name: text, value: "Гросглокнер" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 8 — География: Природные объекты')" }
+              - column: { name: text,    value: "Какая гора считается самой высокой в Европе?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая гора считается самой высокой в Европе?')" }
+              - column: { name: text, value: "Монблан" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая гора считается самой высокой в Европе?')" }
+              - column: { name: text, value: "Маттерхорн" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая гора считается самой высокой в Европе?')" }
+              - column: { name: text, value: "Эльбрус" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая гора считается самой высокой в Европе?')" }
+              - column: { name: text, value: "Гросглокнер" }
 
         # q8_5
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 8 — География: Природные объекты')" },
-            { name: text,    value: "Где находится Великий Барьерный риф?" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Где находится Великий Барьерный риф?')" },
-            { name: text, value: "Австралия" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Где находится Великий Барьерный риф?')" },
-            { name: text, value: "Индонезия" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Где находится Великий Барьерный риф?')" },
-            { name: text, value: "Малайзия" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Где находится Великий Барьерный риф?')" },
-            { name: text, value: "Филиппины" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 8 — География: Природные объекты')" }
+              - column: { name: text,    value: "Где находится Великий Барьерный риф?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Где находится Великий Барьерный риф?')" }
+              - column: { name: text, value: "Австралия" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Где находится Великий Барьерный риф?')" }
+              - column: { name: text, value: "Индонезия" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Где находится Великий Барьерный риф?')" }
+              - column: { name: text, value: "Малайзия" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Где находится Великий Барьерный риф?')" }
+              - column: { name: text, value: "Филиппины" }
 
         # q8_6
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 8 — География: Природные объекты')" },
-            { name: text,    value: "Какое самое большое озеро в мире по площади?" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какое самое большое озеро в мире по площади?')" },
-            { name: text, value: "Байкал" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какое самое большое озеро в мире по площади?')" },
-            { name: text, value: "Виктория" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какое самое большое озеро в мире по площади?')" },
-            { name: text, value: "Каспийское море" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какое самое большое озеро в мире по площади?')" },
-            { name: text, value: "Онтарио" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 8 — География: Природные объекты')" }
+              - column: { name: text,    value: "Какое самое большое озеро в мире по площади?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какое самое большое озеро в мире по площади?')" }
+              - column: { name: text, value: "Байкал" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какое самое большое озеро в мире по площади?')" }
+              - column: { name: text, value: "Виктория" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какое самое большое озеро в мире по площади?')" }
+              - column: { name: text, value: "Каспийское море" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какое самое большое озеро в мире по площади?')" }
+              - column: { name: text, value: "Онтарио" }
 
         # q8_7
-        - insert: { tableName: question, columns:
-          [ { name: test_id, valueComputed: "(select id from test where name='Тест 8 — География: Природные объекты')" },
-            { name: text,    value: "Какая страна пересекается экватором?" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая страна пересекается экватором?')" },
-            { name: text, value: "Кения" }, { name: is_correct, valueBoolean: true } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая страна пересекается экватором?')" },
-            { name: text, value: "Египет" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая страна пересекается экватором?')" },
-            { name: text, value: "ЮАР" } ] }
-        - insert: { tableName: answer, columns:
-          [ { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая страна пересекается экватором?')" },
-            { name: text, value: "Марокко" } ] }
+        - insert:
+            tableName: question
+            columns:
+              - column: { name: test_id, valueComputed: "(select id from test where name='Тест 8 — География: Природные объекты')" }
+              - column: { name: text,    value: "Какая страна пересекается экватором?" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая страна пересекается экватором?')" }
+              - column: { name: text, value: "Кения" }
+              - column: { name: is_correct, valueBoolean: true }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая страна пересекается экватором?')" }
+              - column: { name: text, value: "Египет" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая страна пересекается экватором?')" }
+              - column: { name: text, value: "ЮАР" }
+        - insert:
+            tableName: answer
+            columns:
+              - column: { name: question_id, valueComputed: "(select q.id from question q join test t on q.test_id=t.id where t.name='Тест 8 — География: Природные объекты' and q.text='Какая страна пересекается экватором?')" }
+              - column: { name: text, value: "Марокко" }
+

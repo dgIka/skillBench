@@ -9,7 +9,7 @@ databaseChangeLog:
       file: db/migration/004-add-indexes-test-result.yml
   - include:
       file: db/migration/005-seed-tests-part-01.yml
-#  - include:
-#      file: db/migration/006-seed-tests-part-02.yml
+  - include:
+      file: db/migration/006-seed-tests-part-02.yml
 #  - include:
 #      file: db/migration/007-seed-tests-part-03.yml
