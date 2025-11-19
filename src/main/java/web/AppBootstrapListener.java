@@ -43,6 +43,50 @@ public class AppBootstrapListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
 
+        Properties hibernateProps = new Properties();
+
+        try (InputStream is = getClass()
+                .getClassLoader()
+                .getResourceAsStream("hibernate.properties")) {
+
+            if (is == null) {
+                throw new IllegalStateException("hibernate.properties not found in classpath");
+            }
+
+            hibernateProps.load(is);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load hibernate.properties", e);
+        }
+
+        String envUrl  = System.getenv("DB_URL");
+        String envUser = System.getenv("DB_USER");
+        String envPass = System.getenv("DB_PASSWORD");
+
+        if (envUrl != null && !envUrl.isBlank()) {
+            hibernateProps.setProperty("hibernate.hikari.jdbcUrl", envUrl);
+        }
+        if (envUser != null && !envUser.isBlank()) {
+            hibernateProps.setProperty("hibernate.hikari.username", envUser);
+        }
+        if (envPass != null && !envPass.isBlank()) {
+            hibernateProps.setProperty("hibernate.hikari.password", envPass);
+        }
+
+        //Hikari
+        HikariConfig hc = new HikariConfig();
+        hc.setDriverClassName(hibernateProps.getProperty("hibernate.hikari.driverClassName"));
+        hc.setJdbcUrl(hibernateProps.getProperty("hibernate.hikari.jdbcUrl"));
+        hc.setUsername(hibernateProps.getProperty("hibernate.hikari.username"));
+        hc.setPassword(hibernateProps.getProperty("hibernate.hikari.password"));
+        hc.setMaximumPoolSize(Integer.parseInt(hibernateProps.getProperty("hibernate.hikari.maximumPoolSize", "10")));
+        hc.setMinimumIdle(Integer.parseInt(hibernateProps.getProperty("hibernate.hikari.minimumIdle", "2")));
+        hc.setIdleTimeout(Long.parseLong(hibernateProps.getProperty("hibernate.hikari.idleTimeout", "600000")));
+        hc.setMaxLifetime(Long.parseLong(hibernateProps.getProperty("hibernate.hikari.maxLifetime", "1800000")));
+        hc.setConnectionTimeout(Long.parseLong(hibernateProps.getProperty("hibernate.hikari.connectionTimeout", "30000")));
+
+        dataSource = new HikariDataSource(hc);
+
+        //Thymeleaf
         JakartaServletWebApplication application = JakartaServletWebApplication.buildApplication(servletContext);
         WebApplicationTemplateResolver resolver = new WebApplicationTemplateResolver(application);
         resolver.setPrefix("/WEB-INF/templates/");
@@ -51,42 +95,22 @@ public class AppBootstrapListener implements ServletContextListener {
         resolver.setCharacterEncoding("UTF-8");
 
         //Liquibase
-        Properties properties = new Properties();
-        try(InputStream in = Thread.currentThread()
-                .getContextClassLoader()
-                .getResourceAsStream("hibernate.properties")) {
-            if(in == null) {throw new IllegalArgumentException("hibernate.properties not found");}
-            properties.load(in);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        //Hikari
-        HikariConfig hc = new HikariConfig();
-        hc.setDriverClassName(properties.getProperty("hibernate.hikari.driverClassName"));
-        hc.setJdbcUrl(properties.getProperty("hibernate.hikari.jdbcUrl"));
-        hc.setUsername(properties.getProperty("hibernate.hikari.username"));
-        hc.setPassword(properties.getProperty("hibernate.hikari.password"));
-        hc.setMaximumPoolSize(Integer.parseInt(properties.getProperty("hibernate.hikari.maximumPoolSize", "10")));
-        hc.setMinimumIdle(Integer.parseInt(properties.getProperty("hibernate.hikari.minimumIdle", "2")));
-        hc.setIdleTimeout(Long.parseLong(properties.getProperty("hibernate.hikari.idleTimeout", "600000")));
-        hc.setMaxLifetime(Long.parseLong(properties.getProperty("hibernate.hikari.maxLifetime", "1800000")));
-        hc.setConnectionTimeout(Long.parseLong(properties.getProperty("hibernate.hikari.connectionTimeout", "30000")));
-
-        dataSource = new HikariDataSource(hc);
-
         String masterChangelog = "db/changelog/db.changelog-master.yaml";
 
         try (var conn = dataSource.getConnection()) {
-            liquibase = new Liquibase(masterChangelog
-            ,new ClassLoaderResourceAccessor()
-            , new JdbcConnection(conn));
+            liquibase = new Liquibase(
+                    masterChangelog,
+                    new ClassLoaderResourceAccessor(),
+                    new JdbcConnection(conn)
+            );
+
             liquibase.update(new Contexts(), new LabelExpression());
-            sce.getServletContext().setAttribute("liquibase", liquibase);
+            servletContext.setAttribute("liquibase", liquibase);
 
         } catch (Exception e) {
             throw new RuntimeException("Liquibase init failed", e);
         }
+
 
         //Hibernate Validator
         validatorFactory = Validation.buildDefaultValidatorFactory();

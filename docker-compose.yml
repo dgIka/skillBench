@@ -6,8 +6,8 @@ services:
     container_name: skillbench-db
     environment:
       POSTGRES_DB: skillbench
-      POSTGRES_USER: skillbench
-      POSTGRES_PASSWORD: skillbench
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
       - "5433:5432"
     volumes:
@@ -17,7 +17,6 @@ services:
     build:
       context: .
       dockerfile: dockerfile
-    image: skillbench-app
     container_name: skillbench-app
     depends_on:
       - db
