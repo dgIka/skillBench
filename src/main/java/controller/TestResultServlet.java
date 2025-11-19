@@ -41,7 +41,7 @@ public class TestResultServlet extends HttpServlet {
         }
 
         AttemptDTO attemptDTO = (AttemptDTO) req.getSession(false).getAttribute(attemptKey(testId));
-        req.getSession(false).removeAttribute(attemptKey(testId));
+
 
         Test test = testService.getWithQuestions(attemptDTO.getTestId());
 
@@ -51,8 +51,15 @@ public class TestResultServlet extends HttpServlet {
         context.setVariable("totalQuestions", test.getQuestions().size());
         context.setVariable("choices", attemptDTO.getChoices());
 
+        attemptDTO.getChoices().forEach((k, v) -> {
+            System.out.println(k + ": " + v);
+        });
+
+        req.getSession(false).removeAttribute(attemptKey(testId));
+
         resp.setContentType("text/html;charset=UTF-8");
         templateEngine.process("result", context, resp.getWriter());
+
 
     }
 

@@ -1,19 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Главная</title>
+    <link rel="stylesheet" th:href="@{/assets/css/app.css}">
 </head>
-<body>
-<h1 th:text="${message} + ${session.user.name} + '!'">Hello, World!</h1><br>
-<a class="mac-link" href="/tests">Доступные тесты</a><br>
-<a class="mac-link" href="/history">Моя история</a><br>
-<a class="mac-link" href="../register">Регистрация</a><br>
-<div th:if="${session.role != null and session.role.name() == 'ADMIN'}" style="margin-top:12px;">
-    <hr>
-    <h3>Админка</h3>
-    <a class="mac-link" href="/admin">Перейти в админ-панель</a><br>
+
+<body class="mac-page">
+
+<div class="test-container">
+    <h1 class="mac-title"
+        th:text="${message} + ${session.user.name} + '!'">
+        Hello, World!
+    </h1>
+
+    <p style="color: var(--muted); margin-bottom: 14px;">
+        Добро пожаловать в SkillBench.
+    </p>
+
+    <nav>
+        <a class="mac-link" href="/tests">Доступные тесты</a><br>
+        <a class="mac-link" href="/history">Моя история</a><br>
+        <a class="mac-link" href="../register">Регистрация</a><br>
+
+        <div th:if="${session.role != null and session.role.name() == 'ADMIN'}"
+             style="margin-top: 16px;">
+            <hr style="margin: 10px 0;">
+            <h3 style="margin: 4px 0 6px;">Админка</h3>
+            <a class="mac-link" href="/admin">Перейти в админ-панель</a><br>
+        </div>
+    </nav>
 </div>
+
 </body>
 </html>
-

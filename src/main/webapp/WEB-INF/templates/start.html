@@ -1,62 +1,89 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title th:text="${test.name}">Тест</title>
-  <link rel="stylesheet" href="/assets/css/app.css">
+  <link rel="stylesheet" th:href="@{/assets/css/app.css}">
 </head>
-<body>
 
-<div class="container">
-  <h1 th:text="${test.name}">Название теста</h1>
-  <p th:text="'Тема: ' + ${test.theme}">Тема</p>
+<body class="mac-page">
+
+<div class="test-container">
+
+  <h1 class="mac-title" th:text="${test.name}">Название теста</h1>
+  <p style="color: var(--muted);" th:text="'Тема: ' + ${test.theme}">Тема</p>
+
   <hr>
 
   <!-- Вопрос -->
-  <div class="question-block">
-    <h2 th:text="${question.text}">Текст вопроса</h2>
+  <h2 class="question-title" th:text="${question.text}">Текст вопроса</h2>
 
-    <form th:action="@{/tests/start}" method="post">
-      <input type="hidden" name="testId" th:value="${test.id}">
-      <input type="hidden" name="questionIndex" th:value="${questionIndex}">
+  <form th:action="@{/tests/start}" method="post">
 
-      <ul class="answers">
-        <li th:each="a : ${question.answers}"
-            th:classappend="${selectedAnswerId} == ${a.id} ?
-                        (${isCorrect} ? 'answer-correct' : (${a.isCorrect} ? 'answer-correct' : 'answer-wrong')) :
-                        (${a.isCorrect} and ${isCorrect} == false ? 'answer-correct' : '')">
+    <input type="hidden" name="testId" th:value="${test.id}">
+    <input type="hidden" name="questionIndex" th:value="${questionIndex}">
 
-          <label>
-            <input type="radio" name="answerId" th:value="${a.id}"
-                   th:disabled="${isCorrect != null}">
-            <span th:text="${a.text}">Ответ</span>
-          </label>
-        </li>
-      </ul>
+    <ul class="answers">
 
-      <div class="controls">
+      <li th:each="a : ${question.answers}"
+          class="answer-mac"
+          th:classappend="
+                    ${selectedAnswerId} == ${a.id} ?
+                        (${isCorrect} ?
+                            ' answer-correct' :
+                            (${a.isCorrect} ? ' answer-correct' : ' answer-wrong')
+                        ) :
+                        (${a.isCorrect} and ${isCorrect} == false ? ' answer-correct' : '')
+                ">
 
-        <button type="submit" th:if="${isCorrect == null}">Ответить</button>
+        <label>
+          <input type="radio"
+                 name="answerId"
+                 th:value="${a.id}"
+                 th:disabled="${isCorrect != null}">
+          <span th:text="${a.text}">Ответ</span>
+        </label>
 
-        <div th:if="${isCorrect != null}">
-          <p th:text="${isCorrect} ? 'Верно!' : 'Неверно!'"
-             th:classappend="${isCorrect} ? 'text-success' : 'text-error'"></p>
+      </li>
 
-          <button type="submit" name="q" th:value="${nextIndex}" th:if="${hasNext}" class="next-btn">Следующий вопрос</button>
+    </ul>
 
+    <div style="margin-top: 10px;">
 
-          <p th:if="${!hasNext}">Это был последний вопрос.</p>
-        </div>
+      <!-- Кнопка "Ответить" -->
+      <button type="submit"
+              th:if="${isCorrect == null}"
+              class="btn-mac">
+        Ответить
+      </button>
+
+      <!-- После ответа -->
+      <div th:if="${isCorrect != null}">
+        <p th:text="${isCorrect} ? 'Верно!' : 'Неверно!'"
+           th:classappend="${isCorrect} ? ' text-success' : ' text-error'"></p>
+
+        <button type="submit"
+                name="q"
+                th:value="${nextIndex}"
+                th:if="${hasNext}"
+                class="btn-mac next-btn">
+          Следующий вопрос
+        </button>
+
+        <p th:if="${!hasNext}" style="font-weight:600; margin-top:12px;">Это был последний вопрос.</p>
       </div>
-    </form>
 
-    <p class="question-progress"
-       th:text="'Вопрос ' + ${displayIndex} + ' из ' + ${totalQuestions}">
-      Прогресс
-    </p>
+    </div>
 
-  </div>
+  </form>
+
+  <p class="question-progress"
+     th:text="'Вопрос ' + ${displayIndex} + ' из ' + ${totalQuestions}">
+    Прогресс
+  </p>
+
   <a class="mac-link" href="../tests">Все тесты</a>
+
 </div>
 
 </body>

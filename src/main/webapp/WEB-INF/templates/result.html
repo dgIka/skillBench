@@ -3,48 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="'Результат — ' + ${test.name}">Результат теста</title>
-    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" th:href="@{/assets/css/app.css}">
 </head>
-<body>
-<div class="container">
-    <h1 th:text="'Тест пройден: ' + ${test.name}">Тест пройден</h1>
-    <p th:text="'Тема: ' + ${test.theme}">Тема</p>
-    <hr>
 
-    <h2>Итоги</h2>
-    <ul>
+<body class="mac-page">
+
+<div style="max-width: 680px; margin: 0 auto;">
+
+    <!-- Заголовок -->
+    <h1 class="mac-title" th:text="'Тест пройден: ' + ${test.name}">Тест пройден</h1>
+    <p style="color: var(--muted);" th:text="'Тема: ' + ${test.theme}">Тема</p>
+
+    <hr style="margin: 20px 0;">
+
+    <!-- Итоги -->
+    <h2 class="mac-title" style="font-size:22px; margin-bottom: 12px;">Итоги</h2>
+
+    <ul style="list-style:none; padding-left:0; line-height:1.7;">
         <li>Правильных: <strong th:text="${trueAnswers}">0</strong></li>
         <li>Неправильных: <strong th:text="${falseAnswers}">0</strong></li>
         <li>Всего вопросов: <strong th:text="${totalQuestions}">0</strong></li>
-        <li>Результат: <strong th:text="(${totalQuestions} > 0) ? ((${trueAnswers} * 100) / ${totalQuestions}) + '%'
-                                                  : '0%'">0%</strong></li>
+        <li>
+            Результат:
+            <strong th:text="(${totalQuestions} > 0) ?
+                    ((${trueAnswers} * 100) / ${totalQuestions}) + '%' : '0%'">0%</strong>
+        </li>
     </ul>
 
-    <h3>Ваши ответы</h3>
-    <ol>
-        <li th:each="q : ${test.questions}">
-            <p><strong th:text="${q.text}">Вопрос</strong></p>
-            <ul>
+    <!-- Список вопросов и ответов -->
+    <h3 class="mac-title" style="font-size:20px; margin-top:28px;">Ваши ответы</h3>
+
+    <ol style="padding-left: 18px;">
+        <li th:each="q : ${test.questions}" style="margin-bottom: 22px;">
+
+            <p style="font-weight:600;" th:text="${q.text}">Вопрос</p>
+
+            <ul style="list-style:none; padding-left:0;">
+
                 <li th:each="a : ${q.answers}"
-                    th:classappend="
-               (${choices[q.id]} == ${a.id})
-                 ? (${a.correct} ? 'answer-correct' : 'answer-wrong')
-                 : (${a.correct} ? 'answer-correct' : '')">
+                    th:classappend="${
+                        #maps.containsValue(choices, a.id) ?
+                            (a.correct ? 'answer-correct' : 'answer-wrong') :
+                            (a.correct ? 'answer-correct' : '')
+                    }"
+                    style="margin: 4px 0;">
+
                     <span th:text="${a.text}">Ответ</span>
-                    <small th:if="${choices[q.id]} == ${a.id}"> — ваш выбор</small>
-                    <small th:if="${a.correct}"> — правильный</small>
+
+                    <!-- Ваш выбор -->
+                    <small th:if="${#maps.containsValue(choices, a.id)}"
+                           th:style="${a.correct} ? 'color: var(--muted);' : 'color: var(--error);'">
+                        — ваш выбор
+                    </small>
+
+                    <!-- Правильный -->
+                    <small th:if="${a.correct}"
+                           style="color: var(--accent);">
+                        — правильный
+                    </small>
                 </li>
             </ul>
-            <hr>
+
+            <hr style="margin-top:16px;">
         </li>
     </ol>
 
-    <div style="margin-top:16px;">
-        <a class="mac-link" th:href="@{/tests/start(id=${test.id})}">Пройти заново</a>
-        <a class="mac-link" href="/tests">К списку тестов</a> |
-        <a class="mac-link" href="/home">На главную</a> |
-
+    <!-- Навигация -->
+    <div style="margin-top:20px;">
+        <a class="mac-link" th:href="@{/tests/start(id=${test.id})}">Пройти заново</a> |
+        <a class="mac-link" href="/tests">К списку</a> |
+        <a class="mac-link" href="/home">Главная</a>
     </div>
+
 </div>
+
 </body>
 </html>

@@ -100,6 +100,9 @@ public class TestStartServlet extends HttpServlet {
         }
 
         Test test = testService.getWithQuestions(Integer.parseInt(testId));
+
+        attemptDTO.getChoices().put(test.getQuestions().get(questionIndex).getId(), Integer.parseInt(answerId));
+
         context.setVariable("test", test);
         context.setVariable("question", test.getQuestions().get(questionIndex));
         context.setVariable("questionIndex", questionIndex + 1);
@@ -130,7 +133,7 @@ public class TestStartServlet extends HttpServlet {
         }
         context.setVariable("totalQuestions", test.getQuestions().size());
 
-        attemptDTO.getChoices().put(test.getQuestions().get(questionIndex).getId(), Integer.parseInt(answerId));
+
 
         if (!hasNext) {
             var uid = session.getAttribute("uid");

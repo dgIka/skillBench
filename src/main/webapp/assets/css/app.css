@@ -95,3 +95,74 @@ a.mac-link {
     margin-top: 8px;
 }
 a.mac-link:hover { text-decoration: underline; }
+
+.mac-container {
+    max-width: 340px;
+    margin: 0;
+}
+
+.test-container {
+    padding: 8px 12px;
+    max-width: 520px;
+}
+
+.question-title {
+    font-size: 20px;
+    margin: 10px 0 12px;
+    letter-spacing: -0.01em;
+}
+
+.answers {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.answer-mac {
+    background: #fdfdfd;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    transition: background .15s ease, box-shadow .15s ease;
+    box-shadow:
+            inset 0 -1px 0 rgba(255,255,255,.8),
+            0 1px 2px rgba(0,0,0,.06);
+}
+
+.answer-mac:hover {
+    background: #ffffff;
+}
+
+.answer-mac input {
+    margin-right: 10px;
+}
+
+.answer-correct {
+    background: #d7ffd9 !important;
+    border-color: #4cd964 !important;
+}
+
+.answer-wrong {
+    background: #ffe8e8 !important;
+    border-color: #ff3b30 !important;
+}
+
+.text-success {
+    color: #16a34a;
+    font-weight: 600;
+}
+
+.text-error {
+    color: #ff3b30;
+    font-weight: 600;
+}
+
+.question-progress {
+    color: var(--muted);
+    margin-top: 12px;
+}
+
+.next-btn {
+    margin-top: 6px;
+}

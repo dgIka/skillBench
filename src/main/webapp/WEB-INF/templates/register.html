@@ -1,32 +1,54 @@
 <!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8"><title>Регистрация</title></head>
-<body>
-<h1>Регистрация</h1>
-<p th:if="${error}" th:text="${error}" style='color:red'></p>
-<form method="post" th:action="@{/register(next=${param.next})}" novalidate>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" th:href="@{/assets/css/app.css}">
+</head>
+<body class="mac-page">
+
+<h1 class="mac-title">Регистрация</h1>
+
+<p th:if="${error}" th:text="${error}" style="color:red"></p>
+
+<form class="mac-form" method="post" th:action="@{/register(next=${param.next})}" novalidate>
+
     <label>Email
-        <input name="email" type="email" required th:value="${dto != null} ? ${dto.email} : ${''}">
-        <small th:if="${errors != null and errors['email']}" th:text="${errors['email']}" style='color:red'></small>
-    </label><br>
+        <input class="input-mac" name="email" type="email" required
+               th:value="${dto != null} ? ${dto.email} : ${''}">
+        <small class="small-err"
+               th:if="${errors != null and errors['email']}"
+               th:text="${errors['email']}"></small>
+    </label>
 
     <label>Имя
-        <input name="name" type="text" required>
-        <small th:if="${errors != null and errors['name']}" th:text="${errors['name']}" style='color:red'></small>
-    </label><br>
+        <input class="input-mac" name="name" type="text" required
+               th:value="${dto != null} ? ${dto.name} : ${''}">
+        <small class="small-err"
+               th:if="${errors != null and errors['name']}"
+               th:text="${errors['name']}"></small>
+    </label>
 
     <label>Пароль
-        <input name="password" type="password" required>
-        <small th:if="${errors != null and errors['password']}" th:text="${errors['password']}" style='color:red'></small>
-    </label><br>
+        <input class="input-mac" name="password" type="password" required>
+        <small class="small-err"
+               th:if="${errors != null and errors['password']}"
+               th:text="${errors['password']}"></small>
+    </label>
 
     <label>Повтор пароля
-        <input name="password2" type="password" required>
-        <small th:if="${errors != null and errors['password2']}" th:text="${errors['password2']}" style='color:red'></small>
-    </label><br>
-    <button type="submit">Создать аккаунт</button>
+        <input class="input-mac" name="password2" type="password" required>
+        <small class="small-err"
+               th:if="${errors != null and errors['password2']}"
+               th:text="${errors['password2']}"></small>
+    </label>
+
+    <input type="hidden" name="next" th:value="${param.next}">
+
+    <button type="submit" class="btn-mac">Создать аккаунт</button>
 </form>
 
-<a href="../login">Уже есть акаунт</a>
+<a class="mac-link" th:href="@{/login}">Уже есть аккаунт</a>
+
 </body>
 </html>

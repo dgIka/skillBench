@@ -1,35 +1,53 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Список тестов</title>
+  <link rel="stylesheet" th:href="@{/assets/css/app.css}">
 </head>
-<body>
 
-<h1>Выбор теста</h1> <br>
+<body class="mac-page">
 
-<form method="post" th:action="@{/tests}">
-  <select name="theme" onchange="this.form.submit()">
-    <option value="">-- Без темы --</option>
-    <option th:each="t : ${themes}"
-            th:value="${t}"
-            th:text="${t}"
-            th:selected="${t == selectedTheme}"></option>
-  </select>
-</form>
+<div class="test-container">
 
-<div th:if="${tests != null}">
-  <ul>
-    <li th:each="test : ${tests}">
-      <a th:href="@{/tests/start(id=${test.id})}" th:text="${test.name}"></a>
-    </li>
-  </ul>
+  <h1 class="mac-title">Выбор теста</h1>
+
+  <form method="post" th:action="@{/tests}" class="mac-form" style="margin-top: 10px;">
+    <label style="color: var(--muted);">
+      Тема:
+      <select name="theme" class="input-mac" onchange="this.form.submit()"
+              style="width: 260px; margin-top: 6px;">
+        <option value="">— Без темы —</option>
+        <option th:each="t : ${themes}"
+                th:value="${t}"
+                th:text="${t}"
+                th:selected="${t == selectedTheme}">
+        </option>
+      </select>
+    </label>
+  </form>
+
+  <div style="margin-top: 20px;" th:if="${tests != null}">
+    <ul style="list-style: none; padding-left: 0;">
+      <li th:each="test : ${tests}" style="margin: 8px 0;">
+        <a class="mac-link"
+           th:href="@{/tests/start(id=${test.id})}"
+           th:text="${test.name}">
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <p th:if="${tests == null or tests.isEmpty()}"
+     style="color: var(--muted); margin-top: 20px;">
+    Выберите тему
+  </p>
+
+  <a class="mac-link" href="../register" style="display:block; margin-top: 20px;">
+    Регистрация
+  </a>
+
 </div>
 
-<p th:if="${tests == null or tests.isEmpty()}" style="color: gray;">
-  Выберите тему
-</p>
-
-<a class="mac-link" href="../register">Регистрация</a>
 </body>
 </html>
